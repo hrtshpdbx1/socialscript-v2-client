@@ -1,18 +1,36 @@
 // routes.jsx 
+// Toutes les routes sont définies dans un seul fichier. Cela permet de modifier une URL à un seul endroit sans toucher aux composants.
 
-import { createBrowserRouter } from "react-router-dom"
+
+import App from "./App"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
+import Scenarios from "./pages/Scenarios"
+import Resources from "./pages/Resources"
+import Login from "./pages/auth/Login"
+import Register from "./pages/auth/Register"
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <Home />,
-    },
-    {
-        path: "*",
-        element: <NotFound />,
-    },
-])
+/** @type {import('react-router-dom').RouteObject[]} */
 
-export default router
+export const routes = [
+    {
+        path: '/',
+        element: <App />,        // layout global
+        children: [
+            { index: true, element: <Home /> }, // index: true = désigne la route affichée par défaut = /
+            { path: 'scenarios', element: <Scenarios /> },
+            { path: 'resources', element: <Resources /> },
+            {
+                path: 'auth',
+                children: [
+                    { path: 'login', element: <Login /> },
+                    { path: 'register', element: <Register /> },
+                ]
+            },
+            {
+                path: "*", // widlcard capture toutes les URLs non reconnues
+                element: <NotFound />,
+            },
+        ]
+    }
+]
