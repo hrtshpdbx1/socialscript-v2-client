@@ -15,12 +15,13 @@
 ### Jour 1 — Setup du projet
 
 **À faire**
-- [ ] `npm create vite@latest` → React + JavaScript
-- [ ] Installer : `npm i tailwindcss @tailwindcss/vite react-router-dom axios jotai`
-- [ ] Configurer Tailwind dans `vite.config.js` et `index.css`
-- [ ] Créer le thème Tailwind dans `theme.css` en reprenant les couleurs de la V1 (`--primary`, `--secondary`, etc.)
-- [ ] Mettre en place le `.env` avec `VITE_API_URL=http://localhost:3000/api`
-- [ ] Créer l'arborescence :
+- [x] `npm create vite@latest` → React + JavaScript
+- [x] Installer : `npm i tailwindcss @tailwindcss/vite react-router-dom axios jotai`
+- [x] Configurer Tailwind dans `vite.config.js` et `index.css`
+- [x] Créer le thème Tailwind dans `theme.css` en reprenant les couleurs de la V1 (`--primary`, `--secondary`, etc.)
+- [x] Mettre en place le `.env` avec `VITE_API_URL=http://localhost:3000/api`
+*variable = import.meta.env.VITE_API_URL*
+- [x] Créer l'arborescence :
 ```
 src/
 ├── assets/
@@ -42,8 +43,8 @@ src/
 ├── routes.jsx
 └── main.jsx
 ```
-- [ ] Route test `GET /` → page `Home.jsx` qui répond
-- [ ] Commit
+- [x] Route test `GET /` → page `Home.jsx` qui répond
+- [x] Commit
 
 **Questions à te poser**
 - Pourquoi `VITE_API_URL` et pas juste `API_URL` ? Qu'est-ce que Vite fait avec ce préfixe ?
