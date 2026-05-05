@@ -59,10 +59,11 @@ src/
 **À faire**
 - [ ] Configurer `routes.jsx` avec React Router data mode (`createBrowserRouter`)
 - [x] Créer le layout avec `<Outlet />` : Header + Footer persistants sur toutes les pages
-- [ ] Reprendre la navbar de la V1 : logo, liens de navigation, bouton CTA "Les scénarios", menu hamburger mobile
+- [x] Reprendre la navbar de la V1 : logo, liens de navigation, bouton CTA 
+- [ ] Menu hamburger mobile
 - [ ] Implémenter `<NavLink>` avec classes actives Tailwind
 - [ ] Page `NotFound.jsx`
-- [ ] Tester la navigation entre pages
+- [x] Tester la navigation entre pages
 
 **Questions à te poser**
 - Quelle différence entre `<Link>` et `<NavLink>` ?
