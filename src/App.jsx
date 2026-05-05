@@ -5,6 +5,7 @@
 import { Outlet } from "react-router"
 import { Footer } from "./components/layout/Footer"
 import { Header } from "./components/layout/Header"
+import ButtonShowcase from "./components/ui/ButtonShowcase"
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
             <Header />
             <main>
                 <Outlet />
+                {/* <ButtonShowcase /> */}
             </main>
             <Footer />
         </>

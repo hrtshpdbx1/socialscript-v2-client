@@ -58,7 +58,7 @@ src/
 
 **À faire**
 - [ ] Configurer `routes.jsx` avec React Router data mode (`createBrowserRouter`)
-- [ ] Créer le layout avec `<Outlet />` : Header + Footer persistants sur toutes les pages
+- [x] Créer le layout avec `<Outlet />` : Header + Footer persistants sur toutes les pages
 - [ ] Reprendre la navbar de la V1 : logo, liens de navigation, bouton CTA "Les scénarios", menu hamburger mobile
 - [ ] Implémenter `<NavLink>` avec classes actives Tailwind
 - [ ] Page `NotFound.jsx`

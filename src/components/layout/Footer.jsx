@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 
+
 export const Footer = () => {
     return (
         <footer className="bg-gray-900 py-10 px-8">
@@ -11,8 +12,7 @@ export const Footer = () => {
                     {/* Colonne 1 : Branding */}
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2">
-
-                            <span className="font-bold text-2xl text-gray-50">Social Script</span>
+                            <img src="/logo_footer_desktop.png" alt="Logo" className="w-full max-w-56" />
                         </div>
                         <p className="text-gray-100 mt-1">Simulateur d'interactions sociales</p>
                     </div>
