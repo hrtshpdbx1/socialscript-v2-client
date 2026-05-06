@@ -7,6 +7,7 @@ export default function Badge({ text, color = 'primary' }) {
     secondary: "bg-secondary/30 text-blue-900", 
     accent: "bg-accent/30 text-yellow-900",
     success: "bg-success/20 text-green-900",
+    error: "bg-error/20 text-red-900",
   };
 
   // Si on passe une couleur qui n'existe pas, on met primary par défaut

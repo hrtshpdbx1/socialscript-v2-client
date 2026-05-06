@@ -103,10 +103,10 @@ jsuseEffect(() => {
 **À faire**
 - [x] Créer `services/difficulty.service.js` → `getAll()`
 - [x] Créer `services/theme.service.js` → `getByDifficulty(difficultyId)`
-- [ ] Page `Scenarios.jsx` : affiche les boutons de difficulté (comme la V1)
-- [ ] Au clic sur une difficulté → affiche les thèmes associés
-- [ ] Gérer les 3 états : `loading` / `error` / `data`
-- [ ] Utiliser `useEffect` + `useState`
+- [x] Page `Scenarios.jsx` : affiche les boutons de difficulté (comme la V1)
+- [x] Au clic sur une difficulté → affiche les thèmes associés
+- [x] Gérer les 3 états : `loading` / `error` / `data`
+
 
 **Questions à te poser**
 - Pourquoi on met les appels API dans des fichiers `service` séparés plutôt que directement dans le composant ?
@@ -122,8 +122,8 @@ jsuseEffect(() => {
 ### Jour 4 — Liste et détail de scénario
 
 **À faire**
-- [ ] Créer `services/scenario.service.js` → `getByTheme(themeId)` et `getById(id)`
-- [ ] Au clic sur un thème → affiche la liste légère des scénarios (titre + contexte)
+- [x] Créer `services/scenario.service.js` → `getByTheme(themeId)` et `getById(id)`
+- [x] Au clic sur un thème → affiche la liste légère des scénarios (titre + contexte)
 - [ ] Route dynamique `/scenarios/:id` → page `ScenarioDetail.jsx`
 - [ ] Récupérer l'`id` avec `useParams`
 - [ ] Afficher le scénario complet : contexte, avatar DiceBear, dialogue, 3 choix

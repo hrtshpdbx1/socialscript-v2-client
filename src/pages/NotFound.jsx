@@ -14,7 +14,7 @@ export default function NotFound() {
         className="w-48 h-48 md:w-56 md:h-56 object-contain mb-8 drop-shadow-md hover:scale-105 transition-transform duration-300"
       />
 
-      <h1 className="text-6xl md:text-8xl font-extrabold text-primary font-nunito mb-2 drop-shadow-sm">
+      <h1 className="text-6xl md:text-8xl font-extrabold text-primary font-nunito mb-2">
         404
       </h1>
 
