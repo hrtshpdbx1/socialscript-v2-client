@@ -6,7 +6,7 @@ export default function ExploreSection() {
             id: 1,
             title: "Jouer avec des scénarios",
             description: "Pratiquez des situations courantes (refuser, négocier, poser une limite) et recevez des feedbacks détaillés.",
-            bgColor: "bg-[#e5dbff]",
+            bgColor: "bg-primary-200",
             textColor: "text-gray-900",
             iconSrc: "/illustrations/icon-game.png",
             decorSrc: "/illustrations/decor-spiral.png",

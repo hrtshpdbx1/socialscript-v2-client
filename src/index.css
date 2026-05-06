@@ -12,7 +12,7 @@
  
 
 main {
-  @apply h-full grow p-4;
+  @apply h-full grow;
   /* grow : permet au <main> de prendre tout l'espace vertical disponible */
 }
 

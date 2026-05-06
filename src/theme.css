@@ -1,8 +1,10 @@
 /* theme.css */
 
 @theme {
-    /* Purple-heart 700 */
+    /* Fuchsia Blue 700 */
+    /* https: //uicolors.app/generate/704ee7 */
     --color-primary: #704ee7;
+    --color-primary-200: #d9d8fc;
 
     /* Perano 300 */
     --color-secondary: #b2c9ff;

@@ -57,24 +57,21 @@ src/
 ### Jour 2 — Routing + Layout
 
 **À faire**
-- [ ] Configurer `routes.jsx` avec React Router data mode (`createBrowserRouter`)
+- [x] Configurer `routes.jsx` avec React Router data mode (`createBrowserRouter`)
 - [x] Créer le layout avec `<Outlet />` : Header + Footer persistants sur toutes les pages
 - [x] Reprendre la navbar de la V1 : logo, liens de navigation, bouton CTA 
-- [ ] Menu hamburger mobile
-- [ ] Implémenter `<NavLink>` avec classes actives Tailwind
-- [ ] Page `NotFound.jsx`
+- [x] Menu hamburger mobile
+- [x] Implémenter `<NavLink>` avec classes actives Tailwind
+- [x] Page `NotFound.jsx`
 - [x] Tester la navigation entre pages
-- [ ] Créer composant <Card/> standardisé avec un fond bg-white, rounded-2xl et shadow-md.
-- [ ] FaqSection :
-Créer un composant <AccordionItem/> gérant son propre state ouvert/fermé (useState).
-- [ ] Créer les différentes sections : 
-<HeroSection />     {/* Le gros titre et le call-to-action */}
-<FeaturesSection /> {/* L'espace d'entrainement */}
-<ExploreSection />  {/* Les 3 cartes de navigation */}
-<FaqSection />      {/* Les questions fréquentes */}
-Testimonial/About (Issue d'une expérience vécue) :
-Section pleine largeur (w-full) avec un fond bg-primary text-white.
-Image de profil arrondie (rounded-full border-4 border-accent).
+- [x] Créer composant <Card/> standardisé 
+- [x] FaqSection avec <details> et <summary>
+- [x] Créer les différentes sections : 
+    <HeroSection />     {/* Le gros titre et le call-to-action */}
+    <FeaturesSection /> {/* L'espace d'entrainement */}
+    <ExploreSection />  {/* Les 3 cartes de navigation */}
+    <FaqSection />      {/* Les questions fréquentes */}
+    <Testimonial/About/>
 
 **Questions à te poser**
 - Quelle différence entre `<Link>` et `<NavLink>` ?
@@ -87,9 +84,25 @@ Image de profil arrondie (rounded-full border-4 border-accent).
 
 ### Jour 3 — Services + Page Difficultés/Thèmes
 
+Hook d'état, cours d'Aude : 
+https://interface3be.sharepoint.com/sites/WEB14-Teams/_layouts/15/stream.aspx?id=%2Fsites%2FWEB14%2DTeams%2FDocuments%20partages%2FReact%20JS%2FRecordings%2FR%C3%A9union%20dans%20%C2%AB%C2%A0React%20JS%C2%A0%C2%BB%2D20260127%5F092440%2DEnregistrement%20de%20la%20r%C3%A9union%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ef9fb8a37%2Db5bf%2D4cd0%2Da397%2D223aab87cc30
+
+**Théorie of the day** :
+1. useState — Tu connais déjà les variables en JS. En React, on ne peut pas juste faire let data = [] et s'attendre à ce que la page se mette à jour quand data change. useState crée une variable "réactive" : quand elle change, React re-affiche le composant automatiquement.
+jsconst [difficulties, setDifficulties] = useState([]);
+// difficulties = la valeur actuelle (commence à [])
+// setDifficulties = la fonction pour la modifier
+
+2. useEffect — C'est le moyen de dire à React : "quand mon composant apparaît à l'écran, fais cette action" (par exemple, appeler ton API). Le deuxième argument (le tableau []) contrôle quand l'effet se relance.
+jsuseEffect(() => {
+  // ce code s'exécute quand le composant s'affiche
+}, []); // [] = une seule fois, au montage
+3. Le fichier service — C'est exactement la même logique que dans ton backend ! Ton backend a une couche services/ qui contient la logique métier séparée des controllers. Côté frontend, c'est pareil : on sépare les appels API des composants React. Même réflexe d'architecture en couches.
+
+
 **À faire**
-- [ ] Créer `services/difficulty.service.js` → `getAll()`
-- [ ] Créer `services/theme.service.js` → `getByDifficulty(difficultyId)`
+- [x] Créer `services/difficulty.service.js` → `getAll()`
+- [x] Créer `services/theme.service.js` → `getByDifficulty(difficultyId)`
 - [ ] Page `Scenarios.jsx` : affiche les boutons de difficulté (comme la V1)
 - [ ] Au clic sur une difficulté → affiche les thèmes associés
 - [ ] Gérer les 3 états : `loading` / `error` / `data`
