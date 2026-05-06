@@ -137,6 +137,67 @@ jsuseEffect(() => {
 **Validation :** parcours complet fonctionnel — difficulté → thème → liste → détail → feedback.
 
 ---
+### Jour 4 et demi — Refont UI, Liste de Composants 
+
+🏗️ 1. Le Layout spécifique
+
+    [ ] ScenarioLayout.jsx : Le conteneur principal. Il remplace le Header et le Footer habituels par un écran vide, prenant 100% de la hauteur (h-screen), optimisé pour le mode "Focus".
+
+🧩 2. Les éléments de Navigation (Haut de l'écran)
+
+    [ ] ScenarioTopBar.jsx : La barre en haut de l'écran. Elle contiendra le bouton "Croix" (pour quitter) et le titre du scénario.
+
+    [ ] SegmentedProgressBar.jsx : La fameuse barre de progression segmentée. Elle prendra des props comme totalSteps={5} et currentStep={2} pour colorer les bons segments.
+
+💬 3. Les éléments du Chat (Le cœur de l'interaction)
+
+    [ ] ChatContainer.jsx : La zone qui englobe la discussion et qui gère le scroll automatique vers le bas à chaque nouveau message.
+
+    [ ] ChatBubble.jsx : Une bulle de dialogue réutilisable. Elle doit accepter une prop isUser (pour s'aligner à droite en bleu ou à gauche en gris).
+
+    [ ] FeedbackCoach.jsx (Si tu choisis l'option In-line) : Un composant visuellement distinct (couleur d'accentuation, petite icône d'ampoule) qui s'insère dans le chat pour donner l'analyse pédagogique.
+
+👆 4. Les éléments d'Interaction (Bas de l'écran)
+
+    [ ] ChoiceList.jsx : Le conteneur qui affiche les 3 options de réponse.
+
+    [ ] ChoiceButton.jsx : Un bouton de choix spécifique (plus gros qu'un bouton standard, texte aligné à gauche pour la lisibilité sur plusieurs lignes).
+
+    [ ] ActionControls.jsx : La zone tout en bas pour les boutons "Précédent", "Continuer" ou "Rejouer".
+
+🗂️ 5. Les Écrans (Les "Pages" du scénario)
+
+    [ ] ScenarioSelection.jsx : L'écran de tes premiers wireframes (Sélection de difficulté et de thème avec les petites cartes).
+
+    [ ] ScenarioPlay.jsx : L'écran principal où se déroule le chat.
+
+    [ ] ScenarioOutro.jsx : L'écran de fin qui résume l'apprentissage et propose de rejouer ou de retourner à l'accueil.
+
+    Excellent choix ! Le feedback "In-line" va rendre l'expérience super fluide et naturelle, surtout sur mobile.
+
+
+💡 6.  Implémenter le Feedback "In-line" (Coach Virtuel)
+
+    [ ] Créer le composant FeedbackCoach.jsx
+
+        [ ] UI / Design : Lui donner un style visuel distinct des bulles de chat classiques pour marquer la pause pédagogique (ex: fond très clair, bordure jaune border-accent, icône 💡 ou avatar du coach).
+
+        [ ] Animation : Ajouter une petite animation d'apparition douce (animate-fade-in-up) pour guider l'œil de l'utilisateur vers le bas.
+
+    [ ] Mettre à jour la logique d'interaction dans le flux du chat (ScenarioPlay.jsx)
+
+        [ ] Étape 1 : Au clic sur une option de réponse, masquer la zone de choix.
+
+        [ ] Étape 2 : Afficher instantanément le choix cliqué sous forme de bulle utilisateur classique (alignée à droite, fond bleu/violet).
+
+        [ ] Étape 3 : Faire apparaître le composant FeedbackCoach.jsx juste en dessous avec l'analyse de la réponse.
+
+    [ ] Mettre à jour le composant ActionControls.jsx
+
+        [ ] Afficher un bouton principal "Continuer" ou "Réplique suivante" tout en bas de l'écran uniquement une fois que le feedback a été lu.
+
+        [ ] Faire en sorte que ce bouton déclenche le prochain message de l'IA et relance la boucle.
+
 
 ### Jour 5 — Page Ressources
 
