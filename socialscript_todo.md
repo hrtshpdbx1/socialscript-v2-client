@@ -93,22 +93,22 @@
 
 #### 🧩 2. Navigation (haut de l'écran)
 
-- [ ] `ScenarioTopBar.jsx` — bouton croix + titre du scénario
-- [ ] `SegmentedProgressBar.jsx` — props `totalSteps` / `currentStep`
+- [x] `ScenarioTopBar.jsx` — bouton croix + titre du scénario
+- [x] `SegmentedProgressBar.jsx` — props `totalSteps` / `currentStep`
 
 #### 💬 3. Chat (cœur de l'interaction)
 
-- [ ] `ChatContainer.jsx` — scroll automatique vers le bas à chaque nouveau message
-- [ ] `ChatBubble.jsx` — prop `isUser` (aligné droite/gauche)
-- [ ] `FeedbackCoach.jsx` — style distinct (bordure accent, icône 💡), animation d'apparition douce
+- [x] `ChatContainer.jsx` — scroll automatique vers le bas à chaque nouveau message
+- [x] `ChatBubble.jsx` — prop `isUser` (aligné droite/gauche)
+- [x] FeedbackCoach.jsx` — style distinct (bordure accent, icône 💡), animation d'apparition douce
 
 #### 👆 4. Interaction (bas de l'écran)
 
-- [ ] `ChoiceList.jsx` — conteneur des 3 options de réponse
-- [ ] `ChoiceButton.jsx` — bouton plus grand, texte aligné à gauche
-- [ ] `ActionControls.jsx` — boutons Précédent / Continuer / Rejouer
+- [x] `ChoiceList.jsx` — conteneur des 3 options de réponse
+- [x] `ChoiceButton.jsx` — bouton plus grand, texte aligné à gauche
+- [x] `ActionControls.jsx` — boutons Précédent / Continuer / Rejouer
 
-#### 🗂️ 5. Écrans
+#### 🗂️ 5. Écrans 
 
 - [ ] `ScenarioSelection.jsx` — sélection difficulté + thème avec cartes
 - [ ] `ScenarioPlay.jsx` — écran principal du chat
