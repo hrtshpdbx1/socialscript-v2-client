@@ -9,6 +9,8 @@ import Scenarios from "./pages/Scenarios"
 import Resources from "./pages/Resources"
 import Login from "./pages/auth/Login"
 import Register from "./pages/auth/Register"
+import ScenarioDetail from "./pages/ScenarioDetail"
+
 
 /** @type {import('react-router-dom').RouteObject[]} */
 
@@ -19,6 +21,7 @@ export const routes = [
         children: [
             { index: true, element: <Home /> }, // index: true = désigne la route affichée par défaut = /
             { path: 'scenarios', element: <Scenarios /> },
+            { path: 'scenarios/:id', element: <ScenarioDetail /> },
             { path: 'resources', element: <Resources /> },
             {
                 path: 'auth',
@@ -31,6 +34,7 @@ export const routes = [
                 path: "*", // widlcard capture toutes les URLs non reconnues
                 element: <NotFound />,
             },
+            
         ]
     }
 ]

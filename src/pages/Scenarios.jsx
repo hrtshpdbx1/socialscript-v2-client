@@ -151,7 +151,7 @@ export const Scenarios = () => {
           </div>
         )}
 
-        {/* 2. RÉCAPITULATIF : Affiché seulement si une difficulté est sélectionnée */}
+        {/* 2. Message et Badge difficulté choisie : Affiché seulement si une difficulté est sélectionnée */}
         {selectedDifficulty && (
           <div className="flex items-center gap-4 mb-8 bg-gray-50 p-4 rounded-lg">
             <p className="font-semibold">Difficulté choisie :</p>

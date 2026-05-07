@@ -27,15 +27,15 @@ async function getByTheme(difficultyId, themeId) {
  * Récupère un scénario spécifique par son ID
  * Route : GET /api/scenarios/:id
  */
-async function getByID(id) {
+async function getById(id) {
     const response = await api.get(`/scenarios/${id}`)
     // axios.get() retourne une promesse avec la réponse dans response.data
 
-    return response.data
+    return response.data.scenario
 }
 
 // 4. Export des fonctions
 export const scenarioService = {
-    getByTheme, getByID
+    getByTheme, getById
 
 }
