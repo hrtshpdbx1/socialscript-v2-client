@@ -114,32 +114,32 @@ function ScenarioLayout() {
     };
 
     // Retour en arrière
-const handleBack = () => {
-    // Si on est en mode jeu, le retour nous ramène à la liste des scénarios
-    if (isPlayMode) {
-        navigate("/scenarios/play");
-        setStep("scenario");
-        return;
-    }
-    // Si on est sur le choix du scénario, on revient au thème
-    if (step === "scenario") {
-        setStep("theme");
-        return;
-    }
-    // Si on est sur le thème, on revient à la difficulté
-    if (step === "theme") {
-        setStep("difficulty");
-        return;
-    }
-};
+    const handleBack = () => {
+        // Si on est en mode jeu, le retour nous ramène à la liste des scénarios
+        if (isPlayMode) {
+            navigate("/scenarios/play");
+            setStep("scenario");
+            return;
+        }
+        // Si on est sur le choix du scénario, on revient au thème
+        if (step === "scenario") {
+            setStep("theme");
+            return;
+        }
+        // Si on est sur le thème, on revient à la difficulté
+        if (step === "theme") {
+            setStep("difficulty");
+            return;
+        }
+    };
 
 
     return (
         <div className="h-screen overflow-hidden flex flex-col bg-background">
 
             {/* L'en-tête */}
-          <ScenarioTopBar
-                title={getTopBarTitle()} 
+            <ScenarioTopBar
+                title={getTopBarTitle()}
                 totalSteps={4}
                 currentStep={currentStepNum}
                 onClose={() => {
@@ -162,16 +162,6 @@ const handleBack = () => {
                         ========================================= */}
                     {!isPlayMode && step === "difficulty" && !loading && difficulties.length > 0 && (
                         <div className="text-center animate-fade-in-up w-full mt-8 md:mt-16">
-
-                            {/* Petit texte introductif si on est tout au début */}
-                            <p className="text-lg text-gray-600 font-nunito mb-8 max-w-2xl mx-auto">
-                                Entraînez-vous à gérer des situations sociales courantes et observez comment différentes manières de répondre peuvent être perçues. Pas de jugement, simplement un espace pour expérimenter.
-                            </p>
-
-                            <h2 className="text-2xl md:text-3xl font-extrabold mb-8 font-nunito text-gray-900">
-                                Choisissez un niveau de difficulté
-                            </h2>
-
                             <div className="flex flex-wrap gap-4 justify-center">
                                 {difficulties.map((difficulty) => (
                                     <Button
@@ -192,21 +182,7 @@ const handleBack = () => {
                         ÉTAPE 2 : CHOIX DU THÈME
                         ========================================= */}
                     {!isPlayMode && step === "theme" && !loading && (
-                        <div className="text-center animate-fade-in-up w-full mt-8 md:mt-12">
-
-                            {/* Rappel du choix précédent (Difficulté) */}
-                            <div className="flex flex-col sm:flex-row items-center gap-4 mb-12 bg-white p-4 rounded-xl shadow-sm border border-gray-100 justify-center max-w-lg mx-auto">
-                                <span className="font-semibold text-gray-700 font-nunito">Niveau choisi :</span>
-                                <Badge
-                                    text={difficulties.find(d => d._id === selectedDifficulty)?.title}
-                                    color={getDifficultyColor(difficulties.find(d => d._id === selectedDifficulty)?.title)}
-                                />
-                            </div>
-
-                            <h2 className="text-2xl md:text-3xl font-extrabold mb-8 font-nunito text-gray-900">
-                                Choisissez un thème
-                            </h2>
-
+                        <div className=" flex flex-col gap-16  text-center animate-fade-in-up w-full mt-8 md:mt-12">
                             <div className="flex flex-wrap gap-4 justify-center">
                                 {themes.map((theme) => (
                                     <Button
@@ -220,6 +196,19 @@ const handleBack = () => {
                                     </Button>
                                 ))}
                             </div>
+
+
+                            {/* Rappel du choix précédent (Difficulté) */}
+                            <div className="flex flex-col sm:flex-row items-center gap-4 mb-12 bg-white p-4 rounded-xl shadow-sm border border-gray-100 justify-center max-w-lg mx-auto">
+                                <span className="font-semibold text-gray-700 font-nunito">Niveau choisi :</span>
+                                <Badge
+                                    text={difficulties.find(d => d._id === selectedDifficulty)?.title}
+                                    color={getDifficultyColor(difficulties.find(d => d._id === selectedDifficulty)?.title)}
+                                />
+                            </div>
+
+
+
                         </div>
                     )}
 
@@ -230,28 +219,17 @@ const handleBack = () => {
                         <div className="animate-fade-in-up w-full mt-4 md:mt-8">
 
                             <div className="flex justify-between items-center mb-8 border-b border-gray-200 pb-4">
-                                <h2 className="text-2xl font-extrabold font-nunito text-gray-900">
-                                    Sélectionnez votre scénario
-                                </h2>
-                            
+                          
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {scenarios.map((scenario) => (
-                                    <Card key={scenario._id} className="flex flex-col h-full hover:shadow-md transition-shadow">
+                                    <Card key={scenario._id} className="flex flex-col h-full hover:shadow-md transition-shadow cursor-pointer"
+                                        onClick={() => {
+                                            // Ceci change l'URL ! React Router va injecter <ScenarioDetail />
+                                            navigate(`/scenarios/${scenario._id}`);
+                                        }}>
                                         <h3 className="font-bold text-xl mb-3 font-nunito text-primary">{scenario.title}</h3>
-                                        <p className="text-gray-600 mb-8 flex-1 leading-relaxed font-nunito">
-                                            {scenario.context}
-                                        </p>
-                                        <Button
-                                            variant="primary"
-                                            className="w-full"
-                                            onClick={() => {
-                                                // Ceci change l'URL ! React Router va injecter <ScenarioDetail />
-                                                navigate(`/scenarios/${scenario._id}`);
-                                            }}>
-                                            Démarrer l'entraînement
-                                        </Button>
                                     </Card>
                                 ))}
                             </div>
