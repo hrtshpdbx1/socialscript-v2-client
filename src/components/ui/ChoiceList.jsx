@@ -23,12 +23,12 @@ export default function ChoiceList({ choices, onSelectChoice }) {
     const currentChoice = choices[currentIndex];
 
     return (
-        <div className="flex flex-col items-center animate-fade-in-up w-full max-w-2xl mx-auto">
-            <p className="text-xs font-bold text-gray-400 uppercase tracking-wider text-center mb-4 font-nunito">
+        <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
+    <p className="text-[10px] font-bold text-gray-700 uppercase tracking-wider text-center mb-1 font-nunito">
                 Que répondez-vous ?
             </p>
 
-            {/* Le Carousel (Flèche Gauche + Bouton + Flèche Droite) */}
+            {/* Le Carousel*/}
             <div className="flex items-center w-full gap-2 md:gap-4">
                 
                 {/* Flèche Gauche */}
@@ -68,7 +68,7 @@ export default function ChoiceList({ choices, onSelectChoice }) {
             </div>
 
             {/* Les petits points (dots) indicateurs en dessous */}
-            <div className="flex gap-2 mt-5">
+          <div className="flex gap-1.5 mt-2">
                 {choices.map((_, idx) => (
                     <div 
                         key={idx} 

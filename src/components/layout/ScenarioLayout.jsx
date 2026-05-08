@@ -149,13 +149,13 @@ function ScenarioLayout() {
                 onBack={(step !== "difficulty" || isPlayMode) ? handleBack : null}
             />
 
-            <main className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col items-center relative">
+            <main className={`flex-1 flex flex-col items-center relative w-full ${isPlayMode ? "p-0 overflow-hidden" : "p-2 md:p-4 overflow-y-auto"}`}>
 
                 {/* Messages globaux (Erreur & Chargement) */}
                 {error && <p className="text-error font-bold mb-4 font-nunito">{error}</p>}
                 {loading && <p className="text-gray-500 mb-4 font-nunito animate-pulse">Chargement en cours...</p>}
 
-                <div className="w-full max-w-4xl mx-auto flex flex-col items-center h-full">
+<div className={`w-full flex flex-col items-center h-full ${!isPlayMode ? "max-w-4xl mx-auto" : ""}`}>
 
                     {/* =========================================
                         ÉTAPE 1 : CHOIX DE LA DIFFICULTÉ
@@ -219,7 +219,7 @@ function ScenarioLayout() {
                         <div className="animate-fade-in-up w-full mt-4 md:mt-8">
 
                             <div className="flex justify-between items-center mb-8 border-b border-gray-200 pb-4">
-                          
+
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
