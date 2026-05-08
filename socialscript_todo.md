@@ -111,19 +111,19 @@
 #### 🗂️ 5. Écrans 
 
 - [ ] `ScenarioSelection.jsx` — sélection difficulté + thème avec cartes
-- [ ] `ScenarioPlay.jsx` — écran principal du chat
+- [x] `ScenarioPlay.jsx` — écran principal du chat
 - [ ] `ScenarioOutro.jsx` — écran de fin : résumé + rejouer / retour accueil
 
 #### 💡 6. Feedback In-line (coach virtuel)
 
-- [ ] **`FeedbackCoach.jsx`**
-  - [ ] UI distincte : fond clair, `border-accent`, icône 💡
+- [] **`FeedbackCoach.jsx`**
+  - [x] UI distincte : fond clair, `border-accent`, icône 💡
   - [ ] Animation `animate-fade-in-up`
 - [ ] **Logique dans `ScenarioPlay.jsx`**
   - [ ] Étape 1 : au clic sur un choix → masquer la zone de choix
-  - [ ] Étape 2 : afficher le choix comme bulle utilisateur (droite, fond coloré)
-  - [ ] Étape 3 : afficher `FeedbackCoach.jsx` en dessous avec l'analyse
-- [ ] **`ActionControls.jsx`**
+  - [x] Étape 2 : afficher le choix comme bulle utilisateur (droite, fond coloré)
+  - [x] Étape 3 : afficher `FeedbackCoach.jsx` en dessous avec l'analyse
+- [X] **`ActionControls.jsx`**
   - [ ] Bouton "Continuer" visible uniquement après lecture du feedback
   - [ ] Déclenche le prochain message et relance la boucle
 
@@ -131,10 +131,10 @@
 
 ### Jour 5 — Page Ressources
 
-- [ ] Créer `services/resource.service.js` → `getCategories()` et `getByCategory(categoryId)`
-- [ ] Page `Resources.jsx` : filtres par catégorie, barre de recherche, grille de cartes
-- [ ] Les filtres appellent l'API au lieu du fichier statique
-- [ ] Recherche côté client sur les résultats reçus (filtre sur titre/description en local)
+- [x] Créer `services/resource.service.js` → `getCategories()` et `getByCategory(categoryId)`
+- [x] Page `Resources.jsx` : filtres par catégorie, barre de recherche, grille de cartes
+- [x] Les filtres appellent l'API au lieu du fichier statique
+- [x] Recherche côté client sur les résultats reçus (filtre sur titre/description en local)
 - [ ] Commit de fin de semaine
 
 **Questions à te poser**
@@ -147,6 +147,7 @@
 
 **Objectif de fin de semaine :** un utilisateur peut créer un compte, se connecter, proposer un scénario, signaler du contenu. Un modérateur peut valider depuis une interface dédiée.
 
+- [] Créer la route GET /api/resources côté Back-end !
 ---
 
 ### Jour 6 — Register + Login + Jotai

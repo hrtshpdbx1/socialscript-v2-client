@@ -1,7 +1,8 @@
 // src/pages/ScenariosLanding.jsx
 
 import Button from "../components/ui/Button";
-import { useNavigate } from "react-router-dom"; // Attention: "-dom" est recommandé
+import { useNavigate } from "react-router-dom";
+import { ShieldCheck, Lightbulb, Drama, Sparkles } from "lucide-react";
 
 export default function ScenariosLanding() {
   const navigate = useNavigate();
@@ -33,8 +34,8 @@ export default function ScenariosLanding() {
         <div className="animate-fade-in-up">
           <Button 
             variant="accent"
-            // On le rend un peu plus gros (py-4 px-8) avec un effet de survol
-            className="text-lg px-8 py-4 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex items-center gap-3"
+    
+            className="text-lg px-8 py-4 shadow-lg   flex items-center gap-3"
             onClick={() => navigate("/scenarios/play")}
           >
             <span>Commencer l'entraînement</span>
@@ -43,38 +44,75 @@ export default function ScenariosLanding() {
         </div>
       </div>
 
-      {/* Cartes */}
-      <div className="z-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mt-20 md:mt-24 px-4 animate-fade-in-up">
+{/* CARTES :  */}
+      <div className="z-10 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-6xl mt-20 md:mt-24 px-4 animate-fade-in-up">
         
-        {/* Carte 1 */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-          <div className="w-12 h-12 bg-success-200/50 text-success-600 rounded-full flex items-center justify-center text-2xl mb-4">
-            🛡️
+        {/* CARTE 1 */}
+        <div className="group relative bg-white p-8 pt-10 rounded-[2rem] overflow-hidden flex flex-col text-left hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100 min-h-[300px]">
+          {/* Halo de couleur subtil en fond */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-indigo-50 rounded-full blur-3xl group-hover:bg-indigo-100 transition-colors duration-500"></div>
+          
+      
+          <div className="relative w-14 h-14 mb-8">
+            <div className="absolute inset-0 bg-indigo-100 rounded-2xl -rotate-6 group-hover:rotate-0 transition-transform duration-300"></div>
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <ShieldCheck className="w-7 h-7 text-indigo-600" />
+              <Sparkles className="absolute -top-2 -right-2 w-4 h-4 text-indigo-400 animate-pulse" />
+            </div>
           </div>
-          <h3 className="font-bold text-gray-900 font-nunito mb-2">100% Sans Jugement</h3>
-          <p className="text-sm text-gray-500 font-nunito">Un espace sécurisant où vous pouvez tester vos réponses et vous tromper en toute sérénité.</p>
+          
+          <div className="relative z-10">
+            <h3 className="font-extrabold text-2xl text-gray-900 font-nunito mb-3">100% Sans Jugement</h3>
+            <p className="text-gray-600 font-nunito leading-relaxed text-base">
+              Un espace sécurisant où vous pouvez tester vos réponses et vous tromper en toute sérénité.
+            </p>
+          </div>
         </div>
 
-        {/* Carte 2 */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-          <div className="w-12 h-12 bg-accent/20 text-accent rounded-full flex items-center justify-center text-2xl mb-4">
-            💡
+        {/* CARTE 2 */}
+        <div className="group relative bg-white p-8 pt-10 rounded-[2rem] overflow-hidden flex flex-col text-left hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100 min-h-[300px]">
+          {/* Halo de couleur subtil en fond */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-500"></div>
+
+          <div className="relative w-14 h-14 mb-8">
+            <div className="absolute inset-0 bg-primary/10 rounded-full rotate-12 group-hover:rotate-0 transition-transform duration-300"></div>
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <Lightbulb className="w-7 h-7 text-primary" />
+              <Sparkles className="absolute bottom-0 -left-2 w-4 h-4 text-primary/60 animate-pulse" />
+            </div>
           </div>
-          <h3 className="font-bold text-gray-900 font-nunito mb-2">Feedback Constructif</h3>
-          <p className="text-sm text-gray-500 font-nunito">Recevez des analyses instantanées pour comprendre l'impact de vos mots sur votre interlocuteur.</p>
+
+          <div className="relative z-10">
+            <h3 className="font-extrabold text-2xl text-gray-900 font-nunito mb-3">Feedback Constructif</h3>
+            <p className="text-gray-600 font-nunito leading-relaxed text-base">
+              Recevez des analyses instantanées pour comprendre l'impact de vos mots sur votre interlocuteur.
+            </p>
+          </div>
         </div>
 
-        {/* Carte 3 */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow">
-          <div className="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-4">
-            🎭
+        {/* CARTE 3  */}
+        <div className="group relative bg-white p-8 pt-10 rounded-[2rem] overflow-hidden flex flex-col text-left hover:-translate-y-2 transition-all duration-300 shadow-sm hover:shadow-xl border border-gray-100 min-h-[300px]">
+          {/* Halo de couleur subtil en fond */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-amber-50 rounded-full blur-3xl group-hover:bg-amber-100 transition-colors duration-500"></div>
+
+          {/* Icône "Sticker" hybride */}
+          <div className="relative w-14 h-14 mb-8">
+            <div className="absolute inset-0 bg-amber-100 rounded-xl rotate-6 group-hover:rotate-12 transition-transform duration-300"></div>
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <Drama className="w-7 h-7 text-amber-600" />
+              <Sparkles className="absolute -top-1 -right-3 w-5 h-5 text-amber-500 animate-pulse" />
+            </div>
           </div>
-          <h3 className="font-bold text-gray-900 font-nunito mb-2">Situations du Quotidien</h3>
-          <p className="text-sm text-gray-500 font-nunito">Du travail aux soirées entre amis, entraînez-vous sur des cas concrets de la vie réelle.</p>
+
+          <div className="relative z-10">
+            <h3 className="font-extrabold text-2xl text-gray-900 font-nunito mb-3">Situations du Quotidien</h3>
+            <p className="text-gray-600 font-nunito leading-relaxed text-base">
+              Du travail aux soirées entre amis, entraînez-vous sur des cas concrets de la vie réelle.
+            </p>
+          </div>
         </div>
 
       </div>
-
-    </div>
+      </div>
   );
 }
