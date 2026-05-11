@@ -174,11 +174,11 @@
 
 ### Jour 7 — Header dynamique + Déconnexion + Routes protégées
 
-- [ ] Header conditionnel : "Connexion" si non connecté, nom + "Déconnexion" si connecté
-- [ ] Composant `BtnLogout.jsx` : vide l'atom + supprime `localStorage`
-- [ ] Créer `components/layout/ProtectedPage.jsx` : redirige vers `/login` si non connecté
+- [x] Header conditionnel : "Connexion" si non connecté, nom + "Déconnexion" si connecté
+- [x] Composant `BtnLogout.jsx` : vide l'atom + supprime `localStorage`
+- [x] Créer `components/layout/ProtectedPage.jsx` : redirige vers `/login` si non connecté
 - [ ] Protéger les routes qui nécessitent un compte dans `routes.jsx`
-- [ ] Initialiser l'atom depuis `localStorage` au démarrage de l'app (persist de session)
+- [x] Initialiser l'atom depuis `localStorage` au démarrage de l'app (persist de session)
 
 **Questions à te poser**
 - Quelle différence entre `<Navigate />` et `useNavigate()` ? Quand utiliser l'un ou l'autre ?
@@ -188,6 +188,7 @@
 
 ### Jour 8 — Formulaire de création de scénario
 
+- [ ] Créer un composant,  ProtectedRole, qui vérifie aussi le rôle dans le token JWT. 
 - [ ] Page `CreateScenario.jsx` protégée par `ProtectedPage`
 - [ ] Formulaire complet : titre, contexte, personnage, dialogue, avatarSeed, 3 choix
 - [ ] Créer aperçu de l'avatar 

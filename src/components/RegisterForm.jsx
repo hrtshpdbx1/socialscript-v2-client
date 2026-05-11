@@ -1,11 +1,14 @@
-import { useId } from 'react'; // ? pour l'accessibilité des labels
+import { useId, useState } from 'react'; // ? pour l'accessibilité des labels
 import authService from '../services/auth.service';
 import { useNavigate } from 'react-router'; // pour la redirection
+import Button from './ui/Button';
 
 export function RegisterForm() {
 
     const id = useId(); // Id d'accessibilité 
     const navigate = useNavigate();
+    const [errorMsg, setErrorMsg] = useState(null)
+    const [successMsg, setSuccessMsg] = useState(null);
 
     const handleRegisterSubmit = async (formData) => {
         // Les données sont récupéré sous la forme d'une FormData -> Necessite un name !!!
@@ -18,11 +21,19 @@ export function RegisterForm() {
         // Dans notre cas, il faut transformer le formData en object JS car la WebAPI ne s'attend pas a recevoir des données du type "FormData"
 
         // Utiliser le service qui permet de contacter la WebAPI
-        await authService.register(data);
 
-        // Redirection vers la page de login
-        navigate('/auth/login');
-    }
+        try {
+            await authService.register(data);
+            // Feedback avant redirection
+            setSuccessMsg('Inscription réussie ! Redirection vers la connexion...');
+            setTimeout(() => {
+                navigate('/auth/login');
+            }, 1500);
+        } catch {
+            setErrorMsg("Une erreur est survenue lors de l'inscription !");
+        }
+    };
+
 
     return (
         <form action={handleRegisterSubmit} className='flex flex-col gap-2'>
@@ -43,7 +54,14 @@ export function RegisterForm() {
                 <input id={id + 'password'} type='password' className='input-form' name='password' />
             </div>
             <div>
-                <button type="submit" className='btn'>S'enregistrer</button>
+
+                <Button type="submit" className='btn'>S'enregistrer</Button>
+                {errorMsg && (
+                    <span className='font-bold text-red-600'>{errorMsg}</span>
+                )}
+                {successMsg && (
+                    <span className='font-bold text-green-600'>{successMsg}</span>
+                )}
             </div>
         </form>
     )

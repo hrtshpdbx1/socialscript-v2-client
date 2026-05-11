@@ -8,15 +8,19 @@
 import { useId, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useSetAtom } from 'jotai';
-import { tokenAtom } from '../../../atoms/auth.atom';
 import authService from '../services/auth.service';
+import { tokenAtom } from '../atoms/auth.atom';
+import Button from './ui/Button';
+
 
 export function LoginForm() {
 
     const id = useId();
     const navigate = useNavigate();
     const setToken = useSetAtom(tokenAtom);
+    // feedback error/succes
     const [errorMsg, setErrorMsg] = useState(null)
+    const [successMsg, setSuccessMsg] = useState(null); 
 
     const handleLoginSubmit = async (formData) => {
         // Conversion des données vers un objet JS
@@ -32,9 +36,14 @@ export function LoginForm() {
             // Mise à jour de l'atom (synchronise les composants React)
             // Sauvegarder le token dans un Atom (via Jotai)
             setToken(token);
+            
+            // Feedback avant redirection
+            setSuccessMsg('Connexion réussie ! Redirection...');
 
-            // Redirection vers la page d'accueil
-            navigate('/');
+            // Redirection après un court délai
+            setTimeout(() => {
+                navigate('/');
+            }, 1500);
         }
         catch {
             setErrorMsg('Une erreur est survenu durant la connexion !')
@@ -52,9 +61,12 @@ export function LoginForm() {
                 <input id={id + 'password'} type='password' className='input-form' name='password' />
             </div>
             <div className='flex gap-1 items-center'>
-                <button type="submit" className='btn'>Se connecter </button>
+                <Button type="submit" className='btn'>Se connecter </Button>
                 {errorMsg && (
-                    <span className='font-bold'>{errorMsg}</span>
+                    <span className='font-bold text-red-600'>{errorMsg}</span>
+                )}
+                {successMsg && (
+                    <span className='font-bold text-green-600'>{successMsg}</span>
                 )}
             </div>
         </form>

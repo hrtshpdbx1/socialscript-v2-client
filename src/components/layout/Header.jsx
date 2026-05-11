@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import Button from "../ui/Button";
+import { isConnectAtom } from "../../atoms/auth.atom";
+import { BtnLogout } from "../BtnLogout";
+import { useAtomValue } from "jotai";
+
 
 export const Header = () => {
-    // État pour gérer l'ouverture et la fermeture du menu mobile
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // Ouverture et la fermeture du menu mobile
+    const isConnect = useAtomValue(isConnectAtom);
 
     // Fonctions utilitaires
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -38,13 +42,13 @@ export const Header = () => {
             <nav className="hidden md:flex items-center">
                 <ul className="flex items-center gap-4 text-gray-800 font-bold">
                     <li>
-                    
+
                         <NavLink
                             to="/scenarios"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "text-primary font-extrabold border-b-2 border-primary pb-0.5" 
-                                    : "text-gray-800 font-bold hover:text-primary transition-colors" 
+                                    ? "text-primary font-extrabold border-b-2 border-primary pb-0.5"
+                                    : "text-gray-800 font-bold hover:text-primary transition-colors"
                             }
                         >
                             Scénarios
@@ -58,18 +62,22 @@ export const Header = () => {
                                     ? "text-primary font-extrabold border-b-2 border-primary pb-0.5"
                                     : "text-gray-800 font-bold hover:text-primary transition-colors"
                             }
-                         >
+                        >
                             Ressources</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/auth/login">
-                            <Button variant="outline_primary">Connexion</Button>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/auth/register">
-                            <Button variant="primary">Créer un compte</Button>
-                        </NavLink>
+                        {!isConnect ? (
+                            <div className='flex flex-row gap-2'>
+                                <NavLink to="/auth/login">
+                                    <Button variant="outline_primary">Connexion</Button>
+                                </NavLink>
+                                <NavLink to="/auth/register">
+                                    <Button variant="primary">Créer un compte</Button>
+                                </NavLink>
+                            </div>
+                        ) : (
+                            <BtnLogout />
+                        )}
                     </li>
                 </ul>
             </nav>
@@ -108,15 +116,20 @@ export const Header = () => {
                     </NavLink>
 
                     {/* Zone des boutons centrée et élargie pour faciliter le clic sur mobile */}
-                    <div className="flex flex-col gap-4 mt-4 w-3/4">
-                        <NavLink to="/auth/login" onClick={closeMenu} className="w-full flex">
-                            <Button variant="outline_primary" className="w-full">Connexion</Button>
-                        </NavLink>
-
-                        <NavLink to="/auth/register" onClick={closeMenu} className="w-full flex">
-                            <Button variant="primary" className="w-full">Créer un compte</Button>
-                        </NavLink>
-                    </div>
+                    {!isConnect ? (
+                        <div className="flex flex-col gap-4 mt-4 w-3/4">
+                            <NavLink to="/auth/login" onClick={closeMenu} className="w-full flex">
+                                <Button variant="outline_primary" className="w-full">Connexion</Button>
+                            </NavLink>
+                            <NavLink to="/auth/register" onClick={closeMenu} className="w-full flex">
+                                <Button variant="primary" className="w-full">Créer un compte</Button>
+                            </NavLink>
+                        </div>
+                    ) : (
+                        <div className="mt-4">
+                            <BtnLogout />
+                        </div>
+                    )}
                 </div>
             )}
         </header>
