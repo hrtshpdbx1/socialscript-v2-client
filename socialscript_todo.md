@@ -135,7 +135,7 @@
 - [x] Page `Resources.jsx` : filtres par catégorie, barre de recherche, grille de cartes
 - [x] Les filtres appellent l'API au lieu du fichier statique
 - [x] Recherche côté client sur les résultats reçus (filtre sur titre/description en local)
-- [ ] Commit de fin de semaine
+- [x] Commit de fin de semaine
 
 **Questions à te poser**
 - Quelle différence entre filtrer côté client et filtrer côté serveur ? Quand préférer l'un ou l'autre ?
@@ -147,22 +147,28 @@
 
 **Objectif de fin de semaine :** un utilisateur peut créer un compte, se connecter, proposer un scénario, signaler du contenu. Un modérateur peut valider depuis une interface dédiée.
 
-- [] Créer la route GET /api/resources côté Back-end !
----
+
 
 ### Jour 6 — Register + Login + Jotai
 
-- [ ] Créer `services/auth.service.js` → `register(data)` et `login(credentials)`
-- [ ] Pages `Register.jsx` et `Login.jsx` avec formulaires React (pattern `action`)
-- [ ] Installer et configurer Jotai
-- [ ] Créer `atoms/auth.atom.js` : `tokenAtom` et `isConnectedAtom`
-- [ ] Au login réussi : stocker le token dans `localStorage` + dans l'atom (double stockage)
-- [ ] Redirection programmatique avec `useNavigate` après login/register réussi
+ - [x] services/auth.service.js → register + login
+ - [x] RegisterForm.jsx avec pattern action React 19
+ - [x] LoginForm.jsx avec pattern action + try/catch + Jotai
+ - [x] atoms/auth.atom.js → tokenAtom + isConnectAtom
+ - [x] Double stockage localStorage + atom
+ - [x] Pages Register.jsx et Login.jsx
+ - [x] Routes branchées dans routes.jsx
+ - [x] Redirection avec useNavigate
 
 **Questions à te poser**
 - Pourquoi double stockage `localStorage` + atom ? Que se passe-t-il au refresh si on ne fait que l'atom ?
+*L'atom vit en mémoire, donc au refresh il disparaît. Le localStorage survit au rechargement*
 - Pourquoi `isConnectedAtom` plutôt que de tester directement `tokenAtom !== null` ?
+*Centraliser la logique dans un atom dérivé permet de ne modifier qu'un seul endroit si un jour la condition de connecté changé. Les composants qui ont besoin de savoir "est-ce que l'utilisateur est connecté ?" utilisent isConnectAtom sans se soucier du comment*
 - Que contient le token JWT côté front ? A-t-on accès au `role` de l'utilisateur ?
+*Le JWT est composé de 3 parties*
+*header.payload.signature, dans payload le back mets des infos : id, rôle, ...*
+
 
 ---
 
@@ -222,6 +228,9 @@
 - Comment extraire le `role` du token JWT côté front sans appel API supplémentaire ?
 - Pourquoi ne suffit-il pas de cacher le bouton `/admin` dans le Header pour sécuriser cette page ?
 
+
+- [] Créer la route GET /api/resources côté Back-end !
+---
 ---
 
 ## 📚 Stack récapitulatif

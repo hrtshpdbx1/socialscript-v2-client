@@ -83,7 +83,7 @@ function ScenarioDetail() {
         }
     }, [selectedChoice]);
 
-    // 💡 2. Effet pour déclencher le scroll au bon endroit quand on fait un choix
+    //  2. Effet pour déclencher le scroll au bon endroit quand on fait un choix
     useEffect(() => {
         if (selectedChoice && reactionRef.current) {
             // Un petit setTimeout de 100ms laisse le temps à React de dessiner 
@@ -125,7 +125,7 @@ function ScenarioDetail() {
                         </div>
                     </div>
 
-                   {/* 💡 Affichage conditionnel : Animation OU Vrai message initial */}
+                    {/* 💡 Affichage conditionnel : Animation OU Vrai message initial */}
                     {isAiTypingInitial ? (
                         <TypingIndicator avatarUrl={avatarUrl} />
                     ) : (
@@ -139,25 +139,26 @@ function ScenarioDetail() {
                         </div>
                     )}
 
-                 {/* Suite de la discussion (Si on a fait un choix) */}
+                    {/* Suite de la discussion (Si on a fait un choix) */}
                     {selectedChoice && (
                         <div ref={reactionRef} className="space-y-6 pt-2">
                             {/* Le message de l'utilisateur (apparaît tout de suite) */}
                             <ChatBubble isUser={true} text={selectedChoice.responseText} />
-                            
+
                             {/* 💡 Affichage conditionnel : Animation OU Réaction de l'IA + Feedback */}
                             {isAiTypingReaction ? (
                                 <TypingIndicator avatarUrl={avatarUrl} />
                             ) : (
                                 <div className="space-y-6 animate-fade-in-up">
-                                    <ChatBubble 
-                                        isUser={false} 
-                                        text={selectedChoice.reactionText} 
-                                        senderName={scenarioToDisplay.characterName} 
-                                        avatarUrl={avatarUrl} 
+                                    <ChatBubble
+                                        isUser={false}
+                                        text={selectedChoice.reactionText}
+                                        senderName={scenarioToDisplay.characterName}
+                                        avatarUrl={avatarUrl}
                                     />
                                     <FeedbackCoach
-                                        analysis={<>{selectedChoice.analysis}<br /><br /><strong>Conséquence :</strong> {selectedChoice.consequence}</>}
+                                        analysis={selectedChoice.analysis}
+                                        consequence={selectedChoice.consequence}
                                         keyTakeaway={selectedChoice.keyTakeaway}
                                     />
                                 </div>
@@ -166,7 +167,7 @@ function ScenarioDetail() {
                     )}
                 </div>
             </ChatContainer>
-            
+
             {/* ZONE D'INTERACTION PLEINE LARGEUR */}
             <div className="w-full bg-white border-t border-gray-200 py-3 px-3 shadow-[0_-4px_20px_-5px_rgba(0,0,0,0.05)] z-20">
                 <div className="max-w-3xl mx-auto w-full">
