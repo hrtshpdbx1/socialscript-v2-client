@@ -7,10 +7,12 @@ import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ScenariosLanding from "./pages/ScenariosLanding"
 import Resources from "./pages/Resources"
-import {Login} from "./pages/auth/Login"
-import {Register} from "./pages/auth/Register"
+import { Login } from "./pages/auth/Login"
+import { Register } from "./pages/auth/Register"
 import ScenarioDetail from "./pages/ScenarioDetail"
 import ScenarioLayout from "./components/layout/ScenarioLayout"
+import { ProtectedPage } from "./components/ProtectedPage"
+import CreateScenario from "./pages/CreateScenario"
 
 
 /** @type {import('react-router-dom').RouteObject[]} */
@@ -21,6 +23,14 @@ export const routes = [
         children: [
             { index: true, element: <Home /> },
             { path: 'scenarios', element: <ScenariosLanding /> },
+            {
+                path: 'scenarios/create',
+                element: (
+                    <ProtectedPage>
+                        <CreateScenario />
+                    </ProtectedPage>
+                )
+            },
             { path: 'resources', element: <Resources /> },
             {
                 path: 'auth',
@@ -43,4 +53,25 @@ export const routes = [
             { index: true, element: <ScenarioDetail /> }
         ]
     },
+
+    // Route admin
+    // {
+    //     path: 'admin',
+    //     element: (
+    //         <ProtectedRole allowedRoles={['admin', 'moderator']}>
+    //             <AdminLayout />
+    //         </ProtectedRole>
+    //     )
+    // }
+
+    // Route création de scénario (tout utilisateur connecté)
+    // {
+    //         path: 'scenarios/create',
+    //         element: (
+    //             <ProtectedPage>
+    //                 <CreateScenario />
+    //             </ProtectedPage>
+    //         )
+    //     }
+
 ]

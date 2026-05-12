@@ -188,12 +188,12 @@
 
 ### Jour 8 — Formulaire de création de scénario
 
-- [ ] Créer un composant,  ProtectedRole, qui vérifie aussi le rôle dans le token JWT. 
-- [ ] Page `CreateScenario.jsx` protégée par `ProtectedPage`
-- [ ] Formulaire complet : titre, contexte, personnage, dialogue, avatarSeed, 3 choix
+- [x] Créer un composant,  ProtectedRole, qui vérifie aussi le rôle dans le token JWT. 
+- [x] Page `CreateScenario.jsx` protégée par `ProtectedPage`
+- [x] Formulaire complet : titre, contexte, personnage, dialogue, avatarSeed, 3 choix
 - [ ] Créer aperçu de l'avatar 
-- [ ] Token injecté dans le header `Authorization` via le service (`getDefaultStore()` de Jotai)
-- [ ] Validation côté front (champs requis, exactement 3 choix)
+- [x] Token injecté dans le header `Authorization` via le service (`getDefaultStore()` de Jotai)
+- [x] Validation côté front (champs requis, exactement 3 choix)
 - [ ] Redirection vers le scénario créé après soumission réussie
 
 **Questions à te poser**
