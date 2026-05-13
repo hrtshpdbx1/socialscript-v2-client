@@ -1,19 +1,13 @@
 //services/scenario.service.js 
 
-// 1. Imports 
-import axios from 'axios';
+// Imports 
+import api from './api';
 import { getDefaultStore } from 'jotai';
 import { tokenAtom } from '../atoms/auth.atom';
 
 
-// 2. Configuration de l'instance
-const api = axios.create({
-    baseURL: 'http://localhost:3000/api'
-});
-// axios.get(url) retourne une promesse, et la réponse est dans response.data
 
-
-// 3. Fonctions de service
+// Fonctions de service
 
 /**
  * Récupère les scénarios selon la difficulté et le thème
@@ -67,7 +61,7 @@ async function create(scenarioData) {
     return response.data;
 }
 
-// 4. Export des fonctions
+// Export 
 export const scenarioService = {
     getByTheme, getById, create
 

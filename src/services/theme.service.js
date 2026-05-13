@@ -1,7 +1,7 @@
 //services/theme.service.js
 
 
-import axios from 'axios';
+import api from './api';
 
 const api = axios.create({
     baseURL: 'http://localhost:3000/api'
@@ -13,8 +13,8 @@ const api = axios.create({
  */
 
 async function getByDifficulty(difficultyId) {
-    const response = await api.get(`difficulties/${difficultyId}/themes/`)
-    return response.data
+    const response = await api.get(`/difficulties/${difficultyId}/themes/`);
+    return response.data;
 }
 export const themeService = {
     getByDifficulty

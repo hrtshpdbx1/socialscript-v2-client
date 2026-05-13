@@ -9,13 +9,13 @@
 // POST /api/auth/register → pour créer un compte
 // POST /api/auth/login → pour se connecter
 
-import axios from "axios";
+import api from './api';
 
 const authService = {
     // Inscription :
     register: async (userData) => {
-        const response = await axios.post(
-            "http://localhost:3000/api/auth/register",
+        const response = await api.post(
+            "/auth/register",
             userData
         );
         return response.data;
@@ -23,8 +23,8 @@ const authService = {
 
     // Connexion :
     login: async ({ email, password }) => {
-        const response = await axios.post(
-            "http://localhost:3000/api/auth/login",
+        const response = await api.post(
+            "/auth/login",
             { email, password } //extraction des propriété par destructuration 
         );
         return response.data.token;

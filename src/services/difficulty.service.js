@@ -1,7 +1,7 @@
 //services/difficuly.service.js 
 
 
-import axios from 'axios'
+import api from './api';
 
 const api = axios.create({
      baseURL: 'http://localhost:3000/api'
@@ -13,8 +13,8 @@ const api = axios.create({
  */
 
 async function getAll(){
-    const response = await api.get('/difficulties/')
-    return response.data
+    const response = await api.get('/difficulties/');
+    return response.data;
 }
 
 export const difficultyService = {getAll
