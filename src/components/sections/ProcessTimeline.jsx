@@ -49,7 +49,7 @@ export default function ProcessTimeline() {
                         <div className="absolute left-6 top-4 bottom-4 w-0.5 bg-gray-200"></div>
 
                         <div className="space-y-12 relative">
-                            {steps.map((step, index) => (
+                            {steps.map((step) => (
                                 <div key={step.id} className="flex gap-6 relative">
 
                                     {/* Le point sur la timeline */}

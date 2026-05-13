@@ -5,15 +5,21 @@
     /* https: //uicolors.app/generate/704ee7 */
     --color-primary: #704ee7;
     --color-primary-200: #d9d8fc;
+    --color-primary-700: ##5730d1;
 
     /* Perano 300 */
     --color-secondary: #b2c9ff;
+    --color-secondary-200: #b2c9ff;
+    --color-secondary-600: #b2c9ff;
 
     /* Pastel Green 300 */
     --color-success: #71e89d;
-
-    /* Wild Watermelon 400 */
-    --color-error: #ff5e73;
+    --color-success-200: #bdf5d1;
+    --color-success-600: #1a9f4c
+        /* Wild Watermelon 400 */
+        --color-error: #ff5e73;
+    --color-error-200: #ffccd2;
+    --color-error-600: #e71742;
 
     /* Goldenrod 300 */
     --color-accent: #ffd35e;
@@ -34,7 +40,7 @@
 
     /* White */
     --color-background: #f2f2f2;
-/* * Font */
- --font-nunito:'Nunito', 'sans-serif'
+    /* * Font */
+    --font-nunito: 'Nunito', 'sans-serif'
 
 }
