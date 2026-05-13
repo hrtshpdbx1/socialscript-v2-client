@@ -1,26 +1,15 @@
 // src/components/scenarios/ThemeStep.jsx
-// ÉTAPE 2 : Choix du thème
-// Reçoit la difficulté sélectionnée, fetche les thèmes correspondants, les affiche.
 
 import { useState, useEffect } from "react";
-import Button from "../ui/Button";
-import Badge from "../ui/Badge";
 import { themeService } from "../../services/theme.service";
-
-// Fonction utilitaire pour la couleur du badge
-function getDifficultyColor(title) {
-    if (!title) return "primary";
-    const t = title.toLowerCase();
-    if (t.includes("facile")) return "success";
-    if (t.includes("moyen") || t.includes("intermédiaire")) return "accent";
-    if (t.includes("difficile")) return "error";
-    return "primary";
-}
 
 export default function ThemeStep({ selectedDifficulty, onSelect }) {
     const [themes, setThemes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    // On récupère la configuration (image, couleurs) injectée à l'étape 1
+    const config = selectedDifficulty.meta || {};
 
     useEffect(() => {
         async function fetchThemes() {
@@ -30,7 +19,7 @@ export default function ThemeStep({ selectedDifficulty, onSelect }) {
                 const data = await themeService.getByDifficulty(selectedDifficulty._id);
                 setThemes(data.themes);
             } catch (err) {
-                setError("Impossible de charger les thèmes. Veuillez réessayer.");
+                setError("Impossible de charger les thèmes.");
                 console.error(err);
             } finally {
                 setLoading(false);
@@ -39,35 +28,55 @@ export default function ThemeStep({ selectedDifficulty, onSelect }) {
         fetchThemes();
     }, [selectedDifficulty._id]);
 
-    if (loading) return <p className="text-gray-500 font-nunito animate-pulse text-center mt-10">Chargement en cours...</p>;
-    if (error) return <p className="text-error font-bold font-nunito text-center mt-10">{error}</p>;
-
     return (
-        <div className="flex flex-col gap-16 text-center animate-fade-in-up w-full mt-8 md:mt-12">
-            <div
-                className="flex flex-wrap gap-4 justify-center"
-                role="group"
-                aria-label="Thèmes disponibles"
-            >
-                {themes.map((theme) => (
-                    <Button
-                        variant="accent"
-                        key={theme._id}
-                        onClick={() => onSelect(theme)}
-                    >
-                        {theme.title}
-                    </Button>
-                ))}
+        <div className="w-full animate-fade-in-up mt-4 md:mt-8 max-w-3xl mx-auto px-4">
+
+            {/* 💡 RAPPEL DU CHOIX PRÉCÉDENT */}
+            <div className="flex items-center gap-5 p-4 bg-white rounded-2xl shadow-sm border border-gray-100 mb-8 max-w-lg mx-auto">
+                <div className={`w-16 h-16 rounded-full ${config.bg || 'bg-gray-100'} flex items-center justify-center flex-shrink-0`}>
+                    <img src={config.img} alt="" className="w-12 h-12 object-contain" />
+                </div>
+                <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider font-nunito mb-1">
+                        Niveau choisi
+                    </p>
+                    <h2 className={`text-xl font-extrabold font-nunito ${config.text || 'text-gray-900'}`}>
+                        {selectedDifficulty.title}
+                    </h2>
+                </div>
             </div>
 
-            {/* Rappel du choix précédent */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-12 bg-white p-4 rounded-xl shadow-sm border border-gray-100 justify-center max-w-lg mx-auto">
-                <span className="font-semibold text-gray-700 font-nunito">Niveau choisi :</span>
-                <Badge
-                    text={selectedDifficulty.title}
-                    color={getDifficultyColor(selectedDifficulty.title)}
-                />
-            </div>
+            <p className="text-center text-gray-500 mb-8 font-nunito">
+                Quel type de situation souhaitez-vous pratiquer aujourd'hui ?
+            </p>
+
+            {loading && <p className="text-center text-gray-500 animate-pulse font-nunito">Chargement des thèmes...</p>}
+            {error && <p className="text-center text-error font-bold font-nunito">{error}</p>}
+
+            {/* GRILLE DES THÈMES */}
+            {!loading && !error && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {themes.map((theme) => (
+                        <button
+                            key={theme._id}
+                            onClick={() => onSelect(theme)}
+                            className="group flex items-center gap-4 text-left p-4 bg-white border-2 border-gray-100 rounded-2xl transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 hover:border-primary/40 hover:shadow-md hover:-translate-y-1"
+                        >
+                            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                {theme.icon || "💬"}
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-gray-900 font-nunito text-lg group-hover:text-primary transition-colors">
+                                    {theme.title}
+                                </h3>
+                                <p className="text-xs text-gray-500 font-nunito mt-1 line-clamp-1">
+                                    {theme.description}
+                                </p>
+                            </div>
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
