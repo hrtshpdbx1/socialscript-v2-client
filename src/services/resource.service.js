@@ -1,10 +1,5 @@
 // src/services/resource.service.js
-
 import api from './api';
-
-const api = axios.create({
-     baseURL: 'http://localhost:3000/api'
-});
 
 export const resourceService = {
     // Récupérer toutes les catégories

@@ -6,7 +6,6 @@ import { getDefaultStore } from 'jotai';
 import { tokenAtom } from '../atoms/auth.atom';
 
 
-
 // Fonctions de service
 
 /**
