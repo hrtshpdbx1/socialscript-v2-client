@@ -66,12 +66,6 @@ export const Header = () => {
                             Ressources</NavLink>
                     </li>
                     <li>
-<<<<<<< HEAD
-                        <Button variant="outline_primary" to="/auth/login">Connexion</Button>
-                    </li>
-                    <li>
-                        <Button variant="primary" to="/auth/register">Créer un compte</Button>
-=======
                         {!isConnect ? (
                             <div className='flex flex-row gap-2'>
                                 <NavLink to="/auth/login">
@@ -84,7 +78,6 @@ export const Header = () => {
                         ) : (
                             <BtnLogout />
                         )}
->>>>>>> 2d70576dcc1ace268299cbc840ca889b9f93a8f1
                     </li>
 
                 </ul>
