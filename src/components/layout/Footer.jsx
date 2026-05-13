@@ -12,7 +12,7 @@ export const Footer = () => {
                     {/* Colonne 1 : Branding */}
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2">
-                            <img src="/logo_footer_desktop.png" alt="Logo" className="w-full max-w-56" />
+                            <img src="/logo_footer_desktop.png" alt="Logo de SocialScript" className="w-full max-w-56" />
                         </div>
                         <p className="text-gray-100 mt-1">Simulateur d'interactions sociales</p>
                     </div>

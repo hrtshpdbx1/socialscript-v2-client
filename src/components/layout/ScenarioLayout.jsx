@@ -88,6 +88,8 @@ function ScenarioLayout() {
                                 setSelectedTheme(theme);
                                 setStep("scenario");
                             }}
+                            //  fonction pour revenir en arrière
+                            onEditDifficulty={() => setStep("difficulty")}
                         />
                     )}
 
@@ -96,6 +98,9 @@ function ScenarioLayout() {
                         <ScenarioStep
                             selectedDifficulty={selectedDifficulty}
                             selectedTheme={selectedTheme}
+                            // fonctions pour le fil d'ariane
+                            onEditDifficulty={() => setStep("difficulty")}
+                            onEditTheme={() => setStep("theme")}
                         />
                     )}
 

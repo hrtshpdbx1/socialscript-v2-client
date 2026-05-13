@@ -60,7 +60,7 @@ export default function DifficultyStep({ onSelect }) {
 
     return (
             <div className="w-full animate-fade-in-up mt-4 md:mt-8">
-                <p className="text-center text-gray-500 mb-8 font-nunito max-w-lg mx-auto">
+                <p className="text-center text-gray-600 mb-8 font-nunito max-w-lg mx-auto">
                     Choisissez le niveau de défi qui vous correspond aujourd'hui. 
                 </p>
 
@@ -91,9 +91,9 @@ export default function DifficultyStep({ onSelect }) {
                                     />
                                 </div>
 
-                                <h3 className="text-2xl font-extrabold text-gray-900 font-nunito mb-3">
+                                <h2 className="text-2xl font-extrabold text-gray-900 font-nunito mb-3">
                                     {difficulty.title}
-                                </h3>
+                                </h2>
 
                                 <p className="text-gray-500 font-nunito mb-6 flex-1 text-sm leading-relaxed">
                                     {config.desc}

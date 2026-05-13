@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { themeService } from "../../services/theme.service";
 
-export default function ThemeStep({ selectedDifficulty, onSelect }) {
+export default function ThemeStep({ selectedDifficulty, onSelect, onEditDifficulty }) {
     const [themes, setThemes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -31,24 +31,33 @@ export default function ThemeStep({ selectedDifficulty, onSelect }) {
     return (
         <div className="w-full animate-fade-in-up mt-4 md:mt-8 max-w-3xl mx-auto px-4">
 
-            {/* 💡 RAPPEL DU CHOIX PRÉCÉDENT */}
-            <div className="flex items-center gap-5 p-4 bg-white rounded-2xl shadow-sm border border-gray-100 mb-8 max-w-lg mx-auto">
-                <div className={`w-16 h-16 rounded-full ${config.bg || 'bg-gray-100'} flex items-center justify-center flex-shrink-0`}>
-                    <img src={config.img} alt="" className="w-12 h-12 object-contain" />
-                </div>
-                <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider font-nunito mb-1">
-                        Niveau choisi
-                    </p>
-                    <h2 className={`text-xl font-extrabold font-nunito ${config.text || 'text-gray-900'}`}>
-                        {selectedDifficulty.title}
-                    </h2>
-                </div>
+          
+        
+            {/* 💡 RAPPEL DU CHOIX PRÉCÉDENT (Uniformisé avec ScenarioStep) */}
+            <div className="flex justify-center mb-8">
+                <button
+                    onClick={onEditDifficulty}
+                    className="group flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm border border-gray-100 pr-6 text-left transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5"
+                    aria-label="Modifier le niveau de difficulté"
+                >
+                    <div className={`w-12 h-12 rounded-full ${config.bg || 'bg-gray-100'} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform`}>
+                        <img src={config.img} alt="" className="w-8 h-8 object-contain" />
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-bold text-gray-600 uppercase tracking-wider font-nunito group-hover:text-primary transition-colors">
+                            Niveau choisi
+                        </p>
+                        <p className={`font-bold font-nunito leading-tight ${config.text || 'text-gray-900'}`}>
+                            {selectedDifficulty.title}
+                        </p>
+                    </div>
+                </button>
             </div>
 
-            <p className="text-center text-gray-500 mb-8 font-nunito">
+            <p className="text-center text-gray-600 mb-8 font-nunito max-w-lg mx-auto">
                 Quel type de situation souhaitez-vous pratiquer aujourd'hui ?
             </p>
+          
 
             {loading && <p className="text-center text-gray-500 animate-pulse font-nunito">Chargement des thèmes...</p>}
             {error && <p className="text-center text-error font-bold font-nunito">{error}</p>}
@@ -66,9 +75,9 @@ export default function ThemeStep({ selectedDifficulty, onSelect }) {
                                 {theme.icon || "💬"}
                             </div>
                             <div>
-                                <h3 className="font-bold text-gray-900 font-nunito text-lg group-hover:text-primary transition-colors">
+                                <h2 className="font-bold text-gray-900 font-nunito text-lg group-hover:text-primary transition-colors">
                                     {theme.title}
-                                </h3>
+                                </h2>
                                 <p className="text-xs text-gray-500 font-nunito mt-1 line-clamp-1">
                                     {theme.description}
                                 </p>

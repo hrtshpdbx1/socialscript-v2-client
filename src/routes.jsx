@@ -13,6 +13,7 @@ import ScenarioDetail from "./pages/ScenarioDetail"
 import ScenarioLayout from "./components/layout/ScenarioLayout"
 import { ProtectedPage } from "./components/ProtectedPage"
 import CreateScenario from "./pages/CreateScenario"
+import UnderConstruction from "./pages/UnderConstruction"
 
 
 /** @type {import('react-router-dom').RouteObject[]} */
@@ -22,16 +23,27 @@ export const routes = [
         element: <App />,
         children: [
             { index: true, element: <Home /> },
-            { path: 'scenarios', element: <ScenariosLanding /> },
             {
-                path: 'scenarios/create',
-                element: (
-                    <ProtectedPage>
-                        <CreateScenario />
-                    </ProtectedPage>
-                )
+                path: 'scenarios',
+                children: [
+                    { index: true, element: <ScenariosLanding /> },
+                    {
+                        path: 'create',
+                        element: (
+                            <ProtectedPage>
+                                <CreateScenario />
+                            </ProtectedPage>
+                        )
+                    },
+                ]
             },
             { path: 'resources', element: <Resources /> },
+            { path: 'en-construction', element: <UnderConstruction /> },
+            // Pour l'utiliser 
+            // <NavLink to="/en-construction">
+            //  <Button variant="primary">Espace Premium</Button>
+            // </NavLink >
+
             {
                 path: 'auth',
                 children: [

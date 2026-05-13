@@ -7,7 +7,7 @@ export default function AboutSection() {
 
                 {/* En-tête*/}
                 <div className="text-center mb-16 md:mb-20">
-                    <span className="font-bold tracking-widest uppercase text-sm mb-4 block opacity-80 font-nunito">
+                    <span className="font-bold text-white tracking-widest uppercase text-sm mb-4 block  font-nunito">
                         À propos
                     </span>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold font-nunito">
@@ -23,9 +23,6 @@ export default function AboutSection() {
                         <img
                             src="/illustrations/louise.png"
                             alt="Louise Moraldy"
-                            // C'est ici qu'on gère la taille :
-                            // w-64 (256px) sur mobile, md:w-80 (320px) sur tablette, lg:w-96 (384px) sur PC
-                            // On utilise object-contain pour être sûr de ne pas couper les petites étoiles !
                             className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300"
                         />
                     </div>

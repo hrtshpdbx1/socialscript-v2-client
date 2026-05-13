@@ -125,7 +125,7 @@ function ScenarioDetail() {
                         </div>
                     </div>
 
-                    {/* 💡 Affichage conditionnel : Animation OU Vrai message initial */}
+                    {/* Affichage conditionnel : Animation OU Vrai message initial */}
                     {isAiTypingInitial ? (
                         <TypingIndicator avatarUrl={avatarUrl} />
                     ) : (

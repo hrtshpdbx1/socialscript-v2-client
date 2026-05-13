@@ -21,7 +21,7 @@ export default function ChatBubble({ text, isUser, senderName, avatarUrl }) {
                 aria-label={`${label} dit :`}
             >
                 {!isUser && senderName && (
-                    <p className="text-xs font-bold text-gray-400 mb-1 font-nunito" aria-hidden="true">
+                    <p className="text-xs font-bold text-gray-500 mb-1 font-nunito" aria-hidden="true">
                         {senderName}
                     </p>
                 )}
