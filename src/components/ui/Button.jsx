@@ -1,73 +1,81 @@
 // Button.jsx
-
+import { NavLink } from 'react-router';
 
 // Classes de base
-const baseClasses = "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-4xl font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed";;
+const baseClasses = "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-4xl font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed";
 
 // Dictionaire des variantes
-// object dont chaque clé (default, cta) correspond à un type de bouton et contient ses styles spécifiques.
 const variants = {
-    // Principal (Violet) - Texte blanc pour le contraste
     primary: "bg-primary text-white hover:opacity-90 shadow-sm",
-
-    // Secondaire (Bleu pastel) - Texte foncé (gray-900) car le fond est clair
     secondary: "bg-secondary text-gray-900 hover:opacity-90",
-
-    // Contour (Bordure grise fond transparent)
     outline: "border-1 border-gray-700 text-gray-700 hover:bg-secondary ",
-
-      // Contour (Bordure violette, fond transparent)
     outline_primary: "border-1 border-primary text-primary hover:bg-primary hover:text-white",
-
-
-    // Discret (Pas de fond, fond gris clair au survol)
     ghost: "bg-transparent text-gray-700 hover:bg-gray-200",
-
-    // Succès (Vert pastel)
     success: "bg-success text-gray-900 hover:opacity-90",
-
-    // Erreur / Danger (Rouge) - Texte blanc
     error: "bg-error text-white hover:opacity-90",
-
-    // Mise en avant (Jaune / Goldenrod)
     accent: "bg-accent text-gray-900 hover:opacity-90 shadow-sm",
 };
 
 const Button = (props) => {
-    // * Desctructuration des props
-    // + variant définit par défaut
-    const { children,
+    // * Destructuration des props
+    // Ajout de la prop 'to'
+    const {
+        children,
         variant = "primary",
         className,
         id,
         onClick,
         disabled = false,
-        type = "button"
+        type = "button",
+        to,
+        href,
+        ...rest
     } = props;
 
+    // * Récupération du style spécifique
+    const variantClasses = variants[variant] || variants.primary;
 
-    // * Récupération style spécifique
-    // On utilise la prop `variant` pour aller piocher la bonne ligne dans l'objet `variants` défini plus haut.
-   const variantClasses = variants[variant] || variants.primary; // Sécurité si on se trompe de nom
+    // * Gestion du disabled pour les liens
+    const linkDisabledClasses = (disabled && to)
+        ? "opacity-50 cursor-not-allowed pointer-events-none"
+        : "";
 
+    // On regroupe les props communes pour éviter de se répéter
+    const commonProps = {
+        onClick,
+        id,
+        "aria-disabled": disabled,
+        className: `${baseClasses} ${variantClasses} ${linkDisabledClasses} ${className ?? ""}`,
+        ...rest
+    };
+
+    //  Si la prop 'to' existe -> on rend un <NavLink>
+    if (to) {
+        return (
+            <NavLink to={to} {...commonProps}>
+                {children}
+            </NavLink>
+        );
+    }
+
+    // Si la prop 'href' existe -> on rend une balise <a> classique
+    if (href) {
+        return (
+            <a href={href} {...commonProps}>
+                {children}
+            </a>
+        );
+    }
+    // Sinon, on rend un bouton classique
     return (
         <button
-        type={type}
-            onClick={onClick}
-            id={id}
+            type={type}
             disabled={disabled}
-           className={`${baseClasses} ${variantClasses} ${className ?? ""}`}
+            {...commonProps}
         >
             {children}
         </button>
-    )
-
+    );
 };
 
-export default Button
-
-{/* Class merging)
-On assemble 3 couches de style en une seule chaîne :
- - `baseClasses`    : Les fondations
- - `variantClasses` : Les couleurs de la variante .
- // - `className`      : Les finitions (les classes supplémentaires passées par le parent au cas par cas). */}
+export default Button;

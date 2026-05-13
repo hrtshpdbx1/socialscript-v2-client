@@ -45,7 +45,7 @@ export const Footer = () => {
                 {/* Mentions du bas */}
                 <div className="flex flex-col md:flex-row justify-between items-center text-gray-100 text-sm">
                     <p>© 2025 SocialScript — Tous droits réservés</p>
-                    <p>Contact : <a href="mailto:info@socialscript.be" className="hover:text-primary transition-colors">info@socialscript.be</a></p>
+                    <p>Contact : <a href="mailto:info@socialscript.be" className="hover:text-primary transition-colors">lmoraldy.dev@gmail.com</a></p>
                 </div>
 
             </div>

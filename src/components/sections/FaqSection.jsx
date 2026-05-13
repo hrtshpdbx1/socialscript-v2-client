@@ -50,9 +50,11 @@ export default function FaqSection() {
                     <p className="text-lg text-gray-600 mb-8 font-nunito">
                         Nous avons rassemblé ici les questions que se posent le plus souvent les personnes qui découvrent SocialScript. Si votre question n'apparaît pas, n'hésitez pas à nous contacter.
                     </p>
-                    <a href="mailto:info@socialscript.be">
-                        <Button variant="outline">Nous écrire</Button>
-                    </a>
+                    <Button href="mailto:lmoraldy.dev@gmail.com" variant="outline">
+                        Nous écrire
+                    </Button>
+                   
+                   
                     <img className="mx-auto mt-8 max-w-200" src="/illustrations/wave_green_2.png" alt="" />
                 </div>
 

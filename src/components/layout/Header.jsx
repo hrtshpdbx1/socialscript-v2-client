@@ -62,15 +62,12 @@ export const Header = () => {
                             Ressources</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/auth/login">
-                            <Button variant="outline_primary">Connexion</Button>
-                        </NavLink>
+                        <Button variant="outline_primary" to="/auth/login">Connexion</Button>
                     </li>
                     <li>
-                        <NavLink to="/auth/register">
-                            <Button variant="primary">Créer un compte</Button>
-                        </NavLink>
+                        <Button variant="primary" to="/auth/register">Créer un compte</Button>
                     </li>
+
                 </ul>
             </nav>
 
