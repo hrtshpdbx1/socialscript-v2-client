@@ -116,7 +116,6 @@ export const CreateScenarioForm = () => {
                         <div>
                             <label htmlFor={id + 'context'} className="form-label"> Contexte : </label>
                             <textarea
-                                type="text"
                                 id={id + 'context'}
                                 className="form-input min-h-[100px]"
                                 {...register('context', { required: 'Le contexte est obligatoire' })}
