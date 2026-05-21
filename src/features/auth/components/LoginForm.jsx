@@ -1,4 +1,4 @@
-// src/pages/auth/LoginForm.jsx
+// src\features\auth\components\LoginForm.jsx
 
 // ? Rôle : 
 // Récupérer le token renvoyé par l'API
@@ -8,10 +8,10 @@
 import { useId, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetAtom } from 'jotai';
-import authService from '../services/auth.service';
-import { tokenAtom } from '../atoms/auth.atom';
-import Button from './ui/Button';
-import FormSection from './ui/FormSections';
+import authService from '../../../services/auth.service';
+import { tokenAtom } from '../../../atoms/auth.atom';
+import Button from '../../../components/ui/Button';
+import FormSection from '../../../components/ui/FormSections';
 
 export function LoginForm() {
     const id = useId();

@@ -5,9 +5,9 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import ScenarioTopBar from "./ScenarioTopBar";
-import DifficultyStep from "../scenarios/DifficultyStep";
-import ThemeStep from "../scenarios/ThemeStep";
-import ScenarioStep from "../scenarios/ScenarioStep";
+import DifficultyStep from "../../features/scenarios/components/DifficultyStep";
+import ThemeStep from "../../features/scenarios/components/ThemeStep";
+import ScenarioStep from "../../features/scenarios/components/ScenarioStep";
 
 function ScenarioLayout() {
     const navigate = useNavigate();

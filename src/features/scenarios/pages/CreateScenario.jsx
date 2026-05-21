@@ -1,7 +1,7 @@
-// src/pages/CreateScenario.jsx
+// src/scenario/pages/CreateScenario.jsx
 
 import { CreateScenarioForm } from "../components/CreateScenarioForm";
-import Badge from '../components/ui/Badge';
+import Badge from '../../../components/ui/Badge';
 
 export default function CreateScenario() {
     return (

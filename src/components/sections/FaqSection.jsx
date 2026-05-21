@@ -1,3 +1,5 @@
+// src/components/sections/FaqSection.jsx
+// 
 import Button from '../ui/Button';
 
 export default function FaqSection() {

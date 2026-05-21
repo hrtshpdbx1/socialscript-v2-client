@@ -1,3 +1,5 @@
+// src/features/scenarios/components/TypingIndicator
+ 
 export default function TypingIndicator({ avatarUrl, senderName = "L'interlocuteur" }) {
     return (
         <div className="flex w-full justify-start animate-fade-in-up mb-2" role="status" aria-label={`${senderName} est en train d'écrire`}>

@@ -1,16 +1,15 @@
-// src/pages/ScenarioDetail.jsx
+// src/scenario/pages/ScenarioDetail.jsx
 
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { scenarioService } from "../services/scenario.service";
-import Button from "../components/ui/Button";
+import { scenarioService } from "../../../services/scenario.service";
 import { useOutletContext } from "react-router-dom";
-import ChatContainer from "../components/ui/ChatContainer";
-import ChatBubble from "../components/ui/ChatBubble";
-import FeedbackCoach from "../components/ui/FeedbackCoach";
-import ChoiceList from "../components/ui/ChoiceList";
-import ActionControls from "../components/ui/ActionControls";
-import TypingIndicator from "../components/ui/TypingIndicator";
+import ChatContainer from "../../scenarios/components/ChatContainer";
+import ChatBubble from "../../scenarios/components/ChatBubble";
+import FeedbackCoach from "../../scenarios/components/FeedbackCoach";
+import ChoiceList from "../../scenarios/components/ChoiceList";
+import ActionControls from "../../scenarios/components/ActionControls";
+import TypingIndicator from "../../scenarios/components/TypingIndicator";
 
 
 // CONFIGURATION DES AVATARS (API DICEBEAR)

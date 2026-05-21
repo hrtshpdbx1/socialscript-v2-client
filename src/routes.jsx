@@ -5,16 +5,16 @@
 import App from "./App"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
-import ScenariosLanding from "./pages/ScenariosLanding"
+import ScenariosLanding from "./features/scenarios/pages/ScenariosLanding"
 import Resources from "./pages/Resources"
-import { Login } from "./pages/auth/Login"
-import { Register } from "./pages/auth/Register"
-import ScenarioDetail from "./pages/ScenarioDetail"
+import { Login } from "./features/auth/pages/Login"
+import { Register } from "./features/auth/pages/Register"
+import ScenarioDetail from "./features/scenarios/pages/ScenarioDetail"
 import ScenarioLayout from "./components/layout/ScenarioLayout"
-import { ProtectedPage } from "./components/ProtectedPage"
-import CreateScenario from "./pages/CreateScenario"
+import { ProtectedPage } from "./features/auth/guards/ProtectedPage"
+import CreateScenario from "./features/scenarios/pages/CreateScenario"
 import UnderConstruction from "./pages/UnderConstruction"
-
+ScenariosLanding
 
 /** @type {import('react-router-dom').RouteObject[]} */
 export const routes = [

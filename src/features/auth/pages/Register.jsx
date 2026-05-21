@@ -1,6 +1,6 @@
-// pages/auth/register.jsx
-// 
-import { RegisterForm } from "../../components/RegisterForm"
+// src/features/auth/pages/Register.jsx
+
+import { RegisterForm } from "../components/RegisterForm"
 
 
 export const Register = () => {

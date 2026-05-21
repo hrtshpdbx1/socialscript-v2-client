@@ -5,7 +5,7 @@
 
 import { useAtomValue } from 'jotai';
 import { Navigate } from 'react-router';
-import { tokenAtom } from '../atoms/auth.atom';
+import { tokenAtom } from '../../../atoms/auth.atom';
 
 export function ProtectedRole({ children, allowedRoles }) {
     const token = useAtomValue(tokenAtom);

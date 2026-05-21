@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router";
 import Button from "../ui/Button";
 import { isConnectAtom } from "../../atoms/auth.atom";
-import { BtnLogout } from "../BtnLogout";
+import { BtnLogout } from "../../features/auth/components/BtnLogout";
 import { useAtomValue } from "jotai";
 
 

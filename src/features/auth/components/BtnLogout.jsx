@@ -1,6 +1,8 @@
+// src\features\auth\components\BtnLogout.jsx
+
 import { useSetAtom } from 'jotai'
-import Button from './ui/Button';
-import { tokenAtom } from '../atoms/auth.atom';
+import Button from '../../../components/ui/Button';
+import { tokenAtom } from '../../../atoms/auth.atom';
 
 export function BtnLogout() {
 

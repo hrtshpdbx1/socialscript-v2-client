@@ -1,6 +1,6 @@
-// src/components/ui/ActionControls.jsx
+// src/features/scenarios/components/ActionControls.jsx
 
-import Button from "./Button";
+import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { Undo2, RotateCw } from "lucide-react"; 
 

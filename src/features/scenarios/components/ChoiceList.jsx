@@ -1,3 +1,5 @@
+// src/features/scenarios/components/ChoiceList.jsx
+ 
 import { useState, useRef, useEffect } from "react";
 import ChoiceButton from "./ChoiceButton";
 

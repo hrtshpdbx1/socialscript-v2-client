@@ -1,3 +1,5 @@
+// src/features/scenarios/components/ChatBubble.jsx
+
 export default function ChatBubble({ text, isUser, senderName, avatarUrl }) {
     const label = isUser ? "Vous" : senderName || "Interlocuteur";
     

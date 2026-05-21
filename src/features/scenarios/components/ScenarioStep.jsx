@@ -1,8 +1,8 @@
-// src/components/scenarios/ScenarioStep.jsx
+// src/features/scenarios/components/ScenarioStep.jsx
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { scenarioService } from "../../services/scenario.service";
+import { scenarioService } from "../../../services/scenario.service";
 
 export default function ScenarioStep({ selectedDifficulty, selectedTheme, onEditDifficulty, onEditTheme }) {
     const navigate = useNavigate();

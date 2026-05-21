@@ -1,4 +1,4 @@
-// src/components/ui/FeedbackCoach.jsx
+// src/features/scenarios/components/FeedbackCoach.jsx
 export default function FeedbackCoach({ analysis, consequence, keyTakeaway }) {
     return (
         <div className="flex w-full justify-center my-6 animate-fade-in-up">

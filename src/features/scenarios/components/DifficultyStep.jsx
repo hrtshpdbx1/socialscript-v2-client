@@ -1,9 +1,9 @@
-// src/components/scenarios/DifficultyStep.jsx
+// src/features/scenarios/components//DifficultyStep.jsx
 // ÉTAPE 1 : Choix du niveau de difficulté
 
 
 import { useState, useEffect } from "react";
-import { difficultyService } from "../../services/difficulty.service";
+import { difficultyService } from "../../../services/difficulty.service";
 
 // Dictionnaire style et illustation 
 const difficultyConfig = {

@@ -1,4 +1,4 @@
-// src/components/ui/ChoiceButton.jsx
+// src/features/scenarios/components/ChoiceButton.jsx
 
 export default function ChoiceButton({ children, onClick}) {
     return (

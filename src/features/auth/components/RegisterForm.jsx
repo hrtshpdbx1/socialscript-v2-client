@@ -1,10 +1,10 @@
-// src/pages/auth/RegisterForm.jsx
+// src\features\auth\components\RegisterForm.jsx
 
 import { useId, useState } from 'react'; // ? pour l'accessibilité des labels
 import { useNavigate } from 'react-router-dom'; // pour la redirection
-import authService from '../services/auth.service';
-import Button from '../components/ui/Button'; // Ajuste le chemin selon ton arborescence
-import FormSection from '../components/ui/FormSections'; // Ajuste le chemin 
+import authService from '../../../services/auth.service';
+import Button from '../../../components/ui/Button'; // Ajuste le chemin selon ton arborescence
+import FormSection from '../../../components/ui/FormSections'; // Ajuste le chemin 
 
 export function RegisterForm() {
     const id = useId(); // Id d'accessibilité 

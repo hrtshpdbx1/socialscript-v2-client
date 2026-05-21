@@ -1,7 +1,7 @@
-// src/components/scenarios/ThemeStep.jsx
+// src/features/scenarios/components/ThemeStep.jsx
 
 import { useState, useEffect } from "react";
-import { themeService } from "../../services/theme.service";
+import { themeService } from "../../../services/theme.service";
 
 export default function ThemeStep({ selectedDifficulty, onSelect, onEditDifficulty }) {
     const [themes, setThemes] = useState([]);

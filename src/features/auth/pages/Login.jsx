@@ -1,6 +1,6 @@
-// pages/auth/login.jsx
+// src/features/auth/pages/Login.jsx
  
-import { LoginForm } from "../../components/LoginForm"
+import { LoginForm } from "../components/LoginForm";
 
 export const Login = () => {
   return (

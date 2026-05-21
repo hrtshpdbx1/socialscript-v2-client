@@ -191,7 +191,7 @@
 - [x] Créer un composant,  ProtectedRole, qui vérifie aussi le rôle dans le token JWT. 
 - [x] Page `CreateScenario.jsx` protégée par `ProtectedPage`
 - [x] Formulaire complet : titre, contexte, personnage, dialogue, avatarSeed, 3 choix
-- [ ] Créer aperçu de l'avatar 
+- [x] Créer aperçu de l'avatar 
 - [x] Token injecté dans le header `Authorization` via le service (`getDefaultStore()` de Jotai)
 - [x] Validation côté front (champs requis, exactement 3 choix)
 - [ ] Redirection vers le scénario créé après soumission réussie
@@ -204,7 +204,7 @@
 
 ### Jour 9 — Proposition de thème + Signalement
 
-- [ ] Bouton "Proposer un nouveau thème" dans le formulaire → section dépliante ou modal
+- [x] Bouton "Proposer un nouveau thème" dans le formulaire → section dépliante ou modal
 - [ ] Au clic : `POST /difficulties/:id/themes` → récupère le `_id` → l'injecte dans le formulaire
 - [ ] Composant `ReportButton.jsx` sur `ScenarioDetail.jsx` (visible uniquement si connecté)
 - [ ] Au clic : `POST /scenarios/:id/report` avec le token

@@ -1,5 +1,7 @@
+// src/scenario/pages/ScenarioLanding.jsx
+
 import { NavLink } from "react-router-dom";
-import Button from "../components/ui/Button";
+import Button from "../../../components/ui/Button";
 
 export default function ScenariosLanding() {
   return (

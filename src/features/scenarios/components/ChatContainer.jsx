@@ -1,4 +1,4 @@
-// src/components/ui/ChatContainer.jsx
+// src/features/scenarios/components/ChatContainer.jsx
 
 
 export default function ChatContainer({ children }) {
