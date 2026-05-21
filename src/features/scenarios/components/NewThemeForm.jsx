@@ -5,19 +5,9 @@ import { useForm } from "react-hook-form"
 import { themeService } from "../../../services/theme.service";
 import { FieldError } from '../../../components/ui/FieldError';
 
-// reçoit : difficultyId  → utilisé pour construire l'URL du POST
-// reçoit : onThemeCreated → appelé avec le nouveau thème quand le POST réussit
-
-// fait : son propre useForm(), son propre appel API
-// puis : appelle onThemeCreated(nouveauTheme)
-
-// utilisateur soumet le form
-//     → react-hook-form valide
-//     → appelle ta fonction onSubmit avec { title, icon, description }
-//         → tu appelles themeService.create(difficultyId, formData)
-//             → le backend répond avec le thème créé (avec son _id)
-//                 → tu appelles onThemeCreated(nouveauThème)
-//                     → le parent reçoit le thème et met à jour sa liste
+// Ce composant a besoin de reçevoir du parent :
+//difficultyId  → utilisé pour construire l'URL du POST
+// onThemeCreated → appelé avec le nouveau thème quand le POST réussit
 
 export const NewThemeForm = ({ difficultyId, onThemeCreated }) => {
 
@@ -38,6 +28,7 @@ const { register, handleSubmit, formState: { errors } } = useForm();
             setErrorMsg("Une erreur est survenue lors de la création du thème.");
         }
     }
+
 
     return <>
 
@@ -72,6 +63,13 @@ const { register, handleSubmit, formState: { errors } } = useForm();
     </>
 
 
+// Quand l'utilisateur soumet le form
+// → react-hook-form valide
+// → appelle la fonction onSubmit avec { title, icon, description }
+//→ appelle themeService.create(difficultyId, formData)
+//→ le backend répond avec le thème créé (avec son _id)
+//→ appelle onThemeCreated(nouveauThème)
+//→ le parent reçoit le thème et met à jour sa liste
 
 }
 
