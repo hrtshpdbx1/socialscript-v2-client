@@ -5,7 +5,7 @@
     /* https: //uicolors.app/generate/704ee7 */
     --color-primary: #704ee7;
     --color-primary-200: #d9d8fc;
-    --color-primary-700: ##5730d1;
+    --color-primary-700: #5730d1;
 
     /* Perano 300 */
     --color-secondary: #b2c9ff;
@@ -15,7 +15,8 @@
     /* Pastel Green 300 */
     --color-success: #71e89d;
     --color-success-200: #bdf5d1;
-    --color-success-600: #1a9f4c
+    --color-success-600: #1a9f4c;
+
         /* Wild Watermelon 400 */
         --color-error: #ff5e73;
     --color-error-200: #ffccd2;
@@ -33,6 +34,7 @@
     --color-gray-500: #727272;
     --color-gray-600: #535353;
     --color-gray-700: #3b3b3b;
+
     /* main text */
     --color-gray-800: #272727;
     --color-gray-900: #1a1a1a;

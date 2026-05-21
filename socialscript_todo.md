@@ -204,11 +204,11 @@
 
 ### Jour 9 — Proposition de thème + Signalement
 - [x] Ajouter la fonction create à theme.service.js côté frontend
-- [ ]  Créer le composant NewThemeForm.jsx (mini-form indépendant)
-- [ ]  L'intégrer dans CreateScenarioForm.jsx avec section dépliante
+- [x]  Créer le composant NewThemeForm.jsx (mini-form indépendant)
+- [x]  L'intégrer dans CreateScenarioForm.jsx avec section dépliante
+- [ ] Sur les thèmes affichés dans la liste, ajouter un badge conditionnel : si theme.status === 'pending', tu affiches "⏳ En attente de validation" 
+- [ ] Ajouter une modale, déclenchée par un bouton "+ Proposer un nouveau thème "
 - [ ]  Gérer le retour : ajouter le nouveau thème à la liste + le sélectionner
-- [ ] Bouton "Proposer un nouveau thème" dans le formulaire → section dépliante ou modal
-- [ ] Au clic : `POST /difficulties/:id/themes` → récupère le `_id` → l'injecte dans le formulaire
 - [ ] Composant `ReportButton.jsx` sur `ScenarioDetail.jsx` (visible uniquement si connecté)
 - [ ] Au clic : `POST /scenarios/:id/report` avec le token
 - [ ] Message de confirmation + bouton désactivé après signalement

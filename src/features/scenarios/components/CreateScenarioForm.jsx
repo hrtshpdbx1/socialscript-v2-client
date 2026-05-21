@@ -154,13 +154,13 @@ export const CreateScenarioForm = () => {
                             <label htmlFor={id + 'themeId'} className="form-label">Choix du Theme</label>
                             <div className="flex items-center gap-2">
                                 <select id={id + 'themeId'} className="form-input" {...register('themeId', { required: 'Le thème est obligatoire' })}>
-                                <option value="">-- Sélectionner --</option>
-                                {themes.map((t) => (
-                                    <option key={t._id}
-                                        value={t._id}>
-                                        {t.icon} {t.title}</option>
-                                ))}
-                            </select>
+                                    <option value="">-- Sélectionner --</option>
+                                    {themes.map((t) => (
+                                        <option key={t._id}
+                                            value={t._id}>
+                                            {t.icon} {t.title}</option>
+                                    ))}
+                                </select>
 
                                 {/* Bouton + */}
                                 {/* visible uniquement si une difficulté est sélectionnée  */}
@@ -178,29 +178,42 @@ export const CreateScenarioForm = () => {
                         </div>
                         <FieldError error={errors.themeId} />
                     </div>
-                    {/* Section dépliante */}
-                    {isNewThemeOpen && (
-                        <NewThemeForm
-                            difficultyId={selectedDifficulty}
-                            onThemeCreated={(newTheme) => {
-                                AddNewTheme(newTheme);
-                                setIsNewThemeOpen(false); // referme après création
-                            }}
-                        />
-                    )}
 
                     {/* ---AJOUTER UN THEME --- */}
-                    <div>
-                        {/* L'enfant NewThemeForm a besoin de connaitre :
+                    {/* Section dépliante */}
+                    {/* L'enfant NewThemeForm a besoin de connaitre :
                         -  dans quelle difficulté créer le thème (pour l'URL du POST) → difficultyId 
                         - → une fonction callback pour prévenir le parent quand un thème est créé */}
-                        <NewThemeForm
-                            difficultyId={selectedDifficulty}
-                            onThemeCreated={AddNewTheme}
-                        />
-                    </div>
-                </FormSection >
 
+                    {isNewThemeOpen && (
+                        <div className="mt-4 p-5 bg-white border-l-4 border-primary rounded-xl shadow-sm">
+                            <div className="flex items-center justify-between mb-3">
+                                <h4 className="font-extrabold text-primary font-nunito flex items-center gap-2">
+                                    ✨ Proposer un nouveau thème
+                                </h4>
+                                <button
+                                    type="button"
+                                    onClick={() => setIsNewThemeOpen(false)}
+                                    className="text-gray-400 hover:text-gray-600 text-xl leading-none w-6 h-6 flex items-center justify-center"
+                                    aria-label="Fermer le formulaire"
+                                >
+                                    ×
+                                </button>
+                            </div>
+                            <p className="text-sm text-gray-600 mb-4">
+                                Ton thème sera visible immédiatement <span className="font-bold">pour toi</span>, le temps qu'un modérateur le valide pour les autres utilisateurs.
+                            </p>
+                            <NewThemeForm
+                                difficultyId={selectedDifficulty}
+                                onThemeCreated={(newTheme) => {
+                                    AddNewTheme(newTheme);
+                                    setIsNewThemeOpen(false);
+                                }}
+                            />
+                        </div>
+                    )}
+
+                </FormSection>
                 {/* --- BLOC 2 : L'INTERLOCUTEUR --- */}
                 < FormSection title="L'Interlocuteur" >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -245,7 +258,7 @@ export const CreateScenarioForm = () => {
                 </FormSection >
 
                 {/* --- BLOC 3 : LES OPTIONS DE RÉPONSE --- */}
-                < div className="space-y-6" >
+                <div className="space-y-6" >
                     <h3 className="text-xl font-bold border-b pb-2">Les Choix </h3>
 
                     {
