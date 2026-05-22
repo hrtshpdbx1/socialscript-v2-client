@@ -28,6 +28,9 @@ main {
     @apply w-full p-3 border border-gray-200 rounded-xl outline-none bg-white transition-all
            focus:ring-2 focus:ring-primary/20 focus:border-primary;
   }
+  .form-input:disabled {
+    @apply bg-gray-100 text-gray-400 cursor-not-allowed opacity-60;
+}
   
 }
 

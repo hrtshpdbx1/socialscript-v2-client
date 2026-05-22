@@ -61,7 +61,7 @@ export default function ScenariosLanding() {
               <p className="text-gray-500 text-sm font-nunito mb-4 flex-1 line-clamp-3">
                 Inventez vos propres situations pour vous entraîner ou défier la communauté.
               </p>
-              <NavLink to="/en-construction" className="text-primary font-bold text-sm font-nunito flex items-center gap-1 group-hover:translate-x-1 transition-transform mt-auto w-fit">
+              <NavLink to="/scenarios/create" className="text-primary font-bold text-sm font-nunito flex items-center gap-1 group-hover:translate-x-1 transition-transform mt-auto w-fit">
                 Créer maintenant <span aria-hidden="true">→</span>
               </NavLink>
             </div>

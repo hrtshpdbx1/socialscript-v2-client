@@ -11,6 +11,7 @@ import { themeService } from '../../../services/theme.service';
 import AvatarSelector from '../../../components/ui/AvatarSelector';
 import FormSection from '../../../components/ui/FormSections';
 import { NewThemeForm } from './NewThemeForm';
+import Badge from '../../../components/ui/Badge';
 
 
 export const CreateScenarioForm = () => {
@@ -21,16 +22,19 @@ export const CreateScenarioForm = () => {
     const [difficulties, setDifficulties] = useState([]);
     const [themes, setThemes] = useState([]);
     const [isNewThemeOpen, setIsNewThemeOpen] = useState(false);
-
+    const [createdScenarioId, setCreatedScenarioId] = useState(null); //  état conditionnel post-submit
     const id = useId();
     const navigate = useNavigate(); // Initialiser useNavigate pour la redirection
 
-    const { register, handleSubmit, control, setValue, watch, formState: { errors } } = useForm({
+    const { register, handleSubmit, control, setValue, watch, reset, formState: { errors } } = useForm({
         defaultValues: {
+            title: "",
+            context: "",
+            keyTakeaway: "",
             choices: [
-                { responseText: "", reactionText: "", analysis: "", consequence: "", keyTakeaway: "" },
-                { responseText: "", reactionText: "", analysis: "", consequence: "", keyTakeaway: "" },
-                { responseText: "", reactionText: "", analysis: "", consequence: "", keyTakeaway: "" },
+                { responseText: "", reactionText: "", analysis: "", consequence: "" },
+                { responseText: "", reactionText: "", analysis: "", consequence: "" },
+                { responseText: "", reactionText: "", analysis: "", consequence: "" },
             ]
         }
     });
@@ -38,7 +42,7 @@ export const CreateScenarioForm = () => {
     //  Initialisation de useFieldArray
     const { fields, append, remove } = useFieldArray({
         control,
-        name: "choices"  // clé attendue par ton backend
+        name: "choices"  // clé attendue par le back
     });
 
     // Charger les difficultés 
@@ -72,20 +76,12 @@ export const CreateScenarioForm = () => {
             const response = await scenarioService.create(data);
 
             // 2. Feedback de succès
-            setSuccessMsg("Scénario créé avec succès, l'équipe de modération va maintenant l'étudier ! Redirection en cours...");
+            setSuccessMsg("Scénario créé avec succès !");
 
             // 3. Redirection après 1.5 secondes
             // On récupère l'ID du scénario créé 
             const newScenarioId = response.data._id;
-
-            setTimeout(() => {
-                if (newScenarioId) {
-                    navigate(`/scenarios/${newScenarioId}`);
-                } else {
-                    // Fallback de sécurité si l'API ne renvoie pas l'ID direct
-                    navigate('/scenarios');
-                }
-            }, 1500);
+            setCreatedScenarioId(newScenarioId); // ← on stocke l'ID
 
         } catch (error) {
             console.error(error);
@@ -112,7 +108,7 @@ export const CreateScenarioForm = () => {
                 {/* --- CHAMPS GLOBAUX --- */}
                 {/* --- BLOC 1 : INFORMATIONS --- */}
                 <FormSection title="Informations générales">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex flex-col gap-4">
 
                         {/* --- TITRE--- */}
                         <div>
@@ -120,6 +116,7 @@ export const CreateScenarioForm = () => {
                             <input type="text"
                                 id={id + 'title'}
                                 className="form-input"
+                                placeholder="Ex: Refuser une invitation sans blesser"
                                 {...register('title', { required: 'Le titre est obligatoire' })}
                             />
                             <FieldError error={errors.title} />
@@ -132,15 +129,24 @@ export const CreateScenarioForm = () => {
                                 type="text"
                                 id={id + 'context'}
                                 className="form-input min-h-[100px]"
+                                placeholder="Ex: Un collègue t'invite à une fête, tu ne veux pas y aller mais tu ne sais pas comment le dire sans le vexer."
                                 {...register('context', { required: 'Le contexte est obligatoire' })}
                             />
                             <FieldError error={errors.context} />
                         </div>
+                    </div>
 
-                        {/* --- CHOIX DU NIVEAU DE DIFFICULTé--- */}
-                        <div>
+
+
+                    {/* --- CHOIX DU NIVEAU DE DIFFICULTé--- */}
+                    <div className="flex gap-4 flex-wrap">
+                        <div className="flex-1 min-w-[200px]">
                             <label htmlFor={id + 'difficultyId'} className="form-label">Choix du niveau</label>
-                            <select id={id + 'difficultyId'} className="form-input" {...register('difficultyId', { required: 'Le niveau est obligatoire' })}>
+                            <select id={id + 'difficultyId'}
+                                className="form-input"
+                                {...register('difficultyId',
+                                    { required: 'Le niveau est obligatoire' }
+                                )}>
                                 <option value="">-- Sélectionner --</option>
                                 {difficulties.map((d) => (
                                     <option key={d._id} value={d._id}>{d.icon} {d.title}</option>
@@ -150,20 +156,29 @@ export const CreateScenarioForm = () => {
                         </div>
 
                         {/* ---CHOIX DU THEME --- */}
-                        <div>
+                        <div className="flex-1 min-w-[200px]">
                             <label htmlFor={id + 'themeId'} className="form-label">Choix du Theme</label>
                             <div className="flex items-center gap-2">
-                                <select id={id + 'themeId'} className="form-input" {...register('themeId', { required: 'Le thème est obligatoire' })}>
+
+                                <select id={id + 'themeId'}
+                                    className="form-input"
+                                    disabled={!selectedDifficulty}
+                                    {...register('themeId',
+                                        { required: 'Le thème est obligatoire' }
+                                    )}>
                                     <option value="">-- Sélectionner --</option>
+
                                     {themes.map((t) => (
-                                        <option key={t._id}
-                                            value={t._id}>
-                                            {t.icon} {t.title}</option>
+                                        <option key={t._id} value={t._id}>
+                                            {t.icon}
+                                            {t.title}
+                                            {t.status === 'pending' ? ' - en attente' : ''}
+                                        </option>
                                     ))}
                                 </select>
 
                                 {/* Bouton + */}
-                                {/* visible uniquement si une difficulté est sélectionnée  */}
+                                {/* Disable  si une difficulté non sélectionnée  */}
                                 <button
                                     type="button"
                                     onClick={() => setIsNewThemeOpen(!isNewThemeOpen)}
@@ -212,11 +227,11 @@ export const CreateScenarioForm = () => {
                             />
                         </div>
                     )}
-
                 </FormSection>
+
                 {/* --- BLOC 2 : L'INTERLOCUTEUR --- */}
                 < FormSection title="L'Interlocuteur" >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex flex-col  gap-6">
                         <div>
                             <label htmlFor={id + 'characterName'} className="form-label">Nom du personnage</label>
                             <input
@@ -228,7 +243,17 @@ export const CreateScenarioForm = () => {
                             />
                             <FieldError error={errors.characterName} />
                         </div>
-
+                        {/*  PHRASE D'ACCROCHE */}
+                        <div>
+                            <label htmlFor={id + 'characterDialogue'} className="form-label">Sa phrase d'accroche (Dialogue initial)</label>
+                            <textarea
+                                id={id + 'characterDialogue'}
+                                className="form-input min-h-[80px]"
+                                placeholder="Ex: Hé, tu viens à ma fête samedi soir ?"
+                                {...register('characterDialogue', { required: 'Vous devez insérer un dialogue' })}
+                            />
+                            <FieldError error={errors.characterDialogue} />
+                        </div>
                         {/*  AVATAR SELECTOR */}
                         <div>
                             <AvatarSelector
@@ -245,83 +270,81 @@ export const CreateScenarioForm = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <label htmlFor={id + 'characterDialogue'} className="form-label">Sa phrase d'accroche (Dialogue initial)</label>
-                        <textarea
-                            id={id + 'characterDialogue'}
-                            className="form-input min-h-[80px]"
-                            placeholder="Ex: Hé, tu viens à ma fête samedi soir ?"
-                            {...register('characterDialogue', { required: 'Vous devez insérer un dialogue' })}
-                        />
-                        <FieldError error={errors.characterDialogue} />
-                    </div>
+
                 </FormSection >
 
                 {/* --- BLOC 3 : LES OPTIONS DE RÉPONSE --- */}
-                <div className="space-y-6" >
-                    <h3 className="text-xl font-bold border-b pb-2">Les Choix </h3>
+                < FormSection title="Les Choix" >
 
                     {
                         fields.map((field, index) => (
-                            <fieldset key={field.id} className="border-2 border-gray-200 p-4 rounded-xl relative">
-                                <legend className="bg-white px-2 font-bold text-primary">Option {index + 1}</legend>
-
-                                <div className="space-y-4 mt-2">
-                                    <div>
-                                        <label htmlFor={`${id}opt${index}response`} className="form-label">Réponse du joueur</label>
-                                        <textarea
-                                            id={`${id}opt${index}response`}
-                                            className="form-input"
-                                            // On utilise l'index dynamiquement : "choices.0.responseText", "choices.1.responseText", etc.
-                                            {...register(`choices.${index}.responseText`, { required: 'La réponse est obligatoire' })}
+                            <fieldset key={field.id} className="mt-4 p-5 bg-white border-l-4 border-primary rounded-xl shadow-sm">
+                                <div className="flex flex-col  mb-3">
+                                    {/* <legend className="font-extrabold text-primary font-nunito flex items-center gap-2">Option {index + 1}</legend> */}
+                                    <legend className="flex items-center gap-2 mb-4">
+                                        <Badge
+                                            text={`Option ${index + 1}`}
+                                            color={['primary', 'accent', 'success'][index]}
                                         />
-                                        {/* Sécurisation de l'affichage de l'erreur pour les tableaux dynamiques */}
-                                        <FieldError error={errors?.choices?.[index]?.responseText} />
-                                    </div>
+                                    </legend>
+                                    <div className="space-y-4 mt-2">
+                                        {/*  REPONSE DU JOUEUR */}
+                                        <div>
+                                            <label htmlFor={`${id}opt${index}response`} className="form-label">Réponse du joueur</label>
+                                            <textarea
+                                                id={`${id}opt${index}response`}
+                                                className="form-input"
+                                                placeholder="Ex: Désolé, j'ai déjà quelque chose de prévu ce soir-là."
+                                                // On utilise l'index dynamiquement : "choices.0.responseText", "choices.1.responseText", etc.
+                                                {...register(`choices.${index}.responseText`, { required: 'La réponse est obligatoire' })}
+                                            />
+                                            {/* Sécurisation de l'affichage de l'erreur pour les tableaux dynamiques */}
+                                            <FieldError error={errors?.choices?.[index]?.responseText} />
+                                        </div>
 
-                                    <div>
-                                        <label htmlFor={`${id}opt${index}reaction`} className="form-label">Réaction de l'interlocuteur</label>
-                                        <textarea
-                                            id={`${id}opt${index}reaction`}
-                                            className="form-input"
-                                            {...register(`choices.${index}.reactionText`, { required: 'La réaction est obligatoire' })}
-                                        />
-                                        <FieldError error={errors?.choices?.[index]?.reactionText} />
-                                    </div>
+                                        <div>
+                                            {/*  REACTION INTERLOCUTEUR */}
+                                            <label htmlFor={`${id}opt${index}reaction`} className="form-label">Réaction de l'interlocuteur</label>
+                                            <textarea
+                                                id={`${id}opt${index}reaction`}
+                                                className="form-input"
+                                                placeholder="Ex: Ah, dommage ! Une autre fois alors."
+                                                {...register(`choices.${index}.reactionText`, { required: 'La réaction est obligatoire' })}
+                                            />
+                                            <FieldError error={errors?.choices?.[index]?.reactionText} />
+                                        </div>
 
-                                    <div>
-                                        <label htmlFor={`${id}opt${index}analysis`} className="form-label">Analyse</label>
-                                        <textarea
-                                            id={`${id}opt${index}analysis`}
-                                            className="form-input"
-                                            {...register(`choices.${index}.analysis`, { required: "L'analyse est obligatoire" })}
-                                        />
-                                        <FieldError error={errors?.choices?.[index]?.analysis} />
-                                    </div>
+                                        <div>
+                                            {/* ANALYSE */}
+                                            <label htmlFor={`${id}opt${index}analysis`} className="form-label">Analyse</label>
+                                            <textarea
+                                                id={`${id}opt${index}analysis`}
+                                                className="form-input"
+                                                placeholder="Ex: Cette réponse est polie et directe sans donner trop de détails."
+                                                {...register(`choices.${index}.analysis`, { required: "L'analyse est obligatoire" })}
+                                            />
+                                            <FieldError error={errors?.choices?.[index]?.analysis} />
+                                        </div>
 
-                                    <div>
-                                        <label htmlFor={`${id}opt${index}consequence`} className="form-label">Conséquence</label>
-                                        <textarea
-                                            id={`${id}opt${index}consequence`}
-                                            className="form-input"
-                                            {...register(`choices.${index}.consequence`, { required: 'La conséquence est obligatoire' })}
-                                        />
-                                        <FieldError error={errors?.choices?.[index]?.consequence} />
-                                    </div>
-
-                                    <div>
-                                        <label htmlFor={`${id}opt${index}takeaway`} className="form-label">Point clé à retenir</label>
-                                        <textarea
-                                            id={`${id}opt${index}takeaway`}
-                                            className="form-input"
-                                            {...register(`choices.${index}.keyTakeaway`, { required: 'Le point clé est obligatoire' })}
-                                        />
-                                        <FieldError error={errors?.choices?.[index]?.keyTakeaway} />
+                                        <div>
+                                            {/* CONSEQUENCE */}
+                                            <label htmlFor={`${id}opt${index}consequence`} className="form-label">Conséquence</label>
+                                            <textarea
+                                                id={`${id}opt${index}consequence`}
+                                                className="form-input"
+                                                placeholder="Ex: La relation est préservée, l'autre personne n'est pas blessée."
+                                                {...register(`choices.${index}.consequence`, { required: 'La conséquence est obligatoire' })}
+                                            />
+                                            <FieldError error={errors?.choices?.[index]?.consequence} />
+                                        </div>
                                     </div>
                                 </div>
 
+
+
+
                                 {/* Bouton de supprimer d'une option spécifique */}
-                                {fields.length > 1 && (
+                                {/* {fields.length > 1 && (
                                     <button
                                         type="button"
                                         onClick={() => remove(index)}
@@ -329,25 +352,38 @@ export const CreateScenarioForm = () => {
                                     >
                                         Supprimer
                                     </button>
-                                )}
+                                )} */}
                             </fieldset>
+
                         ))
                     }
 
-                    {/* Bouton pour AJOUTER une nouvelle option */}
-                    {
-                        fields.length < 3 && (
-                            <Button
-                                type="button"
-                                variant="outline"
-                                className="w-full border-dashed"
-                                onClick={() => append({ responseText: "", reactionText: "", analysis: "", consequence: "", keyTakeaway: "" })}
-                            >
-                                + Ajouter une option
-                            </Button>
-                        )
-                    }
-                </div >
+                </FormSection>
+
+                <FormSection title="Point clé à retenir">
+                    <div className="flex flex-col  mb-3">
+
+                        <div className="space-y-4 mt-2">
+                            <div>
+                                <label htmlFor={id + 'keyTakeaway'} className="form-label">
+                                    La leçon principale de ce scénario
+                                </label>
+                                <textarea
+                                    id={id + 'keyTakeaway'}
+                                    className="form-input min-h-[80px]"
+                                    placeholder="Ex: Il est normal de poser des limites poliment mais fermement."
+                                    {...register('keyTakeaway', { required: 'Le point clé est obligatoire' })}
+                                />
+                                <FieldError error={errors.keyTakeaway} />
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </FormSection>
+
+
 
                 {/* BOUTON DE SOUMISSION FINAL */}
                 < div className="pt-8 flex flex-col gap-3" >
@@ -355,21 +391,47 @@ export const CreateScenarioForm = () => {
                         Soumettre le scénario
                     </Button>
 
-                    {/* Zone de feedback (Messages d'erreur ou de succès) */}
-                    {
-                        errorMsg && (
-                            <div className="p-3 bg-red-100 text-red-700 rounded-lg text-center font-bold font-nunito">
-                                {errorMsg}
-                            </div>
-                        )
-                    }
-                    {
-                        successMsg && (
-                            <div className="p-3 bg-green-100 text-green-700 rounded-lg text-center font-bold font-nunito">
+                    {/* Zone de feedback */}
+                    {errorMsg && (
+                        <div className="p-3 bg-red-100 text-red-700 rounded-lg text-center font-bold font-nunito">
+                            {errorMsg}
+                        </div>
+                    )}
+
+                    {successMsg && createdScenarioId && (
+                        <div className="p-4 bg-success/20 rounded-xl flex flex-col gap-3">
+                            <p className="text-center font-bold text-green-900 font-nunito">
                                 {successMsg}
+                            </p>
+                            <p className="text-center text-sm text-gray-600">
+                                Ton scénario est en attente de validation par notre équipe de modération.
+                            </p>
+                            <div className="flex gap-3">
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="flex-1"
+                                    onClick={() => {
+                                        // Réinitialiser le form et les états pour créer un nouveau scénario
+                                        setSuccessMsg(null);
+                                        setCreatedScenarioId(null);
+                                        // reset() de react-hook-form remet tous les champs à leurs defaultValues
+                                        reset();
+                                    }}
+                                >
+                                    Créer un nouveau scénario
+                                </Button>
+                                <Button
+                                    type="button"
+                                    variant="primary"
+                                    className="flex-1"
+                                    onClick={() => navigate(`/scenarios/${createdScenarioId}`)}
+                                >
+                                    Tester mon scénario
+                                </Button>
                             </div>
-                        )
-                    }
+                        </div>
+                    )}
                 </div >
 
             </form >
