@@ -2,6 +2,7 @@
 
 import { NavLink } from "react-router-dom";
 import Button from "../../../components/ui/Button";
+import Badge from "../../../components/ui/Badge";
 
 export default function ScenariosLanding() {
   return (
@@ -27,9 +28,12 @@ export default function ScenariosLanding() {
           <div className="md:col-span-2 bg-primary rounded-3xl p-8 md:p-10 text-white shadow-lg relative overflow-hidden flex flex-col justify-between items-start">
 
             <div className="relative z-10 mb-8">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-xs font-bold tracking-wider uppercase mb-4">
-                Recommandé
-              </span>
+                 <Badge
+                  text="Recommandé"
+                  color="white"
+                  className="mb-4 font-nunito"
+                />
+
               <h2 className="text-3xl font-extrabold font-nunito mb-3">Simulation Guidée</h2>
               <p className="text-primary-50 max-w-md font-nunito leading-relaxed">
                 Laissez-vous guider étape par étape. Choisissez votre niveau, un thème du quotidien, et entraînez-vous à répondre sans aucune pression.
@@ -38,7 +42,7 @@ export default function ScenariosLanding() {
 
             <NavLink to="/scenarios/play" className="relative z-10 w-full sm:w-auto">
               <Button variant="secondary" className="w-full sm:w-auto text-primary font-extrabold px-8 py-3 text-lg shadow-sm hover:-translate-y-1 transition-transform">
-                Commencer l'entraînement 
+                Commencer l'entraînement
               </Button>
             </NavLink>
           </div>
@@ -47,30 +51,25 @@ export default function ScenariosLanding() {
           <div className="flex flex-col gap-6">
 
             {/* Carte Création  */}
-            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex-1 flex flex-col hover:shadow-md hover:border-primary/30 transition-all group">
+            <div className="bg-success-200 rounded-3xl p-6 shadow-sm border border-gray-100 flex-1 flex flex-col hover:shadow-md hover:border-success/30 transition-all group">
               <div className="flex justify-between items-start mb-4">
-                {/* <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                  ✍️
-                </div> */}
-             
-                <span className="px-2 py-1 bg-gray-100 text-gray-500 rounded text-[10px] font-bold uppercase tracking-wider border border-gray-200">
-                  Membres
-                </span>
+                <Badge
+                  text="Connexion requise"
+                  color="onSuccess"
+                  className="mb-4 font-nunito"
+                />
               </div>
               <h3 className="font-bold text-gray-900 font-nunito text-lg mb-2">Créer un scénario</h3>
               <p className="text-gray-500 text-sm font-nunito mb-4 flex-1 line-clamp-3">
                 Inventez vos propres situations pour vous entraîner ou défier la communauté.
               </p>
-              <NavLink to="/scenarios/create" className="text-primary font-bold text-sm font-nunito flex items-center gap-1 group-hover:translate-x-1 transition-transform mt-auto w-fit">
+              <NavLink to="/scenarios/create" className="text-success-600 font-bold text-sm font-nunito flex items-center gap-1 group-hover:translate-x-1 transition-transform mt-auto w-fit">
                 Créer maintenant <span aria-hidden="true">→</span>
               </NavLink>
             </div>
 
             {/* Carte Signalement */}
-            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex-1 flex flex-col hover:shadow-md hover:border-error/30 transition-all group">
-              {/* <div className="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                🚩
-              </div> */}
+            <div className="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm  flex-1 flex flex-col hover:shadow-md hover:border-error/30 transition-all group">
               <h3 className="font-bold text-gray-900 font-nunito text-lg mb-2">Signaler un problème</h3>
               <p className="text-gray-500 text-sm font-nunito mb-4 flex-1 line-clamp-3">
                 Contenu offensant, situation irréaliste ou instructions peu claires ? Aidez-nous à modérer.

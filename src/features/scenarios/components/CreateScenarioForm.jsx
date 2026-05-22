@@ -387,7 +387,10 @@ export const CreateScenarioForm = () => {
 
                 {/* BOUTON DE SOUMISSION FINAL */}
                 < div className="pt-8 flex flex-col gap-3" >
-                    <Button type="submit" variant="primary" className="w-full">
+                    <Button 
+                    type="submit" 
+                    variant="primary" 
+                    className="w-full">
                         Soumettre le scénario
                     </Button>
 

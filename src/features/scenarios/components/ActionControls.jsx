@@ -3,8 +3,10 @@
 import Button from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { Undo2, RotateCw } from "lucide-react"; 
+import { ReportButton } from "./ReportButton";
 
-export default function ActionControls({ onReplay, onNext }) {
+
+export default function ActionControls({ onReplay, onNext, scenarioId }) {
     const navigate = useNavigate();
 
     return (
@@ -31,7 +33,12 @@ export default function ActionControls({ onReplay, onNext }) {
                     Essayer une autre approche
                 </Button>
             )}
-
+ {/* Bouton Signaler  */}
+ {/* sécurité : si scenarioId n'est pas passé, le bouton n'apparaît pas (pas de crash) */}
+            {scenarioId && (
+                
+                <ReportButton scenarioId={scenarioId} />
+            )}
         </div>
     );
 }

@@ -178,7 +178,9 @@ function ScenarioDetail() {
                     ) : (
                         <ActionControls
                             onReplay={() => setSelectedChoice(null)}
+                            scenarioId={scenarioToDisplay._id}
                         />
+                        // on passe le scenarioId à ActionControl pour le report
                     )}
                 </div>
             </div>

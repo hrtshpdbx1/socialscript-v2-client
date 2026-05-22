@@ -207,9 +207,9 @@
 - [x]  Créer le composant NewThemeForm.jsx (mini-form indépendant)
 - [x]  L'intégrer dans CreateScenarioForm.jsx avec section dépliante
 - [x] Sur les thèmes affichés dans la liste, ajouter un badge conditionnel : si theme.status === 'pending', tu affiches "⏳ En attente de validation" 
-- [ ] Composant `ReportButton.jsx` sur `ScenarioDetail.jsx` (visible uniquement si connecté)
-- [ ] Au clic : `POST /scenarios/:id/report` avec le token
-- [ ] Message de confirmation + bouton désactivé après signalement
+- [x] Composant `ReportButton.jsx` sur `ScenarioDetail.jsx`
+- [x] Au clic : `POST /scenarios/:id/report` avec le token
+- [x] Message de confirmation + bouton désactivé après signalement
 
 
 **Questions à te poser**
