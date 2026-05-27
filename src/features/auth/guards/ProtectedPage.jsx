@@ -6,11 +6,11 @@
 
 import { useAtomValue } from 'jotai';
 import { Navigate } from 'react-router';
-import { isConnectAtom } from '../../../atoms/auth.atom';
+import { isAuthAtom } from '../../../atoms/auth.atom';
 
 export function ProtectedPage({ children }) {
 
-    const isConnect = useAtomValue(isConnectAtom); //  lis l'état de connexion
+    const isConnect = useAtomValue(isAuthAtom); //  lis l'état de connexion
 
     if(!isConnect) {
         return <Navigate to='/auth/login' replace />

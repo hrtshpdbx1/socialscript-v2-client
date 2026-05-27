@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
 import Button from "../ui/Button";
-import { isConnectAtom } from "../../atoms/auth.atom";
+import { isAuthAtom } from "../../atoms/auth.atom";
 import { BtnLogout } from "../../features/auth/components/BtnLogout";
 import { useAtomValue } from "jotai";
 
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false); // Ouverture et la fermeture du menu mobile
-    const isConnect = useAtomValue(isConnectAtom);
+    const isConnect = useAtomValue(isAuthAtom);
 
     // Fonctions utilitaires
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

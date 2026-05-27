@@ -152,7 +152,7 @@
  - [x] services/auth.service.js → register + login
  - [x] RegisterForm.jsx avec pattern action React 19
  - [x] LoginForm.jsx avec pattern action + try/catch + Jotai
- - [x] atoms/auth.atom.js → tokenAtom + isConnectAtom
+ - [x] atoms/auth.atom.js → tokenAtom + isAuthAtom
  - [x] Double stockage localStorage + atom
  - [x] Pages Register.jsx et Login.jsx
  - [x] Routes branchées dans routes.jsx
@@ -162,7 +162,7 @@
 - Pourquoi double stockage `localStorage` + atom ? Que se passe-t-il au refresh si on ne fait que l'atom ?
 *L'atom vit en mémoire, donc au refresh il disparaît. Le localStorage survit au rechargement*
 - Pourquoi `isConnectedAtom` plutôt que de tester directement `tokenAtom !== null` ?
-*Centraliser la logique dans un atom dérivé permet de ne modifier qu'un seul endroit si un jour la condition de connecté changé. Les composants qui ont besoin de savoir "est-ce que l'utilisateur est connecté ?" utilisent isConnectAtom sans se soucier du comment*
+*Centraliser la logique dans un atom dérivé permet de ne modifier qu'un seul endroit si un jour la condition de connecté changé. Les composants qui ont besoin de savoir "est-ce que l'utilisateur est connecté ?" utilisent isAuthAtom sans se soucier du comment*
 - Que contient le token JWT côté front ? A-t-on accès au `role` de l'utilisateur ?
 *Le JWT est composé de 3 parties*
 *header.payload.signature, dans payload le back mets des infos : id, rôle, ...*

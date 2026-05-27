@@ -1,37 +1,28 @@
 // components/ProtectedRole.jsx
-// composant "enveloppe" qui vérifie si l'utilisateur a le bon rôle
-// si oui -> affiche le contenu (les children)
-// si non -> redirige vers la page de login
+// composant "enveloppe" qui vérifie l'accès à une page selon le rôle
+// - si non connecté → redirige vers /auth/login
+// - si connecté mais rôle insuffisant → redirige vers /
+// - si connecté avec un rôle autorisé → affiche le contenu (children)
 
 import { useAtomValue } from 'jotai';
 import { Navigate } from 'react-router';
-import { tokenAtom } from '../../../atoms/auth.atom';
+import { roleAtom, isAuthAtom } from '../../../atoms/auth.atom';
 
 export function ProtectedRole({ children, allowedRoles }) {
-    const token = useAtomValue(tokenAtom);
+    const role = useAtomValue(roleAtom);
+    const isAuth = useAtomValue(isAuthAtom);
 
-    // 1. Pas connecté → redirection login
-    if (!token) {
+    // 1.  User pas connecté → redirection login
+    if (!isAuth) {
         return <Navigate to='/auth/login' replace />
     }
+// replace empeche de revenir en arrière
 
-    // 2. Décoder le payload du JWT
-    const payload = JSON.parse(atob(token.split('.')[1]));
-
-    // 3. Vérifier si le rôle est autorisé
-    // les rôles autorisés viennent de la prop allowedRoles
-
-    //    allowedRoles = ['admin', 'moderator']
-    //    payload.role = 'user'
-    if (!allowedRoles.includes(payload.role)) { 
-        // si le rôle n'est PAS dans la liste des rôles autorisé
-        return (
-            <>
-                <p>Vous n'êtes pas autorisé à accéder à cette page.</p>
-            </>
-        );
+    //2. Connecté mais mauvais rôle
+    if (!allowedRoles.includes(role)) {
+        return <Navigate to='/' replace />
     }
 
-    // 4. Tout est bon
-    return children;
+    // 3. Tout est bon
+    return children
 }

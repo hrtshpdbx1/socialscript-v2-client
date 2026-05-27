@@ -1,27 +1,53 @@
- import { atom } from 'jotai';
+/**
+ * Atoms d'authentification utilisateur.
+ * - tokenAtom : stocke le JWT brut depuis le localStorage
+ * - roleAtom : extrait le rôle depuis le payload du JWT (décodage côté front uniquement)
+ * - isAuthAtom : booléen connecté / pas connecté
+ * 
+ * Note sécurité : le décodage côté front sert uniquement à conditionner l'UI.
+ * La vraie vérification d'authentification se fait côté backend à chaque requête.
+ */
 
- // ? Jotai
-// Biblitoheque qui prmet de partgar un state global entre plusieurs composants sans passer des props
+import { atom } from "jotai";
 
-// On déclare deux atoms (tokenAtom et isConnectAtom )dans le même fichier. Ils ont des rôles distincts et coexistent 
-
-//? Atom principal : stocke la valeur brute du token.
-// Au démarrage, on tente de récupérer un token déjà existant
-// dans le localStorage (= session précédente non terminée) :
+// 1. Stocker la valeur brute du token.
 export const tokenAtom = atom(localStorage.getItem('token'));
-//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//                            null si pas de token (non connecté)
-//                            string si token trouvé (connecté)
 
+// 2. Extraire le payload
+// Rappel : Anatomie d'un JWT = header.payload.signature, base64url
+export const roleAtom = atom((get) => {
 
-// tokenAtom stocke la valeur brute du token JWT(ou null s'il n'existe pas)
-
-
-//? isConnectAtom — Atom dérivé (read-only)
-// Lit tokenAtom via get() et calcule un booléen (connecté ou non)
-// Se recalcule automatiquement chaque fois que tokenAtom change
-// On ne peut pas faire setIsConnect() → on passe toujours par setToken()
-export const isConnectAtom = atom((get) => {
     const token = get(tokenAtom);
-    return token !== null;
+    // si pas de token, valeur null par défaut.
+    if (!token) return null
+
+    const tokenParts = token.split(".");
+    // token complet: "xxx.yyy.zzz"
+    // Split = coupe la string token à chaque occurrence de "."
+    // Expected output: le payload  aka la partie du milieu"
+    const payload = (tokenParts[1]);
+
+    // 3. Décoder avec atob 
+    try {
+        // Pipeline de décodage dui pourrait planter 
+        const decodedPayload = atob(payload);
+        const payloadParsed = JSON.parse(decodedPayload)
+        // → '{"role":"admin"}'
+        const userRole = payloadParsed.role
+        return userRole
+
+    } catch (error) {
+        console.error('Token invalide :', error);
+        return null;
+    }
+
+
+
+});
+// Atom dérivé qui renvoit true ou false selon qu'un token existe.
+export const isAuthAtom = atom((get) => {
+    const token = get(tokenAtom);
+    // On utilise une coercion booléenne (truthy/falsy) plutôt que `!== null`
+    // pour couvrir aussi les cas où le token serait "" ou undefined.
+    return token ? true : false;
 });
