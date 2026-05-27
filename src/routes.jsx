@@ -14,7 +14,7 @@ import ScenarioLayout from "./components/layout/ScenarioLayout"
 import { ProtectedPage } from "./features/auth/guards/ProtectedPage"
 import CreateScenario from "./features/scenarios/pages/CreateScenario"
 import UnderConstruction from "./pages/UnderConstruction"
-ScenariosLanding
+
 
 /** @type {import('react-router-dom').RouteObject[]} */
 export const routes = [

@@ -1,3 +1,13 @@
+/**
+ * Atoms d'authentification utilisateur.
+ * - tokenAtom : stocke le JWT brut depuis le localStorage
+ * - roleAtom : extrait le rôle depuis le payload du JWT (décodage côté front uniquement)
+ * - isAuthAtom : booléen connecté / pas connecté
+ * 
+ * Note sécurité : le décodage côté front sert uniquement à conditionner l'UI.
+ * La vraie vérification d'authentification se fait côté backend à chaque requête.
+ */
+
 import { atom } from "jotai";
 
 // 1. Stocker la valeur brute du token.
@@ -37,6 +47,7 @@ export const roleAtom = atom((get) => {
 // Atom dérivé qui renvoit true ou false selon qu'un token existe.
 export const isAuthAtom = atom((get) => {
     const token = get(tokenAtom);
-    // Plutôt que de comparer à une valeur spécifique,est-ce que la valeur est truthy ?
+    // On utilise une coercion booléenne (truthy/falsy) plutôt que `!== null`
+    // pour couvrir aussi les cas où le token serait "" ou undefined.
     return token ? true : false;
 });

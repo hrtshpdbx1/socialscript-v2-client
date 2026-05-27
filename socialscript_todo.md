@@ -218,17 +218,73 @@
 
 ### Jour 10 — Interface de modération
 
+
+
+
+
+### Jour 11 — Fondation Admin side
+
 - [x] Créer `atoms/user.atom.js` : `roleAtom` 
-- [ ] Ajouter isAuthAtom dans le même fichier
-- [ ] Route /admin protégée par rôle (moderator ou admin) → redirige vers / si rôle insuffisant
-- [ ] Page Admin.jsx avec 3 onglets : Scénarios en attente / Thèmes en attente / Signalements
-- [ ] Chaque onglet appelle les routes admin correspondantes
-- [ ] Boutons Approuver / Rejeter → appelle le PATCH correspondant → retire l'item de la liste
-- [ ] Commit final, push 🎉
+- [x] Ajouter isAuthAtom dans le même fichier
+
+ - [] Créer le composant ProtectedRole (guards/ProtectedRole.jsx)
+ - [] Créer AdminLayout.jsx avec une nav latérale et un <Outlet />
+ - [] Ajouter les routes admin dans routes.jsx (toutes en placeholder pour l'instant)
+ - [] Tester : se connecter en user → /admin redirige. Se connecter en admin → /admin s'affiche.
+ - [] Commit : feat(admin): add admin layout and role-based route protection
 
 **Questions à te poser**
 - Comment extraire le `role` du token JWT côté front sans appel API supplémentaire ?
 - Pourquoi ne suffit-il pas de cacher le bouton `/admin` dans le Header pour sécuriser cette page ?
+
+
+### Jour 11 —  Modération des scénarios
+
+ - [] Étendre scenario.service.js avec getPendingScenarios, approveScenario, rejectScenario
+ - [] Créer AdminScenarios.jsx qui appelle getPendingScenarios au mount
+ - [] Créer un composant PendingItemCard réutilisable (titre, description, boutons)
+ - [] Câbler les boutons Approuver/Rejeter → appel API → retire l'item de la liste
+ - [] Gérer les états : loading, erreur, liste vide
+ - [] Commit : feat(admin): add scenario moderation page
+
+### Jour 12 — Modération des thèmes
+
+- [] Étendre theme.service.js avec getPendingThemes, approveTheme, rejectTheme
+- [] Créer AdminThemes.jsx (réutilise PendingItemCard)
+- [] Câbler les actions
+- [] Commit : feat(admin): add theme moderation page
+
+### Jour 13 — Signalements
+
+ - [] Créer report.service.js avec getReports, updateReportStatus
+ - [] Créer AdminReports.jsx
+ - [] Composant ReportCard (différent de PendingItemCard — actions Reviewed/Dismissed)
+ - [] Commit : feat(admin): add reports management page
+
+### Jour 14 — Ressources (CRUD)
+
+ - [] Vérifier/créer resource.service.js
+ - [] Créer AdminResources.jsx
+ - [] Composant ResourceForm (create/update)
+ - [] Câbler les 4 actions : list, create, update, delete
+ - [] Commit : feat(admin): add resources CRUD page
+
+### Jour 15 — Gestion des users (admin only)
+
+ - [] Créer user.service.js (côté admin) avec getUsers, updateUserRole, softDeleteUser
+ - [] Créer AdminUsers.jsx protégée par ProtectedRole allowedRoles={['admin']} uniquement
+ - [] Composant UserRow avec actions promote/demote/soft-delete
+ - [] Ajouter ConfirmModal pour les actions destructives
+ - [] Cacher le lien "Users" dans la nav pour les modérateurs (utiliser roleAtom)
+ - [] Commit : feat(admin): add user management (admin only)
+
+### Jour 16 — Polish & finitions
+
+ - [] Dashboard d'accueil /admin (compteurs : X scénarios en attente, Y thèmes, Z reports)
+ - [] Améliorer les états de chargement (skeleton ? spinner ?)
+ - [] Toasts/notifications de succès après les actions
+ - [] Vérification finale : tous les guards fonctionnent, toutes les routes répondent
+ - [] Commit final + push 🎉
 
 
 - [] Créer la route GET /api/resources côté Back-end !
