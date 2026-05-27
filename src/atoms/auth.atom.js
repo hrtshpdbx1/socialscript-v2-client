@@ -1,9 +1,21 @@
-import { atom } from 'jotai';
+ import { atom } from 'jotai';
 
-//? tokenAtom — Atom classique (comme un useState global)
-// Stocke la valeur brute du token JWT, accessible partout dans l'appli
-// Au démarrage, récupère le token du localStorage (ou null s'il n'existe pas)
+ // ? Jotai
+// Biblitoheque qui prmet de partgar un state global entre plusieurs composants sans passer des props
+
+// On déclare deux atoms (tokenAtom et isConnectAtom )dans le même fichier. Ils ont des rôles distincts et coexistent 
+
+//? Atom principal : stocke la valeur brute du token.
+// Au démarrage, on tente de récupérer un token déjà existant
+// dans le localStorage (= session précédente non terminée) :
 export const tokenAtom = atom(localStorage.getItem('token'));
+//                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//                            null si pas de token (non connecté)
+//                            string si token trouvé (connecté)
+
+
+// tokenAtom stocke la valeur brute du token JWT(ou null s'il n'existe pas)
+
 
 //? isConnectAtom — Atom dérivé (read-only)
 // Lit tokenAtom via get() et calcule un booléen (connecté ou non)

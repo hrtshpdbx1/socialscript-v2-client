@@ -147,8 +147,6 @@
 
 **Objectif de fin de semaine :** un utilisateur peut créer un compte, se connecter, proposer un scénario, signaler du contenu. Un modérateur peut valider depuis une interface dédiée.
 
-
-
 ### Jour 6 — Register + Login + Jotai
 
  - [x] services/auth.service.js → register + login
@@ -220,11 +218,12 @@
 
 ### Jour 10 — Interface de modération
 
-- [ ] Créer `atoms/user.atom.js` : `roleAtom` (extrait du token JWT au login)
-- [ ] Route `/admin` protégée par rôle (`moderator` ou `admin`) → redirige vers `/` si rôle insuffisant
-- [ ] Page `Admin.jsx` avec 3 onglets : **Scénarios en attente** / **Thèmes en attente** / **Signalements**
+- [x] Créer `atoms/user.atom.js` : `roleAtom` 
+- [ ] Ajouter isAuthAtom dans le même fichier
+- [ ] Route /admin protégée par rôle (moderator ou admin) → redirige vers / si rôle insuffisant
+- [ ] Page Admin.jsx avec 3 onglets : Scénarios en attente / Thèmes en attente / Signalements
 - [ ] Chaque onglet appelle les routes admin correspondantes
-- [ ] Boutons Approuver / Rejeter → appelle le `PATCH` correspondant → retire l'item de la liste
+- [ ] Boutons Approuver / Rejeter → appelle le PATCH correspondant → retire l'item de la liste
 - [ ] Commit final, push 🎉
 
 **Questions à te poser**

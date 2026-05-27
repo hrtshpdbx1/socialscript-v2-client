@@ -4,7 +4,7 @@ import Button from "../../../components/ui/Button"
 import { useForm } from "react-hook-form"
 import { themeService } from "../../../services/theme.service";
 import { FieldError } from '../../../components/ui/FieldError';
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker from "emoji-picker-react";
 
 // Ce composant a besoin de reçevoir du parent :
 //difficultyId  → utilisé pour construire l'URL du POST
