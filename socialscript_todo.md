@@ -216,22 +216,22 @@
 
 ---
 
-### Jour 10 — Interface de modération
-
-
-
-
-
-### Jour 11 — Fondation Admin side
+### Jour 10 et 11 — Interface de modération é Fondation Admin side
 
 - [x] Créer `atoms/user.atom.js` : `roleAtom` 
 - [x] Ajouter isAuthAtom dans le même fichier
-
- - [] Créer le composant ProtectedRole (guards/ProtectedRole.jsx)
+ - [x] Créer le composant ProtectedRole (guards/ProtectedRole.jsx)
+ - [x] Consolider les atoms dans auth.atom.js
+ - [x] Refactor ProtectedRole.jsx
+ - [x] Vérifier les imports partout (recherche globale auth.atom, user.atom, isConnectAtom)
+ - [x] Refactor ProtectedPage.jsx si nécessaire (probablement juste changer isConnectAtom → isAuthAtom)
+ - [x] Supprimer l'ancien fichier d'atoms une fois tout migré
+ - [x] Corriger la ligne orpheline ScenariosLanding dans routes.jsx
+ - [] Créer AdminLayout.jsx
+ - [x] Décommenter les routes admin avec placeholders
  - [] Créer AdminLayout.jsx avec une nav latérale et un <Outlet />
- - [] Ajouter les routes admin dans routes.jsx (toutes en placeholder pour l'instant)
- - [] Tester : se connecter en user → /admin redirige. Se connecter en admin → /admin s'affiche.
- - [] Commit : feat(admin): add admin layout and role-based route protection
+ - [x] Ajouter les routes admin dans routes.jsx (toutes en placeholder pour l'instant)
+ - [x] Tester : se connecter en user → /admin redirige. Se connecter en admin → /admin s'affiche.
 
 **Questions à te poser**
 - Comment extraire le `role` du token JWT côté front sans appel API supplémentaire ?

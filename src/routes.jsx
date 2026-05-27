@@ -14,13 +14,15 @@ import ScenarioLayout from "./components/layout/ScenarioLayout"
 import { ProtectedPage } from "./features/auth/guards/ProtectedPage"
 import CreateScenario from "./features/scenarios/pages/CreateScenario"
 import UnderConstruction from "./pages/UnderConstruction"
+import AdminLayout from "./features/admin/AdminLayout"
+import { ProtectedRole } from "./features/auth/guards/ProtectedRole"
 
 
 /** @type {import('react-router-dom').RouteObject[]} */
 export const routes = [
     {
         path: '/',
-        element: <App />,
+        element: <App />,    // * layout avec Header/Footer
         children: [
             { index: true, element: <Home /> },
             {
@@ -38,6 +40,17 @@ export const routes = [
                 ]
             },
             { path: 'resources', element: <Resources /> },
+            
+            // Route admin
+            {
+                path: 'admin',
+                element: (
+                    <ProtectedRole allowedRoles={['admin', 'moderator']}>
+                        <AdminLayout />
+                    </ProtectedRole>
+                )
+            },
+            // En construction
             { path: 'en-construction', element: <UnderConstruction /> },
             // Pour l'utiliser 
             // <NavLink to="/en-construction">
@@ -54,6 +67,7 @@ export const routes = [
             { path: "*", element: <NotFound /> },
         ]
     },
+    //* Route top-level (mode focus sans Header/Footer) :
     {
         path: 'scenarios/play',
         element: <ScenarioLayout />   // menu de sélection
@@ -64,26 +78,5 @@ export const routes = [
         children: [
             { index: true, element: <ScenarioDetail /> }
         ]
-    },
-
-    // Route admin
-    // {
-    //     path: 'admin',
-    //     element: (
-    //         <ProtectedRole allowedRoles={['admin', 'moderator']}>
-    //             <AdminLayout />
-    //         </ProtectedRole>
-    //     )
-    // }
-
-    // Route création de scénario (tout utilisateur connecté)
-    // {
-    //         path: 'scenarios/create',
-    //         element: (
-    //             <ProtectedPage>
-    //                 <CreateScenario />
-    //             </ProtectedPage>
-    //         )
-    //     }
-
+    }
 ]
