@@ -28,7 +28,7 @@ function ScenarioDetail() {
     const [isAiTypingInitial, setIsAiTypingInitial] = useState(true);
     const [isAiTypingReaction, setIsAiTypingReaction] = useState(false);
 
-    // 💡 1. On crée une référence pour le scroll intelligent
+    // une référence pour le scroll intelligent
     const reactionRef = useRef(null)
 
     // Chargement du scénario

@@ -1,7 +1,6 @@
 // routes.jsx 
 // Toutes les routes sont définies dans un seul fichier. Cela permet de modifier une URL à un seul endroit sans toucher aux composants.
 
-
 import App from "./App"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
@@ -16,6 +15,7 @@ import CreateScenario from "./features/scenarios/pages/CreateScenario"
 import UnderConstruction from "./pages/UnderConstruction"
 import AdminLayout from "./features/admin/AdminLayout"
 import { ProtectedRole } from "./features/auth/guards/ProtectedRole"
+import AdminScenario from "./features/admin/components/AdminScenarios"
 
 
 /** @type {import('react-router-dom').RouteObject[]} */
@@ -40,16 +40,24 @@ export const routes = [
                 ]
             },
             { path: 'resources', element: <Resources /> },
-            
+
             // Route admin
             {
                 path: 'admin',
                 element: (
                     <ProtectedRole allowedRoles={['admin', 'moderator']}>
-                        <AdminLayout />
+                        <AdminLayout />,
+
                     </ProtectedRole>
-                )
+                ),
+                children: [
+                    {
+                        path: 'scenarios',
+                        element: <AdminScenario />
+                    }
+                ]
             },
+
             // En construction
             { path: 'en-construction', element: <UnderConstruction /> },
             // Pour l'utiliser 

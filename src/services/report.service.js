@@ -4,14 +4,9 @@
 import api from './api';
 
 const reportService = {
-    
+   // ** CREATE REPORT **  
     /**
      * Crée un nouveau signalement pour un scénario spécifique.
-     * @param {string} scenarioId - L'ID du scénario que l'utilisateur veut signaler.
-     * @param {Object} reportData - L'objet contenant les infos du signalement.
-     * @param {string} reportData.reportType - Le type 
-     * @param {string} reportData.reason - L'explication détaillée 
-     * @returns {Promise<Object>} - La réponse de l'API (message de succès et les données du report).
      */
     create: async (scenarioId, reportData) => {
         

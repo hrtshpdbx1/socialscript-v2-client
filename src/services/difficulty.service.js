@@ -1,6 +1,7 @@
 //services/difficuly.service.js 
 import api from './api';
 
+// ** GET ALL DIFFICULTIES ** 
 /**
  * Récupère les niveaux de difficultés 
  * Route : GET /api/difficulties/

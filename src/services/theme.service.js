@@ -2,7 +2,7 @@
 import api from './api';
 
 
-
+// ** GET BY DIFFICULTY ** 
 /**
  * Récupère les thèmes par difficulté (filtre)
  * Route :  	/api/difficulties/:difficultyId/themes
@@ -14,6 +14,7 @@ async function getByDifficulty(difficultyId) {
 }
 
 
+// ** CREATE THEME ** 
 /**
  * Crée un nouveau thème (statut "pending" par défaut côté backend)
  * Route : POST /api/difficulties/:difficultyId/themes

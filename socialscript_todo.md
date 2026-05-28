@@ -235,17 +235,19 @@
 
 **Questions à te poser**
 - Comment extraire le `role` du token JWT côté front sans appel API supplémentaire ?
+*Avec Jotai et un decodada atob*
+**
 - Pourquoi ne suffit-il pas de cacher le bouton `/admin` dans le Header pour sécuriser cette page ?
 
 
 ### Jour 11 —  Modération des scénarios
 
- - [] Étendre scenario.service.js avec getPendingScenarios, approveScenario, rejectScenario
- - [] Créer AdminScenarios.jsx qui appelle getPendingScenarios au mount
- - [] Créer un composant PendingItemCard réutilisable (titre, description, boutons)
- - [] Câbler les boutons Approuver/Rejeter → appel API → retire l'item de la liste
- - [] Gérer les états : loading, erreur, liste vide
- - [] Commit : feat(admin): add scenario moderation page
+ - [x] Étendre scenario.service.js avec getPendingScenarios, approveScenario, rejectScenario
+ - [x] Créer AdminScenarios.jsx qui appelle getPendingScenarios au mount
+ - [x] Créer un composant PendingItemCard réutilisable (titre, description, boutons)
+ - [x] Câbler les boutons Approuver/Rejeter → appel API → retire l'item de la liste
+ - [x] Gérer les états : loading, erreur, liste vide
+ - [x] Commit : feat(admin): add scenario moderation page
 
 ### Jour 12 — Modération des thèmes
 
