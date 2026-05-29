@@ -51,6 +51,7 @@ useEffect(() => {
         // 👇 On vérifie si on veut tout ou juste une catégorie
         if (selectedCategory === 'all') {
             data = await resourceService.getAll();
+            console.log("DATA reçue :", data);  
         } else {
             data = await resourceService.getByCategory(selectedCategory);
         }
@@ -234,7 +235,7 @@ useEffect(() => {
                       <div className="w-full h-16 mb-4 flex items-center justify-center">
                         <img 
                           // Si l'API renvoie une image on l'utilise, sinon on met un placeholder
-                          src={resource.imageUrl || "https://placehold.co/300x150/f8fafc/94a3b8?text=Image"} 
+                          src={resource.icon || "https://placehold.co/300x150/f8fafc/94a3b8?text=Image"} 
                           alt={resource.title}
                           className="max-h-[60px] max-w-full object-contain"
                           style={{ filter: "grayscale(100%) contrast(1.1)" }}

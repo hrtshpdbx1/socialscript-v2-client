@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router";
 import { useAtomValue, useSetAtom } from "jotai";
-import { ShieldCheck } from "lucide-react";
 import Button from "../ui/Button";
 import { isAuthAtom, roleAtom, userAtom } from "../../atoms/auth.atom";
 import { userService } from "../../services/user.service";
-import { BtnLogout } from "../../features/auth/components/BtnLogout";
+import { UserMenu } from "./UserMenu";
+import { BtnLogout  } from '../../features/auth/components/BtnLogout';
+
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,18 +61,7 @@ export const Header = () => {
                         </NavLink>
                     </li>
 
-                    {/* Lien Modération : visible uniquement pour admin/modérateur */}
-                    {isConnect && canModerate && (
-                        <li>
-                            <NavLink to="/admin/scenarios"
-                                className={({ isActive }) => isActive
-                                    ? "flex items-center gap-1.5 text-primary font-extrabold border-b-2 border-primary pb-0.5"
-                                    : "flex items-center gap-1.5 text-gray-800 font-bold hover:text-primary transition-colors"}>
-                                <ShieldCheck size={18} strokeWidth={2.5} />
-                                Modération
-                            </NavLink>
-                        </li>
-                    )}
+                  
 
                     <li>
                         {!isConnect ? (
@@ -84,20 +74,7 @@ export const Header = () => {
                                 </NavLink>
                             </div>
                         ) : (
-                            <div className="flex items-center gap-3">
-                                {/* Touche d'identité : avatar-initiale + prénom */}
-                                {user && (
-                                    <div className="flex items-center gap-2">
-                                        <span className="flex items-center justify-center w-9 h-9 rounded-full bg-primary text-white font-bold text-sm select-none">
-                                            {user.firstName?.charAt(0).toUpperCase()}
-                                        </span>
-                                        <span className="font-bold text-gray-800">
-                                            {user.firstName}
-                                        </span>
-                                    </div>
-                                )}
-                                <BtnLogout />
-                            </div>
+                            <UserMenu />
                         )}
                     </li>
                 </ul>
@@ -137,14 +114,6 @@ export const Header = () => {
                         Ressources
                     </NavLink>
 
-                    {/* Lien Modération mobile */}
-                    {isConnect && canModerate && (
-                        <NavLink to="/admin/scenarios" onClick={closeMenu}
-                            className="flex items-center gap-1.5 text-xl font-bold text-gray-800 hover:text-primary">
-                            <ShieldCheck size={20} strokeWidth={2.5} />
-                            Modération
-                        </NavLink>
-                    )}
 
                     {!isConnect ? (
                         <div className="flex flex-col gap-4 mt-4 w-3/4">
@@ -157,7 +126,7 @@ export const Header = () => {
                         </div>
                     ) : (
                         <div className="mt-4">
-                            <BtnLogout />
+                            <BtnLogout /> 
                         </div>
                     )}
                 </div>
