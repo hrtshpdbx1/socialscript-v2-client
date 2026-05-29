@@ -13,7 +13,9 @@ import { atom } from "jotai";
 // 1. Stocker la valeur brute du token.
 export const tokenAtom = atom(localStorage.getItem('token'));
 
-// 2. Extraire le payload
+
+// * roleAtom 
+// 1.Extraire le payload
 // Rappel : Anatomie d'un JWT = header.payload.signature, base64url
 export const roleAtom = atom((get) => {
 
@@ -27,7 +29,7 @@ export const roleAtom = atom((get) => {
     // Expected output: le payload  aka la partie du milieu"
     const payload = (tokenParts[1]);
 
-    // 3. Décoder avec atob 
+    // 2. Décoder avec atob 
     try {
         // Pipeline de décodage dui pourrait planter 
         const decodedPayload = atob(payload);
@@ -40,14 +42,20 @@ export const roleAtom = atom((get) => {
         console.error('Token invalide :', error);
         return null;
     }
-
-
-
 });
+
+// * isAuthAtom 
 // Atom dérivé qui renvoit true ou false selon qu'un token existe.
 export const isAuthAtom = atom((get) => {
     const token = get(tokenAtom);
     // On utilise une coercion booléenne (truthy/falsy) plutôt que `!== null`
     // pour couvrir aussi les cas où le token serait "" ou undefined.
     return token ? true : false;
+
 });
+
+// * userAtom
+// Stocke le profil utilisateur complet (firstName, etc.) récupéré via GET /users/me.
+// Atom passif : valeur null au départ, rempli depuis l'extérieur après le fetch.
+export const userAtom = atom(null);
+
