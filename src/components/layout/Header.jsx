@@ -29,8 +29,6 @@ export const Header = () => {
         }
     }, [isConnect, setUser]);
 
-    // Booléen lisible pour conditionner le lien de modération
-    const canModerate = role === "admin" || role === "moderator";
 
     return (
         <header className="relative flex justify-between items-center py-4 px-4 md:px-8 bg-background shadow-md z-50">
@@ -60,9 +58,6 @@ export const Header = () => {
                             Ressources
                         </NavLink>
                     </li>
-
-                  
-
                     <li>
                         {!isConnect ? (
                             <div className="flex flex-row gap-2">

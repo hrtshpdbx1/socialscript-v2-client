@@ -60,7 +60,7 @@ const currentBadge = roleBadge[role] || roleBadge.user;
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                {user.firstName?.charAt(0).toUpperCase()}
+                {`${user.firstName?.charAt(0).toUpperCase()} ${user.lastName?.charAt(0).toUpperCase()}`}
             </button>
 
             {/* Le dropdown */}
@@ -68,15 +68,14 @@ const currentBadge = roleBadge[role] || roleBadge.user;
                 <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden z-50">
 
                     {/* En-tête : identité */}
-<div className="flex items-center gap-3 px-4 py-3 border-b border-gray-100">
-    <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold select-none flex-shrink-0">
-        {user.firstName?.charAt(0).toUpperCase()}
-    </span>
-    <div className="min-w-0">
+<div className="flex flex-col items-start gap-0.5 px-4 py-3 border-b border-gray-100">
         <p className="font-bold text-gray-900 truncate">{user.firstName} {user.lastName}</p>
         <p className="text-sm text-gray-500 truncate">{user.email}</p>
-        <Badge text={currentBadge.text} color={currentBadge.color} className="mt-1.5" />
-    </div>
+        <div className="pt-2"> 
+            <Badge text={currentBadge.text} color={currentBadge.color} /> 
+        </div>
+       
+
 </div>
 
                     {/* Actions communes */}
