@@ -251,9 +251,9 @@
 
 ### Jour 12 — Modération des thèmes
 
-- [] Étendre theme.service.js avec getPendingThemes, approveTheme, rejectTheme
-- [] Créer AdminThemes.jsx (réutilise PendingItemCard)
-- [] Câbler les actions
+- [x] Étendre theme.service.js avec getPendingThemes, approveTheme, rejectTheme
+- [x] Créer AdminThemes.jsx (réutilise PendingItemCard)
+- [x] Câbler les actions
 - [] Commit : feat(admin): add theme moderation page
 
 ### Jour 13 — Signalements
