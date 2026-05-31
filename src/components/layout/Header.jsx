@@ -98,7 +98,7 @@ export const Header = () => {
                             <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold select-none">
                                 {user.firstName?.charAt(0).toUpperCase()}
                             </span>
-                            <span className="font-bold text-gray-800 text-lg">{user.firstName}</span>
+                            <span className="font-bold text-gray-800 text-lg">{user.lastName}</span>
                         </div>
                     )}
 

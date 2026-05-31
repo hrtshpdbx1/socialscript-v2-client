@@ -2,7 +2,8 @@
 import { useState } from "react";
 import Button from "./Button";
 import { FieldError } from "./FieldError";
-import reportService from "../../services/report.service";
+import { reportService } from "../../services/report.service";
+
 
 // Valeurs du select : lien entre valeur backend (enum) et label français
 const REPORT_TYPES = [

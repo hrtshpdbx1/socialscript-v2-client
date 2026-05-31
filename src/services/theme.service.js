@@ -10,8 +10,8 @@ import api from './api';
 
 async function getByDifficulty(difficultyId) {
     const response = await api.get(`/difficulties/${difficultyId}/themes/`);
-    return response.data;
-}
+    return response.data
+};
 
 // ** CREATE THEME ** 
 /**
@@ -25,7 +25,7 @@ async function getByDifficulty(difficultyId) {
 async function create(difficultyId, themeData){
     const response = await api.post(`/difficulties/${difficultyId}/themes/`, themeData)
     return response.data
-}
+};
 
 // ** Get Pending Theme ** 
 /**
@@ -59,7 +59,7 @@ async function approveTheme(themeId, newThemeStatus) {
  * Route : DELETE /api/admin/themes/:themeId
  */
 async function reject(themeId) {
-    const response = await api.get(
+    const response = await api.delete(
         `/admin/themes/${themeId}`
     )
     return response.data

@@ -258,9 +258,9 @@
 
 ### Jour 13 — Signalements
 
- - [x] Créer report.service.js avec getReports, updateReportStatus
- - [] Créer AdminReports.jsx
- - [] Composant ReportCard (différent de PendingItemCard — actions Reviewed/Dismissed)
+ - [x] Créer report.service.js avec getReports, updateReportStatus. Ajout de create, getReports, updateReportStatus
+ - [x] Créer AdminReports.jsx
+ - [x] Composant ReportCard (différent de PendingItemCard — actions Reviewed/Dismissed)
  - [] Commit : feat(admin): add reports management page
 
 ### Jour 14 — Ressources (CRUD)
@@ -365,8 +365,8 @@ src/
 
 ## 🎯 Ce qui sera à faire APRÈS ces 2 semaines
 
-- [ ] Déploiement du backend (Render)
-- [ ] Déploiement du frontend (Vercel)
+- [x] Déploiement du backend (Render)
+- [x] Déploiement du frontend (Vercel)
 - [ ] Pagination sur les listes de scénarios
 - [ ] Page profil utilisateur (mes scénarios, mes signalements)
 - [ ] Tests (Jest + React Testing Library)

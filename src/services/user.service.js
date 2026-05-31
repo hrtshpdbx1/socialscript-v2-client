@@ -15,8 +15,9 @@ async function getMe() {
         return response.data.user;
 }
 
+
+
 // Export 
 export const userService = {
     getMe
-
 }

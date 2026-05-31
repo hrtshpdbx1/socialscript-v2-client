@@ -6,6 +6,7 @@ import api from './api';
 // ** CREATE REPORT **  
 /**
  * Crée un nouveau signalement pour un scénario spécifique.
+ * Route :POST /api/scenarios/:scenarioId/report`
  */
 
 async function create(scenarioId, reportData) {
@@ -13,8 +14,8 @@ async function create(scenarioId, reportData) {
     // et ajoute automatiquement le Token de l'utilisateur grâce aux middlewares
 
     const response = await api.post(
-        `/scenarios/${scenarioId}/reports`, // L'URL dynamique avec l'ID du scénario
-        reportData // Le corps de la requête (req.body) qui contient 'reportType' et 'reason'
+        `/scenarios/${scenarioId}/report`, // L'URL dynamique avec l'ID du scénario
+        reportData // Le corps de la requête (req.body) qui contient 'description' et 'reason'
     );
     return response.data;
 };
@@ -27,7 +28,7 @@ async function create(scenarioId, reportData) {
 
 async function getReports() {
     const response = await api.get(
-        '/api/admin/report'
+        '/admin/report'
     );
     return response.data
 };

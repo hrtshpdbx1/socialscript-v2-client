@@ -16,6 +16,8 @@ import UnderConstruction from "./pages/UnderConstruction"
 import AdminLayout from "./features/admin/AdminLayout"
 import { ProtectedRole } from "./features/auth/guards/ProtectedRole"
 import AdminScenario from "./features/admin/components/AdminScenarios"
+import AdminTheme from "./features/admin/components/AdminTheme"
+import AdminReports from "./features/admin/components/AdminReports"
 
 
 /** @type {import('react-router-dom').RouteObject[]} */
@@ -54,7 +56,15 @@ export const routes = [
                     {
                         path: 'scenarios',
                         element: <AdminScenario />
-                    }
+                    },
+                    {
+                        path: 'themes',
+                        element: <AdminTheme />
+                    },
+                    {
+                        path: 'reports',
+                        element: <AdminReports />
+                    },
                 ]
             },
 
