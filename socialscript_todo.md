@@ -258,14 +258,14 @@
 
 ### Jour 13 — Signalements
 
- - [] Créer report.service.js avec getReports, updateReportStatus
+ - [x] Créer report.service.js avec getReports, updateReportStatus
  - [] Créer AdminReports.jsx
  - [] Composant ReportCard (différent de PendingItemCard — actions Reviewed/Dismissed)
  - [] Commit : feat(admin): add reports management page
 
 ### Jour 14 — Ressources (CRUD)
 
- - [] Vérifier/créer resource.service.js
+ - [x] Créer resource.service.js : ajout de reject, publishResource
  - [] Créer AdminResources.jsx
  - [] Composant ResourceForm (create/update)
  - [] Câbler les 4 actions : list, create, update, delete
