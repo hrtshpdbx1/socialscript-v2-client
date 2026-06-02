@@ -7,13 +7,16 @@ import { reportService } from "../../../services/report.service";
 import Button from "../../../components/ui/Button";
 import Badge from "../../../components/ui/Badge";
 import ReportCard from "./ReportCard";
+import { scenarioService } from "../../../services/scenario.service";
+import { useNavigate } from "react-router";
+
 
 // Filtres disponibles (correspondent aux statuts du modèle + 'all')
 const FILTERS = [
-    { key: "pending",   label: "En attente" },
-    { key: "reviewed",  label: "Traités" },
+    { key: "pending", label: "En attente" },
+    { key: "reviewed", label: "Traités" },
     { key: "dismissed", label: "Rejetés" },
-    { key: "all",       label: "Tous" },
+    { key: "all", label: "Tous" },
 ];
 
 export default function AdminReports() {
@@ -21,6 +24,7 @@ export default function AdminReports() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activeFilter, setActiveFilter] = useState("pending");
+    const navigate = useNavigate();
 
     // * Chargement initial des signalements
     useEffect(() => {
@@ -29,7 +33,7 @@ export default function AdminReports() {
                 setLoading(true);
                 setError(null);
                 const data = await reportService.getReports();
-              setReports(data.reports);
+                setReports(data.reports);
             } catch (err) {
                 setError("Impossible de charger les signalements.");
                 console.error(err);
@@ -69,6 +73,14 @@ export default function AdminReports() {
         }
     }
 
+    // Edition
+    // 1. Reçoit le report 
+    // 2. Navigue vers l'édition avec le reportId dans le state 
+   function handleEdited(report) {
+    navigate(`/scenarios/${report.scenarioId}/edit`, {
+        state: { reportId: report._id },
+    });
+}
     // Filtrage côté client (on a déjà toute la liste)
     const filtered =
         activeFilter === "all"
@@ -77,9 +89,9 @@ export default function AdminReports() {
 
     // Compteurs par statut pour les badges des filtres
     const counts = {
-        all:       reports.length,
-        pending:   reports.filter((r) => r.status === "pending").length,
-        reviewed:  reports.filter((r) => r.status === "reviewed").length,
+        all: reports.length,
+        pending: reports.filter((r) => r.status === "pending").length,
+        reviewed: reports.filter((r) => r.status === "reviewed").length,
         dismissed: reports.filter((r) => r.status === "dismissed").length,
     };
 
@@ -155,6 +167,7 @@ export default function AdminReports() {
                                 report={report}
                                 onReviewed={handleReviewed}
                                 onDismissed={handleDismissed}
+                                onEdit={handleEdited}
                             />
                         </li>
                     ))}

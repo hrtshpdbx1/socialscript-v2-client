@@ -4,7 +4,7 @@ import Button from '../../../components/ui/Button';
 import { useForm, useFieldArray } from "react-hook-form";
 import { useId, useState, useEffect } from "react";
 import { FieldError } from '../../../components/ui/FieldError';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { scenarioService } from '../../../services/scenario.service';
 import { difficultyService } from '../../../services/difficulty.service';
 import { themeService } from '../../../services/theme.service';
@@ -12,7 +12,7 @@ import AvatarSelector from '../../../components/ui/AvatarSelector';
 import FormSection from '../../../components/ui/FormSections';
 import { NewThemeForm } from './NewThemeForm';
 import Badge from '../../../components/ui/Badge';
-
+import { reportService } from '../../../services/report.service';
 
 export const CreateScenarioForm = () => {
 
@@ -23,8 +23,20 @@ export const CreateScenarioForm = () => {
     const [themes, setThemes] = useState([]);
     const [isNewThemeOpen, setIsNewThemeOpen] = useState(false);
     const [createdScenarioId, setCreatedScenarioId] = useState(null); //  état conditionnel post-submit
-    const id = useId();
+
+
+
+    const id = useId(); // pour les htmlFor des labels (accessibilité)
     const navigate = useNavigate(); // Initialiser useNavigate pour la redirection
+    const location = useLocation();
+    const reportId = location.state?.reportId;
+
+    // id du scénario depuis l'URL (présent seulement en mode édition)
+    const { id: scenarioId } = useParams();
+    const isEditMode = Boolean(scenarioId);  // Detection Mode "Create" ou "Edit"
+    // En mode création (route scenarios/create), il n'y a pas de segment :id, donc id vaudra undefined. En mode édition (route scenarios/:id/edit), id aura la valeur.
+
+
 
     const { register, handleSubmit, control, setValue, watch, reset, formState: { errors } } = useForm({
         defaultValues: {
@@ -65,30 +77,59 @@ export const CreateScenarioForm = () => {
             .catch((err) => console.error(err));
     }, [selectedDifficulty]);
 
+
+    // Charger le scénario en mode édition
+    useEffect(() => {
+        if (!isEditMode) return; // création → rien à charger
+
+        scenarioService.getById(scenarioId )
+            .then((scenario) => {
+                reset(scenario); // fonction de RHF qui prend un objet et injecte ses valeurs dans tous les champs du formulaire. 
+            })
+            .catch((err) => {
+                console.error(err);
+                setErrorMsg("Impossible de charger le scénario à modifier.");
+            });
+    }, [isEditMode, scenarioId , reset]);
+    // dans les deps ->  tout ce que ton effet utilise et qui peut change
+
+
+
     //  fonction onSubmit 
     const onSubmit = async (data) => {
         // réinitialisation des messages 
         setErrorMsg(null);
         setSuccessMsg(null);
 
+
         try {
-            // 1. On appelle le service pour créer le scénario
-            const response = await scenarioService.create(data);
+            if (isEditMode) {
+                await scenarioService.edit(scenarioId, data);
 
-            // 2. Feedback de succès
-            setSuccessMsg("Scénario créé avec succès !");
+                // Si on vient d'un signalement, on le marque traité 
+                // (et seulement maintenant : la modif a vraiment eu lieu)
+                if (reportId) {
+                    await reportService.updateReportStatus(reportId, { status: "reviewed" });
+                }
 
-            // 3. Redirection après 1.5 secondes
-            // On récupère l'ID du scénario créé 
-            const newScenarioId = response.data._id;
-            setCreatedScenarioId(newScenarioId); // ← on stocke l'ID
+                setSuccessMsg("Scénario modifié avec succès !");
+                setTimeout(() => {
+                    navigate("/admin/reports");
+                }, 1500);
 
+            } else {
+                // Mode création : on crée un nouveau scénario
+                const response = await scenarioService.create(data);
+                setSuccessMsg("Scénario créé avec succès !");
+                const newScenarioId = response.data._id;
+                setCreatedScenarioId(newScenarioId); // ← on stocke l'ID} 
+            }
         } catch (error) {
             console.error(error);
             // Affichage de l'erreur
-            setErrorMsg("Une erreur est survenue lors de la création du scénario.");
+            setErrorMsg("Une erreur est survenue lors de l'enregistrement du scénario.");
         }
-    }
+    };
 
     // Ajouter un Theme
     const AddNewTheme = (newTheme) => {
@@ -99,10 +140,19 @@ export const CreateScenarioForm = () => {
         setValue('themeId', newTheme._id)
     }
 
-
     return (
-        <div className="max-w-3xl mx-auto p-4">
+        <div className="max-w-3xl mx-auto p-4 ">
 
+    {/* -- TITRE CONDITIONNEL */}
+<h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 font-nunito mb-3 text-center">
+    {isEditMode ? "Modifier le scénario" : "Créer un scénario"}
+</h1>
+
+<p className="text-gray-600 font-nunito max-w-2xl mx-auto text-center mb-6">
+    {isEditMode
+        ? "En tant qu'administrateur·ice, vous pouvez ajuster le contenu de ce scénario : reformuler le texte, corriger une formulation maladroite ou retirer un passage problématique signalé. Vos modifications seront enregistrées immédiatement."
+        : "Partagez vos propres mises en situation pour enrichir la plateforme. Votre scénario sera visible par la communauté. Tous les scénarios sont soumis à validation par notre équipe de modération avant d'être publiés."}
+</p>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                 {/* --- CHAMPS GLOBAUX --- */}
@@ -387,17 +437,23 @@ export const CreateScenarioForm = () => {
 
                 {/* BOUTON DE SOUMISSION FINAL */}
                 < div className="pt-8 flex flex-col gap-3" >
-                    <Button 
-                    type="submit" 
-                    variant="primary" 
-                    className="w-full">
-                        Soumettre le scénario
+                    <Button
+                        type="submit"
+                        variant="primary"
+                        className="w-full">
+                        {isEditMode ? "Enregistrer les modifications" : "Soumettre le scénario"}
                     </Button>
 
                     {/* Zone de feedback */}
                     {errorMsg && (
                         <div className="p-3 bg-red-100 text-red-700 rounded-lg text-center font-bold font-nunito">
                             {errorMsg}
+                        </div>
+                    )}
+
+                    {isEditMode && successMsg && (
+                        <div className="p-3 bg-green-100 text-green-700 rounded-lg text-center font-bold font-nunito">
+                            {successMsg}
                         </div>
                     )}
 

@@ -1,7 +1,7 @@
 // src/features/admin/components/ReportCard.jsx
 // Carte d'affichage d'un signalement avec actions Reviewed / Dismissed
 
-import { Eye, XCircle } from "lucide-react";
+import { Pencil, XCircle } from "lucide-react";
 import Button from "../../../components/ui/Button";
 import Badge from "../../../components/ui/Badge";
 import Card from "../../../components/ui/Card";
@@ -21,7 +21,7 @@ const STATUS_BADGE = {
     dismissed: { text: "Rejeté", color: "error" },
 };
 
-export default function ReportCard({ report, onReviewed, onDismissed }) {
+export default function ReportCard({ report, onReviewed, onDismissed, onEdit }) {
     const formattedDate = new Date(report.createdAt).toLocaleDateString("fr-FR", {
         day: "2-digit",
         month: "2-digit",
@@ -40,13 +40,14 @@ export default function ReportCard({ report, onReviewed, onDismissed }) {
     const badgeProps = STATUS_BADGE[report.status] ?? STATUS_BADGE.pending;
 
     return (
-        // ! On remplace le p-8 text-center de Card par !p-5 text-left pour notre layout
+
         <Card className="!p-5 text-left transition-all duration-200 hover:shadow-md">
             {/* En-tête : type + statut à gauche, actions à droite */}
             <div className="flex items-start justify-between gap-4">
 
                 {/* Infos principales */}
                 <div className="flex-1 flex flex-col gap-2">
+
                     {/* Type de signalement + badge statut */}
                     <div className="flex items-center gap-2 flex-wrap">
                         <span className="font-bold text-base text-gray-900 font-nunito">
@@ -65,20 +66,20 @@ export default function ReportCard({ report, onReviewed, onDismissed }) {
                 {isPending && (
                     <div className="flex gap-2 flex-shrink-0">
                         <Button
-                            onClick={() => onReviewed(report._id)}
+                            onClick={() => onEdit(report)}
                             variant="success"
-                            aria-label="Marquer comme traité"
-                            title="Traité"
+                            aria-label="Modifier le scénario"
+                            title="Modifier"
                             className="!px-3"
                         >
-                            <Eye size={16} strokeWidth={2.5} />
-                            <span className="text-xs font-semibold hidden sm:inline">Traité</span>
+                            <Pencil size={16} strokeWidth={2.5} />
+                            <span className="text-xs font-semibold hidden sm:inline">Modifier</span>
                         </Button>
                         <Button
                             onClick={() => onDismissed(report._id)}
                             variant="error"
-                            aria-label="Rejeter le signalement"
-                            title="Rejeter"
+                            aria-label="Ignorer le signalement"
+                            title="Ignorer"
                             className="!px-3"
                         >
                             <XCircle size={16} strokeWidth={2.5} />
@@ -113,7 +114,7 @@ export default function ReportCard({ report, onReviewed, onDismissed }) {
                             <>
                                 {" "}par{" "}
                                 <span className="text-gray-600 font-semibold">
-                                    {`${report.reporterId.firstName} ${report.reporterId.lastName}`}
+                                    {`${report.reviewedBy.firstName} ${report.reviewedBy.lastName}`}
                                 </span>
                             </>
                         )}

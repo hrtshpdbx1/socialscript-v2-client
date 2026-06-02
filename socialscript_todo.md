@@ -261,7 +261,12 @@
  - [x] Créer report.service.js avec getReports, updateReportStatus. Ajout de create, getReports, updateReportStatus
  - [x] Créer AdminReports.jsx
  - [x] Composant ReportCard (différent de PendingItemCard — actions Reviewed/Dismissed)
- - [] Commit : feat(admin): add reports management page
+ - [x] Commit : feat(admin): add reports management page
+
+
+ Détecter le mode : *const { id } = useParams()* puis *const isEditMode = Boolean(id)*
+
+ 
 
 ### Jour 14 — Ressources (CRUD)
 

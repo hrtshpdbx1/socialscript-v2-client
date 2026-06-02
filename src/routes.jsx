@@ -39,6 +39,14 @@ export const routes = [
                             </ProtectedPage>
                         )
                     },
+                    {
+                        path: ':id/edit',
+                        element: (
+                            <ProtectedRole allowedRoles={['admin']}>
+                                <CreateScenario />
+                            </ProtectedRole>
+                        )
+                    }
                 ]
             },
             { path: 'resources', element: <Resources /> },
@@ -48,8 +56,7 @@ export const routes = [
                 path: 'admin',
                 element: (
                     <ProtectedRole allowedRoles={['admin', 'moderator']}>
-                        <AdminLayout />,
-
+                        <AdminLayout />
                     </ProtectedRole>
                 ),
                 children: [

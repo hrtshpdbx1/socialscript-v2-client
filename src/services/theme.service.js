@@ -53,12 +53,12 @@ async function approveTheme(themeId, newThemeStatus) {
 
 };
 
-// ** rejectTheme ** 
+// ** softDeleteTheme ** 
 /**
  * Soft detele theme
  * Route : DELETE /api/admin/themes/:themeId
  */
-async function reject(themeId) {
+async function softDelete(themeId) {
     const response = await api.delete(
         `/admin/themes/${themeId}`
     )
@@ -67,6 +67,6 @@ async function reject(themeId) {
 
 // export
 export const themeService = {
-    getByDifficulty, create, getPending, approveTheme, reject
+    getByDifficulty, create, getPending, approveTheme, softDelete
 }
 

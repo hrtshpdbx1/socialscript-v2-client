@@ -74,13 +74,22 @@ async function update(scenarioId, newScenarioStatus) {
     return response.data;
 };
 
+// ** EDIT SCENARIO **
+/**
+ * Edition du conetnu d'un scenariot (Admin only)
+ * Route : PATCH /api/admin/scenarios/:scenarioId/edit
+ */
+async function edit(scenarioId, updatedContent) {
+    const response = await api.patch(`/admin/scenarios/${scenarioId}`, updatedContent)
+    return response.data
+}
 
-// ** REJECT SCENARIO ** 
+// ** SOFT DELETE SCENARIO ** 
 /**
  * Soft detele scenario
  * Route : DELETE /api/admin/scenarios/:scenarioId
  */
-async function reject(scenarioId) {
+async function softDelete(scenarioId) {
     const response = await api.delete(
         //api.delete(url, config)
         `/admin/scenarios/${scenarioId}`
@@ -91,6 +100,6 @@ async function reject(scenarioId) {
 
 // Export 
 export const scenarioService = {
-    getByTheme, getById, getPending, create, update, reject
+    getByTheme, getById, getPending, create, update, softDelete, edit
 
 }
