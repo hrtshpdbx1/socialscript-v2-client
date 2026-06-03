@@ -8,11 +8,13 @@ function AdminLayout() {
 
     return (
         <div className="flex min-h-screen min-w-full">
-                <AdminNav /> 
+            <AdminNav />
             <main className="flex-1 p-8">
-                    <Outlet />         
-                </main>
-            </div>
+                <div className="max-w-4xl mx-auto">
+                    <Outlet />
+                </div>
+            </main>
+        </div>
     )
 }
 

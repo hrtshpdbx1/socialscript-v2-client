@@ -7,7 +7,6 @@ import { reportService } from "../../../services/report.service";
 import Button from "../../../components/ui/Button";
 import Badge from "../../../components/ui/Badge";
 import ReportCard from "./ReportCard";
-import { scenarioService } from "../../../services/scenario.service";
 import { useNavigate } from "react-router";
 
 
@@ -76,12 +75,12 @@ export default function AdminReports() {
     // Edition
     // 1. Reçoit le report 
     // 2. Navigue vers l'édition avec le reportId dans le state 
-   function handleEdited(report) {
-    navigate(`/scenarios/${report.scenarioId}/edit`, {
-        state: { reportId: report._id },
-    });
-}
-    // Filtrage côté client (on a déjà toute la liste)
+    function handleEdited(report) {
+        navigate(`/scenarios/${report.scenarioId}/edit`, {
+            state: { reportId: report._id },
+        });
+    }
+    // Filtrage côté client 
     const filtered =
         activeFilter === "all"
             ? reports
@@ -96,7 +95,7 @@ export default function AdminReports() {
     };
 
     return (
-        <section className="max-w-3xl mx-auto px-4 py-8 font-nunito">
+        <section className="font-nunito">
 
             {/* En-tête de la page */}
             <div className="flex items-center gap-3 mb-6">
@@ -111,7 +110,7 @@ export default function AdminReports() {
                 </div>
             </div>
 
-            {/* Barre de filtres — on utilise Button en variant primary/outline_primary */}
+            {/* Barre de filtres */}
             <div className="flex gap-2 mb-6 flex-wrap" role="tablist" aria-label="Filtrer les signalements">
                 {FILTERS.map(({ key, label }) => {
                     const isActive = activeFilter === key;

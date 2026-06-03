@@ -18,6 +18,8 @@ import { ProtectedRole } from "./features/auth/guards/ProtectedRole"
 import AdminScenario from "./features/admin/components/AdminScenarios"
 import AdminTheme from "./features/admin/components/AdminTheme"
 import AdminReports from "./features/admin/components/AdminReports"
+import AdminResources from "./features/admin/components/AdminResources"
+import AdminUsers from "./features/admin/components/AdminUsers"
 
 
 /** @type {import('react-router-dom').RouteObject[]} */
@@ -72,6 +74,14 @@ export const routes = [
                         path: 'reports',
                         element: <AdminReports />
                     },
+                    {
+                        path: 'resources',
+                        element: <AdminResources />
+                    },
+                    { 
+                        path: 'users', 
+                        element: <AdminUsers /> 
+                    }
                 ]
             },
 

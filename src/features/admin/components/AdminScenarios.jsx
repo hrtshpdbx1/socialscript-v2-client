@@ -4,6 +4,8 @@
 import { useEffect, useState } from "react"
 import { scenarioService } from "../../../services/scenario.service"
 import PendingItemCard from "./PendingItemCard"
+import { MessageSquare } from "lucide-react";
+import AdminPageHeader from "./AdminPageHeader";
 
 
 export default function AdminScenario() {
@@ -66,6 +68,12 @@ export default function AdminScenario() {
 
     return (
         <div>
+             <AdminPageHeader
+            icon={MessageSquare}
+            title="Scénarios"
+            subtitle={`${scenario.length} en attente de validation`}
+        />
+
             {/*Liste des scenarios */}
             {scenario.length === 0 ? (
                 <div className="text-center p-10 bg-white rounded-3xl border-2 border-dashed border-gray-200">

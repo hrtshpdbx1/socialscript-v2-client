@@ -21,7 +21,7 @@ const STATUS_BADGE = {
     dismissed: { text: "Rejeté", color: "error" },
 };
 
-export default function ReportCard({ report, onReviewed, onDismissed, onEdit }) {
+export default function ReportCard({ report, onDismissed, onEdit }) {
     const formattedDate = new Date(report.createdAt).toLocaleDateString("fr-FR", {
         day: "2-digit",
         month: "2-digit",

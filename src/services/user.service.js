@@ -15,9 +15,24 @@ async function getMe() {
         return response.data.user;
 }
 
-
-
-// Export 
-export const userService = {
-    getMe
+// ** GET ALL USERS (admin) **
+// Route : GET /api/admin/users
+async function getAllUsers() {
+    const response = await api.get('/admin/users');
+    return response.data; // { users: [...] }
 }
+
+// ** UPDATE ROLE (admin) **
+// Route : PATCH /api/admin/users/:userId/role
+async function updateUserRole(userId, role) {
+    const response = await api.patch(`/admin/users/${userId}/role`, { role });
+    return response.data;
+}
+
+// Export
+export const userService = {
+    getMe,
+    getAllUsers,
+    updateUserRole
+};
+

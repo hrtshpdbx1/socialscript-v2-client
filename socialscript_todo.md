@@ -271,22 +271,38 @@
 ### Jour 14 — Ressources (CRUD)
 
  - [x] Créer resource.service.js : ajout de reject, publishResource
- - [] Créer AdminResources.jsx
- - [] Composant ResourceForm (create/update)
- - [] Câbler les 4 actions : list, create, update, delete
- - [] Commit : feat(admin): add resources CRUD page
+ - [x] Créer AdminResources.jsx
+ - [x] Composant ResourceForm (create/update)
+ - [x] Câbler les 4 actions : list, create, update, delete
+ - [x] Commit : feat(admin): add resources CRUD page
 
 ### Jour 15 — Gestion des users (admin only)
 
- - [] Créer user.service.js (côté admin) avec getUsers, updateUserRole, softDeleteUser
- - [] Créer AdminUsers.jsx protégée par ProtectedRole allowedRoles={['admin']} uniquement
- - [] Composant UserRow avec actions promote/demote/soft-delete
+ - [x] Créer user.service.js (côté admin) avec getUsers, updateUserRole
+ - [] Ajouter softDeleteUser
+ - [x] Créer AdminUsers.jsx protégée par ProtectedRole allowedRoles={['admin']} uniquement
+ - [x] Composant UserRow avec actions promote/demote/soft-delete
  - [] Ajouter ConfirmModal pour les actions destructives
- - [] Cacher le lien "Users" dans la nav pour les modérateurs (utiliser roleAtom)
+ - [x] Cacher le lien "Users" dans la nav pour les modérateurs (utiliser roleAtom)
  - [] Commit : feat(admin): add user management (admin only)
 
-### Jour 16 — Polish & finitions
+### Jour 16 — Bashboard 
+*Widget coté user*
+- [] Message d'accueil personnalisé avec le prénom : "Bonjour xxx !" avec l'avatar DiceBear en grand, façon carte de profil.
+- [] Mes scénarios proposés -> Routes GET /api/scenarios/users/:id/scenarios. L'utilisateur peut voir ses propres contributions avec leur statut (pending, approved, rejected) 
+--> Demande de créer une nouvelle route 
+- [] Mon profil : afficher son avatar DiceBear, son prénom, son rôle.
+- [] Statistiques légères : combien de scénarios joués, quel niveau préféré. 
 
+*Widget coté modérateur*
+- [] File de modération des scénarios : GET /api/admin/scenarios (status pending) avec actions Approuver / Rejeter.
+File de modération des thèmes : GET /api/admin/themes avec les mêmes actions.
+- [] Gestion des signalements : GET /api/admin/report avec filtres par statut.
+- [] Gestion des ressources : publier / modifier / supprimer.
+- [] Un compteur de tâches en attente visible dès la connexion (badge ou widget résumé).
+- []
+
+### Jour 17 — Polish & finitions
  - [] Dashboard d'accueil /admin (compteurs : X scénarios en attente, Y thèmes, Z reports)
  - [] Améliorer les états de chargement (skeleton ? spinner ?)
  - [] Toasts/notifications de succès après les actions

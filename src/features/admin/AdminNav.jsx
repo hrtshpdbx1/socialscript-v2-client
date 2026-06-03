@@ -75,6 +75,7 @@ export const AdminNav = () => {
                             Ressources
                         </NavLink>
                     </li>
+                    
 
                     {/* Section réservée aux administrateurs purs */}
                     {role === 'admin' && (

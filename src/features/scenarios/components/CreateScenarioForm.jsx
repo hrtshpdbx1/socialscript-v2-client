@@ -52,7 +52,7 @@ export const CreateScenarioForm = () => {
     });
 
     //  Initialisation de useFieldArray
-    const { fields, append, remove } = useFieldArray({
+    const { fields } = useFieldArray({
         control,
         name: "choices"  // clé attendue par le back
     });
@@ -144,15 +144,18 @@ export const CreateScenarioForm = () => {
         <div className="max-w-3xl mx-auto p-4 ">
 
     {/* -- TITRE CONDITIONNEL */}
-<h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 font-nunito mb-3 text-center">
+      <div className="text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 font-nunito mb-3 ">
     {isEditMode ? "Modifier le scénario" : "Créer un scénario"}
 </h1>
 
-<p className="text-gray-600 font-nunito max-w-2xl mx-auto text-center mb-6">
+<p className="text-gray-600 font-nunito max-w-2xl mx-auto mb-6">
     {isEditMode
         ? "En tant qu'administrateur·ice, vous pouvez ajuster le contenu de ce scénario : reformuler le texte, corriger une formulation maladroite ou retirer un passage problématique signalé. Vos modifications seront enregistrées immédiatement."
         : "Partagez vos propres mises en situation pour enrichir la plateforme. Votre scénario sera visible par la communauté. Tous les scénarios sont soumis à validation par notre équipe de modération avant d'être publiés."}
 </p>
+</div>
+
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 
                 {/* --- CHAMPS GLOBAUX --- */}
