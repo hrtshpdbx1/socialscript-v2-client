@@ -32,7 +32,6 @@ export function UserMenu() {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
         setToken(null);
         setUser(null);
         setIsOpen(false);

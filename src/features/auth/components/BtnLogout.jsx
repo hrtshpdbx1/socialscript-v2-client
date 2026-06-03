@@ -3,6 +3,7 @@
 import { useSetAtom } from 'jotai'
 import Button from '../../../components/ui/Button';
 import { tokenAtom, userAtom } from '../../../atoms/auth.atom';
+import { useNavigate } from 'react-router';
 
 export function BtnLogout() {
 
@@ -12,7 +13,6 @@ export function BtnLogout() {
 
     // Suppression du token
     const handleLogout = () => {
-        localStorage.removeItem('token');  // Supprimer la persistance
         setToken(null);// Remettre l'atom à zéro
         setUser(null);   // on vide aussi le profil
     }

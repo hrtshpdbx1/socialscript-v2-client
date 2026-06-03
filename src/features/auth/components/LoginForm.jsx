@@ -30,12 +30,10 @@ export function LoginForm() {
             // Utiliser le service qui permet de contacter la WebAPI
             const token = await authService.login(data);
 
-            // Persistance dans le navigateur (survit au refresh)
-            localStorage.setItem('token', token);
-
             // Mise à jour de l'atom (synchronise les composants React)
+            //? Persistance dans le navigateur réaliser par l'atom
             setToken(token);
-
+            
             // Feedback avant redirection
             setSuccessMsg('Connexion réussie ! Redirection...');
             setErrorMsg(null); // On efface les erreurs précédentes au cas où

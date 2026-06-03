@@ -1,6 +1,8 @@
 // src/services/api.js
 
 import axios from 'axios';
+import { store } from '../atoms/store';
+import { tokenAtom, tokenExpireAtom } from '../atoms/auth.atom';
 
 // Configuration de l'instance Axios globale
 const api = axios.create({
@@ -13,10 +15,14 @@ const api = axios.create({
 // Elle va chercher le token dans le localStorage et l'attache au header Authorization.
 api.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
+
+        const token = store.get(tokenAtom);
+        const tokenExpire = store.get(tokenExpireAtom);
+
+        if (token && !tokenExpire) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+
         // On retourne la config (modifiée ou non) pour que la requête continue
         return config;
     },

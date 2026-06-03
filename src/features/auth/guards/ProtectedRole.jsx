@@ -11,6 +11,7 @@ import { roleAtom, isAuthAtom } from '../../../atoms/auth.atom';
 export function ProtectedRole({ children, allowedRoles }) {
     const role = useAtomValue(roleAtom);
     const isAuth = useAtomValue(isAuthAtom);
+    
 
     // 1.  User pas connecté → redirection login
     if (!isAuth) {
