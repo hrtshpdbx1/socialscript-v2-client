@@ -23,8 +23,9 @@ export default function AdminResources() {
     const [error, setError] = useState(null);
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [resourceToEdit, setResourceToEdit] = useState(null);
-
-    // 1. READ
+    const [activeFilter, setActiveFilter] = useState("false");
+    
+    // * Chargement initial des ressources
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -46,7 +47,7 @@ export default function AdminResources() {
         fetchData();
     }, []);
 
-    // 2. CREATE & UPDATE
+    //* Create and update
     const handleFormSubmit = async (formData) => {
         try {
             if (resourceToEdit) {
@@ -63,7 +64,7 @@ export default function AdminResources() {
         }
     };
 
-    // 3. DELETE
+    //* Delete 
     const handleDelete = async (id) => {
         if (!window.confirm("Es-tu sûr de vouloir supprimer cette ressource ?")) return;
         try {
@@ -91,7 +92,7 @@ export default function AdminResources() {
     };
 
 
-    // TOGGLE PUBLISH/UNPUBLISH
+    //* TOGGLE PUBLISH/UNPUBLISH
     const handleTogglePublish = async (res) => {
         const newStatus = !res.isPublished;
         try {
@@ -108,19 +109,42 @@ export default function AdminResources() {
     if (loading) return <p className="text-gray-500 font-nunito animate-pulse text-center mt-10">Chargement des ressources...</p>;
     if (error) return <p className="text-error font-bold font-nunito text-center mt-10">{error}</p>;
 
+
+    // FILTER 
+    const FILTERS = [
+        { key: "false", label: "Brouillon" },
+        { key: "true", label: "En Ligne" },
+        { key: "all", label: "Tous" },
+    ];
+    
+    // Filtrage côté client 
+    const filtered =
+        activeFilter === "all"
+            ? resources
+            // : resources.filter(String(r.isPublished) === activeFilter);
+            : resources.filter(r => String(r.isPublished) === activeFilter);
+
+    // Compteurs par statut pour les badges des filtres
+    // transformation en string()
+    const counts = {
+        all: resources.length,
+        false: resources.filter((r) => String(r.isPublished) === "false").length,
+        true: resources.filter((r) => String(r.isPublished) === "true").length,
+       
+    };
+
     return (
         
         <div className="space-y-8">
             <AdminPageHeader
     icon={BookOpen}
     title="Ressources"
- subtitle={`${resources.length} en attente de modération`}
+subtitle={`${resources.filter((ressource) => ressource.isPublished===false).length} ressource(s) en attente de modération`}
+ 
     action={!isFormVisible && (
         <Button variant="primary" onClick={openCreateForm}>+ Nouvelle ressource</Button>
     )}
 />
-
-
             {isFormVisible ? (
                 <ResourceForm
                     initialData={resourceToEdit}
@@ -129,11 +153,39 @@ export default function AdminResources() {
                     onCancel={closeForm}
                 />
             ) : (
+
+                
                 <div className="flex flex-col gap-4">
+                        {/* Barre de filtres */}
+                        <div className="flex gap-2 mb-6 flex-wrap" role="tablist" aria-label="Filtrer les ressources">
+                            {FILTERS.map(({ key, label }) => {
+                                const isActive = activeFilter === key;
+                                return (
+                                    <Button
+                                        key={key}
+                                        role="tab"
+                                        aria-selected={isActive}
+                                        onClick={() => setActiveFilter(key)}
+                                        variant={isActive ? "primary" : "outline_primary"}
+                                        className="!py-1.5 !px-4 text-sm"
+                                    >
+                                        {label}
+                                        {counts[key] > 0 && (
+                                            <Badge
+                                                text={counts[key]}
+                                                color={isActive ? "onSuccess" : "primary"}
+                                                className="!px-2 !py-0.5 !text-[10px]"
+                                            />
+                                        )}
+                                    </Button>
+                                );
+                            })}
+                        </div>
+
                     {resources.length === 0 ? (
                         <p className="text-center text-gray-400 py-10">Aucune ressource pour le moment.</p>
                     ) : (
-                        resources.map((res) => (
+                                filtered.map((res) => (
                             <Card key={res._id} className="text-left relative">
                                 {/* Badge de statut, en haut à droite */}
                                 <div className="absolute top-4 right-4">
