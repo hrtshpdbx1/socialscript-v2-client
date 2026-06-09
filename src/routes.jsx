@@ -20,7 +20,10 @@ import AdminTheme from "./features/admin/components/AdminTheme"
 import AdminReports from "./features/admin/components/AdminReports"
 import AdminResources from "./features/admin/components/AdminResources"
 import AdminUsers from "./features/admin/components/AdminUsers"
-
+import AdminDashboard from "./features/admin/components/AdminDashboard"
+import Dashboard from "./features/dashboard/pages/Dashboard"
+import UserProfile from "./features/dashboard/pages/UserProfile"
+import DashboardLayout from "./features/dashboard/DashboardLayout"
 
 /** @type {import('react-router-dom').RouteObject[]} */
 export const routes = [
@@ -51,17 +54,34 @@ export const routes = [
                     }
                 ]
             },
+
             { path: 'resources', element: <Resources /> },
 
-            // Route admin
+            // Route Dashboard - (TOUS les connectés)
+            {
+                path: 'dashboard',
+                element: (
+                    <ProtectedPage>
+                        <DashboardLayout />
+                    </ProtectedPage>
+                ),
+                children: [
+                    { index: true, element: <Dashboard /> },
+                    { path: 'profile', element: <UserProfile /> },
+                ]
+            },
+
+            // Route admin (modo + admin uniquement)
             {
                 path: 'admin',
                 element: (
                     <ProtectedRole allowedRoles={['admin', 'moderator']}>
                         <AdminLayout />
                     </ProtectedRole>
+
                 ),
                 children: [
+                    { index: true, element: <AdminDashboard /> },
                     {
                         path: 'scenarios',
                         element: <AdminScenario />
@@ -78,9 +98,13 @@ export const routes = [
                         path: 'resources',
                         element: <AdminResources />
                     },
-                    { 
-                        path: 'users', 
-                        element: <AdminUsers /> 
+                    {
+                        path: 'users',
+                        element: (
+                            <ProtectedRole allowedRoles={['admin']}>
+                                <AdminUsers />
+                            </ProtectedRole>
+                        )
                     }
                 ]
             },

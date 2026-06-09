@@ -1,7 +1,7 @@
 // src/components/AdminNav.jsx
 
 import { NavLink } from "react-router-dom";
-import { roleAtom } from "../../atoms/auth.atom";
+import { roleAtom, userAtom } from "../../atoms/auth.atom";
 import { useAtomValue } from "jotai";
 import {
     LayoutDashboard,
@@ -13,11 +13,12 @@ import {
     ArrowLeft
 } from "lucide-react";
 import Badge from "../../components/ui/Badge";
+import { getAvatarUrl } from "../../utils/avatar.utils";
 
 
 export const AdminNav = () => {
     const role = useAtomValue(roleAtom);
-
+ const user = useAtomValue(userAtom)
     const linkClasses = ({ isActive }) =>
         `flex items-center gap-3 px-4 py-3 rounded-xl font-nunito font-bold transition-all duration-200 ${isActive
             ? "bg-white text-primary shadow-md scale-105"
@@ -27,20 +28,29 @@ export const AdminNav = () => {
     return (
         <aside className="w-64 min-h-screen bg-primary flex flex-col p-6 shadow-xl z-10">
 
-            {/* En-tête de la sidebar */}
-            <div className="mb-10 text-center">
-                {/* 💡 Le message de Bienvenue */}
-                <p className="text-white/80 font-nunito mb-3">
-                    Bienvenue👋
-                </p>
+           <div className="mb-10 text-center">
+    {/* Avatar */}
+    {user && (
+        <img
+            src={getAvatarUrl(user.characterAvatarSeed || user._id)}
+            alt={`Avatar de ${user.firstName}`}
+            className="w-20 h-20 mx-auto mb-3 rounded-full border-4 border-white/30 shadow-md bg-white/10"
+        />
+    )}
 
-                {/* Badge rôle */}
-                <Badge text={role === 'admin' ? 'Administrateur' : 'Modérateur'}
-                    color="white"
-                    className="mb-4 font-nunito" />
-                  
-             
-            </div>
+    {user && (
+        <p className="text-white font-bold font-nunito mb-3">
+            {user.firstName}
+        </p>
+    )}
+
+    {/* Badge rôle */}
+    <Badge 
+        text={role === 'admin' ? 'Administrateur' : 'Modérateur'}
+        color="white"
+        className="mb-4 font-nunito" 
+    />
+</div>
 
             {/* Menu de navigation */}
             <nav className="flex-1">

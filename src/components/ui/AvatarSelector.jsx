@@ -3,24 +3,29 @@
 import { useState, useEffect } from 'react';
 import { Dices } from 'lucide-react';
 import Button from './Button';
-
+import { getAvatarUrl } from '../../utils/avatar.utils';
 
 export default function AvatarSelector({ value, onChange }) {
     const [avatarOptions, setAvatarOptions] = useState([]);
 
-    const generateAvatarOptions = () => {
+    // autoSelect=true par défaut → comportement préservé pour le clic sur les dés
+    // autoSelect=false au montage si une value existe déjà
+    const generateAvatarOptions = (autoSelect = true) => {
         const randomNames = ["Felix", "Luna", "Jasper", "Cleo", "Buster", "Oliver", "Milo", "Bella", "Zoe", "Max", "Sam", "Charlie", "Leo", "Mia", "Ava"];
         const getSeed = () => randomNames[Math.floor(Math.random() * randomNames.length)] + Math.floor(Math.random() * 1000);
 
         const newOptions = [getSeed(), getSeed(), getSeed(), getSeed(), getSeed()];
         setAvatarOptions(newOptions);
 
-        onChange(newOptions[0]);
+        if (autoSelect) {
+            onChange(newOptions[0]);
+        }
     };
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        generateAvatarOptions();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        // Au montage : on génère les options, mais on ne pré-sélectionne que s'il n'y a pas de value
+        generateAvatarOptions(!value);
+
     }, []);
 
     return (
@@ -44,8 +49,7 @@ export default function AvatarSelector({ value, onChange }) {
                                 : 'border-transparent hover:border-primary/40 bg-white shadow-sm'
                                 }`}
                         >
-                            <img
-                                src={`https://api.dicebear.com/9.x/adventurer/svg?seed=${seed}`}
+                            <img src={getAvatarUrl(seed)}
                                 alt=""
                                 className="w-full h-full object-cover bg-gray-50"
                             />
@@ -57,7 +61,7 @@ export default function AvatarSelector({ value, onChange }) {
                 <Button
                     type="button"
                     variant="outline"
-                    onClick={generateAvatarOptions}
+                    onClick={() => generateAvatarOptions()}
 
                     className="ml-2 w-14 h-14 md:w-16 md:h-16 flex-shrink-0 p-0 flex items-center justify-center rounded-full bg-white border-gray-200 hover:bg-gray-50 hover:border-primary shadow-sm"
                     title="Générer 3 autres avatars"

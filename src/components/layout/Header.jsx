@@ -5,7 +5,8 @@ import Button from "../ui/Button";
 import { isAuthAtom, roleAtom, userAtom } from "../../atoms/auth.atom";
 import { userService } from "../../services/user.service";
 import { UserMenu } from "./UserMenu";
-import { BtnLogout  } from '../../features/auth/components/BtnLogout';
+import { BtnLogout } from '../../features/auth/components/BtnLogout';
+import { getAvatarUrl } from "../../utils/avatar.utils";
 
 
 export const Header = () => {
@@ -94,11 +95,13 @@ export const Header = () => {
 
                     {/* Touche d'identité mobile */}
                     {isConnect && user && (
-                        <div className="flex items-center gap-2">
-                            <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold select-none">
-                                {user.firstName?.charAt(0).toUpperCase()}
-                            </span>
-                            <span className="font-bold text-gray-800 text-lg">{user.lastName}</span>
+                        <div className="flex items-center gap-3">
+                            <img
+                                src={getAvatarUrl(user.characterAvatarSeed || user._id)}
+                                alt={`Avatar de ${user.firstName}`}
+                                className="w-12 h-12 rounded-full border-2 border-primary/30 bg-gray-50"
+                            />
+                            <span className="font-bold text-gray-800 text-lg">{user.firstName}</span>
                         </div>
                     )}
 
@@ -121,7 +124,7 @@ export const Header = () => {
                         </div>
                     ) : (
                         <div className="mt-4">
-                            <BtnLogout /> 
+                            <BtnLogout />
                         </div>
                     )}
                 </div>

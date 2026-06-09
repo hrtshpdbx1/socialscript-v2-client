@@ -29,10 +29,17 @@ async function updateUserRole(userId, role) {
     return response.data;
 }
 
+// ** UPDATE SELF (user)
+async function updateSelf(data) {
+    const response = await api.patch('/users/me', data);
+    return response.data.user; // le back renvoie { user: {...} }
+}
+
 // Export
 export const userService = {
     getMe,
     getAllUsers,
-    updateUserRole
+    updateUserRole, 
+    updateSelf
 };
 

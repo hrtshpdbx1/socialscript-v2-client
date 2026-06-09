@@ -10,12 +10,8 @@ import FeedbackCoach from "../../scenarios/components/FeedbackCoach";
 import ChoiceList from "../../scenarios/components/ChoiceList";
 import ActionControls from "../../scenarios/components/ActionControls";
 import TypingIndicator from "../../scenarios/components/TypingIndicator";
-
-
-// CONFIGURATION DES AVATARS (API DICEBEAR)
-function getAvatarUrl(seed) {
-    return `https://api.dicebear.com/9.x/adventurer/svg?seed=${seed}`
-}
+import { getAvatarUrl } from "../../../utils/avatar.utils";
+getAvatarUrl
 
 function ScenarioDetail() {
     const { id } = useParams()

@@ -284,26 +284,94 @@
  - [x] Composant UserRow avec actions promote/demote/soft-delete
  - [] Ajouter ConfirmModal pour les actions destructives
  - [x] Cacher le lien "Users" dans la nav pour les modérateurs (utiliser roleAtom)
- - [] Commit : feat(admin): add user management (admin only)
+ - [x] Commit : feat(admin): add user management (admin only)
 
-### Jour 16 — Bashboard 
-*Widget coté user*
-- [] Message d'accueil personnalisé avec le prénom : "Bonjour xxx !" avec l'avatar DiceBear en grand, façon carte de profil.
-- [] Mes scénarios proposés -> Routes GET /api/scenarios/users/:id/scenarios. L'utilisateur peut voir ses propres contributions avec leur statut (pending, approved, rejected) 
---> Demande de créer une nouvelle route 
-- [] Mon profil : afficher son avatar DiceBear, son prénom, son rôle.
-- [] Statistiques légères : combien de scénarios joués, quel niveau préféré. 
+### Jour 16 — Dashboard 
+🗓️ Jour Dashboard — Page /dashboard utilisateur
+Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, voit son profil, ses scénarios proposés avec leur statut, et quelques stats légères calculées côté front.
 
-*Widget coté modérateur*
-- [] File de modération des scénarios : GET /api/admin/scenarios (status pending) avec actions Approuver / Rejeter.
-File de modération des thèmes : GET /api/admin/themes avec les mêmes actions.
-- [] Gestion des signalements : GET /api/admin/report avec filtres par statut.
-- [] Gestion des ressources : publier / modifier / supprimer.
-- [] Un compteur de tâches en attente visible dès la connexion (badge ou widget résumé).
-- []
+🧩 1. Préparation & routing
+
+ - [x] Vérifier que la route /dashboard existe dans routes.jsx — sinon l'ajouter
+ - [x] Protéger la route avec ton wrapper ProtectedPage (utilisateur connecté requis)
+ - [x] Créer le fichier pages/Dashboard.jsx (squelette vide pour l'instant)
+ - [x] Ajouter un lien "Mon tableau de bord" dans le Header visible uniquement si connecté
+
+👤 2. Section "Mon profil" (header du dashboard)
+
+- [] Dans Dashboard.jsx, gérer les 3 états : loading / error / data pour userService.getMe()
+- [] Créer un composant DashboardHeader.jsx qui reçoit le user en prop
+- [] Afficher : avatar DiceBear (en utilisant _id comme seed), prénom, badge de rôle
+- [] Message d'accueil : "Bonjour {firstName} !"
+- [] Réutiliser ton composant Badge existant pour le rôle (couleur différente selon user/moderator/admin)
+
+
+**Questions à te poser**
+Pourquoi utiliser _id comme seed DiceBear plutôt que firstName ? Indice : que se passe-t-il si deux utilisateurs s'appellent "Louise" ?
+L'avatar doit-il être un composant à part ou inline dans le DashboardHeader ? Pourquoi ?
+
+
+📚 3. Section "Mes scénarios proposés"
+
+ - [] Vérifier que scenarioService a bien une fonction getByUser(userId) — sinon l'ajouter (route GET /api/scenarios/users/:id/scenarios)
+ - [] Créer le composant MyScenariosList.jsx
+ - [] Gérer les 3 états (loading / error / data)
+ - [] Afficher chaque scénario avec son titre + un badge de statut (pending / approved / rejected)
+ - [] Gérer le cas vide : "Vous n'avez pas encore proposé de scénario" + bouton vers /scenarios/create
+ - [] Lien cliquable vers le détail du scénario si approved
+
+
+**Questions à te poser**
+D'où récupères-tu le userId à passer à getByUser ? Indice : c'est dans l'objet user déjà chargé pour la section profil
+Comment éviter de refaire deux fois getMe() (dans le Header et dans le Dashboard) ? Piste : Jotai
+
+
+📊 4. Section "Mes statistiques"
+
+ Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
+ Calculer côté front à partir de la liste :
+
+Nombre total de propositions
+Nombre d'approuvées
+Nombre en attente
+Nombre de rejets
+
+
+ Affichage en 4 petites cartes / chiffres clés
+ Bonus mignon : un petit message d'encouragement conditionnel (ex: si tout approuvé → "Bravo !")
+
+
+**Questions à te poser**
+Pourquoi calculer ces stats côté front plutôt que faire une nouvelle route back ? Quels sont les trade-offs ?
+Si demain il y a 1000 scénarios par user, est-ce que ce calcul tient encore ? À quel moment faut-il passer côté back ?
+
+
+✨ 5. Polish & commit
+
+ - [] Vérifier la responsivité mobile (le dashboard doit rester lisible sur petit écran)
+ - [] Ajouter un état de loading global agréable (pas un flash blanc)
+ - [] Vérifier la cohérence visuelle avec le reste du site (palette, typo Nunito)
+ - [] Tester en se déconnectant → reconnectant : tout fonctionne
+- []  Commit avec un message clair : feat(dashboard): user dashboard with profile, scenarios and stats
+
+
+🔍 Audit anti-copier-coller (réflexe à prendre)
+Avant le commit final, audit visuel des sections que tu as adaptées :
+
+ Tous les aria-label correspondent bien au contenu (pas un copié d'AdminUsers)
+ Les noms de variables sont cohérents (user, pas report ou resource traîné d'un autre composant)
+ Les routes appelées sont bien les bonnes
+
+
+Pièges classiques anticipés (rappel) :
+
+Oublier les dépendances de useEffect
+Ne pas gérer les 3 états → flash blanc ou crash
+Faire l'appel API dans le composant au lieu du service
+Hardcoder un userId au lieu de le récupérer dynamiquement
 
 ### Jour 17 — Polish & finitions
- - [] Dashboard d'accueil /admin (compteurs : X scénarios en attente, Y thèmes, Z reports)
+
  - [] Améliorer les états de chargement (skeleton ? spinner ?)
  - [] Toasts/notifications de succès après les actions
  - [] Vérification finale : tous les guards fonctionnent, toutes les routes répondent
