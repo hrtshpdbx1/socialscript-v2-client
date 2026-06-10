@@ -8,9 +8,11 @@ export default function UserDashboard() {
     return (
         <div>
             <h2> Coucou {user.firstName}</h2>
-<p> Bienvenues sur ton profil </p>
-            {/* Inserer ici composant "Mes scénarios proposés" -> MyScenarioList.jsx */}
+            <p> Bienvenues sur ton profil </p>
 
+            <h3> Mes scenarios proposés</h3>
+            {/* Inserer ici composant "Mes scénarios proposés" -> MyScenarioList.jsx */}
+            <h3>Mes stats</h3>
             {/* Inserer ici composant "Mes stats"  --> MyStats.jsx  */}
         </div>
     )
