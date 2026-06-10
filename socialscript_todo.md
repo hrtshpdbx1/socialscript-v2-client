@@ -307,10 +307,10 @@ Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, vo
 
 👤 Section "Mon profil" (header du dashboard)
 
-- [] Dans Dashboard.jsx, gérer les 3 états : loading / error / data pour userService.getMe()
-- [] Créer un composant DashboardHeader.jsx qui reçoit le user en prop
-- [] Message d'accueil : "Bonjour {firstName} !"
-- [] Réutiliser ton composant Badge existant pour le rôle (couleur différente selon user/moderator/admin)
+- [x] Dans DashboardLayout.jsx, gérer les 3 états : loading / error / data pour userService.getMe()
+- [x] Créer un composant UserDashboard.jsx qui reçoit le user en prop
+- [x] Message d'accueil : "Bonjour {firstName} !"
+
 
 📚 Section "Mes scénarios proposés"
 
@@ -329,13 +329,13 @@ Comment éviter de refaire deux fois getMe() (dans le Header et dans le Dashboar
 
 📊 Section "Mes statistiques"
 
-  - [] Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
-  - [] Calculer côté front à partir de la liste :
- - [] Nombre total de propositions
- - [] Nombre d'approuvées
- - [] Nombre en attente
- - [] Nombre de rejets
- j
+- [] Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
+- [] Calculer côté front à partir de la liste :
+- [] Nombre total de propositions
+- [] Nombre d'approuvées
+- [] Nombre en attente
+- [] Nombre de rejets
+ 
  Affichage en 4 petites cartes / chiffres clés
  Bonus mignon : un petit message d'encouragement conditionnel (ex: si tout approuvé → "Bravo !")
 

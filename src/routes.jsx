@@ -4,26 +4,32 @@
 import App from "./App"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
-import ScenariosLanding from "./features/scenarios/pages/ScenariosLanding"
+import UnderConstruction from "./pages/UnderConstruction"
 import Resources from "./pages/Resources"
+
 import { Login } from "./features/auth/pages/Login"
 import { Register } from "./features/auth/pages/Register"
+
+import { ProtectedPage } from "./features/auth/guards/ProtectedPage"
+import { ProtectedRole } from "./features/auth/guards/ProtectedRole"
+
+import ScenariosLanding from "./features/scenarios/pages/ScenariosLanding"
 import ScenarioDetail from "./features/scenarios/pages/ScenarioDetail"
 import ScenarioLayout from "./components/layout/ScenarioLayout"
-import { ProtectedPage } from "./features/auth/guards/ProtectedPage"
 import CreateScenario from "./features/scenarios/pages/CreateScenario"
-import UnderConstruction from "./pages/UnderConstruction"
+
 import AdminLayout from "./features/admin/AdminLayout"
-import { ProtectedRole } from "./features/auth/guards/ProtectedRole"
+import AdminDashboard from "./features/admin/components/AdminDashboard"
+import AdminUsers from "./features/admin/components/AdminUsers"
+
 import AdminScenario from "./features/admin/components/AdminScenarios"
 import AdminTheme from "./features/admin/components/AdminTheme"
 import AdminReports from "./features/admin/components/AdminReports"
 import AdminResources from "./features/admin/components/AdminResources"
-import AdminUsers from "./features/admin/components/AdminUsers"
-import AdminDashboard from "./features/admin/components/AdminDashboard"
-import Dashboard from "./features/dashboard/pages/Dashboard"
+
+import UserDashboard from "./features/dashboard/components/UserDasboard"
+import UserLayout from "./features/dashboard/UserLayout"
 import UserProfile from "./features/dashboard/pages/UserProfile"
-import DashboardLayout from "./features/dashboard/DashboardLayout"
 
 /** @type {import('react-router-dom').RouteObject[]} */
 export const routes = [
@@ -57,21 +63,29 @@ export const routes = [
 
             { path: 'resources', element: <Resources /> },
 
-            // Route Dashboard - (TOUS les connectés)
+            //* ---- User Dashboard -----*
             {
                 path: 'dashboard',
                 element: (
                     <ProtectedPage>
-                        <DashboardLayout />
+                        <UserLayout />
                     </ProtectedPage>
                 ),
                 children: [
-                    { index: true, element: <Dashboard /> },
-                    { path: 'profile', element: <UserProfile /> },
+                    { 
+                        index: true, 
+                        element: <UserDashboard /> 
+                    },
+
+                    { 
+                        path: 'profile', 
+                        element: <UserProfile /> 
+                    },
                 ]
             },
 
-            // Route admin (modo + admin uniquement)
+
+            //* ---- Admin & Modo Dashboard -----*
             {
                 path: 'admin',
                 element: (
@@ -81,7 +95,10 @@ export const routes = [
 
                 ),
                 children: [
-                    { index: true, element: <AdminDashboard /> },
+                    { 
+                        index: true, 
+                        element: <AdminDashboard /> 
+                    },
                     {
                         path: 'scenarios',
                         element: <AdminScenario />

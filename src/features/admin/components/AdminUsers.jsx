@@ -5,7 +5,6 @@ import { Users } from "lucide-react";
 import { userService } from "../../../services/user.service";
 import AdminPageHeader from "./AdminPageHeader";
 import Card from "../../../components/ui/Card";
-import Badge from "../../../components/ui/Badge";
 import { getAvatarUrl } from "../../../utils/avatar.utils";
 
 // Libellés et couleurs des rôles

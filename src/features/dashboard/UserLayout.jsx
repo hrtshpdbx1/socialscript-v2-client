@@ -1,10 +1,10 @@
-// src/features/dashboard/DashboardLayout.jsx
+// src/features/dashboard/UserLayout.jsx
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router";
 import { DashboardNav } from "./DashboardNav";
 import { userService } from "../../services/user.service";
 
-function DashboardLayout() {
+function UserLayout() {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -14,6 +14,7 @@ function DashboardLayout() {
             try {
                 const data = await userService.getMe();
                 setUser(data);
+                console.log(data)
             } catch (err) {
                 console.error(err);
                 setError(err);
@@ -41,10 +42,11 @@ function DashboardLayout() {
             <main className="flex-1 p-8 bg-gray-50">
                 <div className="max-w-4xl mx-auto">
                     <Outlet context={{ user, updateUserState }} />
+                    {/* //  Outlet context=  parent envoie des données vers ses enfants de route */}
                 </div>
             </main>
         </div>
     );
 }
 
-export default DashboardLayout;
+export default UserLayout;
