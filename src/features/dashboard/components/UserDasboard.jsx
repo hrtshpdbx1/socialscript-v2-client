@@ -13,6 +13,7 @@ export default function UserDashboard() {
             <h3> Mes scenarios proposés</h3>
             {/* Inserer ici composant "Mes scénarios proposés" -> MyScenarioList.jsx */}
             <h3>Mes stats</h3>
+            <h2> blabla </h2>
             {/* Inserer ici composant "Mes stats"  --> MyStats.jsx  */}
         </div>
     )

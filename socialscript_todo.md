@@ -314,7 +314,9 @@ Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, vo
 
 📚 Section "Mes scénarios proposés"
 
- - [] Vérifier que scenarioService a bien une fonction getByUser(userId) — sinon l'ajouter (route GET /api/scenarios/users/:id/scenarios)
+ - [] Créer une fonction getByUser(userId) à scenarioService (route GET /api/scenarios/users/:id/scenarios)
+ - idem back 
+ ⚠️ Probleme : le model Scenario n'a pas de "CreatedBy"
  - [x] Créer le composant MyScenariosList.jsx
  - [] Gérer les 3 états (loading / error / data)
  - [] Afficher chaque scénario avec son titre + un badge de statut (pending / approved / rejected)
