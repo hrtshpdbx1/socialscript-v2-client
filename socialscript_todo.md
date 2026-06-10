@@ -297,21 +297,21 @@ Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, vo
  - [x] Créer le fichier pages/Dashboard.jsx (squelette vide pour l'instant)
  - [x] Ajouter un lien "Mon tableau de bord" dans le Header visible uniquement si connecté
 
-👤 2. Section "Mon profil" (header du dashboard)
+👤 Section "Mon profil" (header du dashboard)
 
 - [] Dans Dashboard.jsx, gérer les 3 états : loading / error / data pour userService.getMe()
 - [] Créer un composant DashboardHeader.jsx qui reçoit le user en prop
-- [] Afficher : avatar DiceBear (en utilisant _id comme seed), prénom, badge de rôle
 - [] Message d'accueil : "Bonjour {firstName} !"
 - [] Réutiliser ton composant Badge existant pour le rôle (couleur différente selon user/moderator/admin)
 
+## Hook useAutoLogout
 
-**Questions à te poser**
-Pourquoi utiliser _id comme seed DiceBear plutôt que firstName ? Indice : que se passe-t-il si deux utilisateurs s'appellent "Louise" ?
-L'avatar doit-il être un composant à part ou inline dans le DashboardHeader ? Pourquoi ?
+- lire les deux atoms avec useAtomValue (le token + l'état d'expiration) token && isTokenExpire
+- récupérer un setter avec useSetAtom(tokenAtom)
+- un useEffect qui, quand ta condition est remplie, appelle le setter pour vider le token
+- appeller useAutoLogout dans l'App 
 
-
-📚 3. Section "Mes scénarios proposés"
+📚 Section "Mes scénarios proposés"
 
  - [] Vérifier que scenarioService a bien une fonction getByUser(userId) — sinon l'ajouter (route GET /api/scenarios/users/:id/scenarios)
  - [] Créer le composant MyScenariosList.jsx
@@ -326,7 +326,7 @@ D'où récupères-tu le userId à passer à getByUser ? Indice : c'est dans l'ob
 Comment éviter de refaire deux fois getMe() (dans le Header et dans le Dashboard) ? Piste : Jotai
 
 
-📊 4. Section "Mes statistiques"
+📊 Section "Mes statistiques"
 
  Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
  Calculer côté front à partir de la liste :

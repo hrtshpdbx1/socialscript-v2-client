@@ -8,4 +8,4 @@ export const store = createStore();
 
 setInterval(() => {
     store.set(timeAtom, Date.now())
-}, 60_000); 
+}, 60000); //3000 = 30sec, 60 000 = 1min

@@ -12,7 +12,6 @@ import { getAvatarUrl } from "../../utils/avatar.utils";
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const isConnect = useAtomValue(isAuthAtom);
-    const role = useAtomValue(roleAtom);
     const user = useAtomValue(userAtom);
     const setUser = useSetAtom(userAtom);
 
