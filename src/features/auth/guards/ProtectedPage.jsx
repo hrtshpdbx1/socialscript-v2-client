@@ -10,8 +10,11 @@ import { isAuthAtom } from '../../../atoms/auth.atom';
 
 export function ProtectedPage({ children }) {
 
+    
+    
     const isConnect = useAtomValue(isAuthAtom); //  lis l'état de connexion
-
+    console.log(isConnect);
+    
     if(!isConnect) {
         return <Navigate to='/auth/login' replace />
 // replace : évite que l'utilisateur puisse revenir à la page protégée avec le bouton "retour" du navigateur 

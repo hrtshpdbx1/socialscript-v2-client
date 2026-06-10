@@ -29,6 +29,8 @@ export function LoginForm() {
         try {
             // Utiliser le service qui permet de contacter la WebAPI
             const token = await authService.login(data);
+            console.log(token);
+            
 
             // Mise à jour de l'atom (synchronise les composants React)
             //? Persistance dans le navigateur réaliser par l'atom
