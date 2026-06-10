@@ -6,6 +6,9 @@ import { timeAtom } from "./auth.atom";
 // - Consommer les atoms depuis un service (hors React) via le store
 export const store = createStore();
 
+
 setInterval(() => {
     store.set(timeAtom, Date.now())
-}, 60000); //3000 = 30sec, 60 000 = 1min
+}, 60_000); 
+// Determeine à quelle fréquence on demande « est-ce que le token est expiré ? »
+//3000 = 30sec, 60 000 = 1min

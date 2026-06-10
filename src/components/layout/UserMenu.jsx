@@ -76,7 +76,7 @@ export function UserMenu() {
                         <img
                             src={getAvatarUrl(user.characterAvatarSeed || user._id)}
                             alt=""
-                            className="w-12 h-12 rounded-full border-2 border-primary/20 bg-gray-50 flex-shrink-0"
+                            className="w-12 h-12 rounded-full border-2 border-primary/20 bg-gray-50 shrink-0"
                         />
                         <div className="flex flex-col items-start gap-1 min-w-0">
                             <p className="font-bold text-gray-900 truncate">{user.firstName} {user.lastName}</p>

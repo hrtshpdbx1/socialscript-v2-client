@@ -40,8 +40,8 @@ export default function PendingItemCard({ scenario, onApprove, onReject }) {
                     </div>
                 </div>
 
-                {/* Actions — flex-shrink-0 pour qu'elles ne se compressent jamais */}
-                <div className="flex gap-2 flex-shrink-0">
+                {/* Actions — shrink-0 pour qu'elles ne se compressent jamais */}
+                <div className="flex gap-2 shrink-0">
                     <Button
                         onClick={onApprove}
                         variant="success"

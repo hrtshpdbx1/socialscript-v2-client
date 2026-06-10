@@ -9,7 +9,7 @@ export default function ChatBubble({ text, isUser, senderName, avatarUrl }) {
             role="log"
         >
             {!isUser && avatarUrl && (
-                <div className="w-10 h-10 flex-shrink-0 rounded-full overflow-hidden border border-gray-200 mr-3 self-end mb-1 bg-white">
+                <div className="w-10 h-10 shrink-0 rounded-full overflow-hidden border border-gray-200 mr-3 self-end mb-1 bg-white">
                     <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
                 </div>
             )}

@@ -40,7 +40,7 @@ export default function ThemeStep({ selectedDifficulty, onSelect, onEditDifficul
                     className="group flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm border border-gray-100 pr-6 text-left transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5"
                     aria-label="Modifier le niveau de difficulté"
                 >
-                    <div className={`w-12 h-12 rounded-full ${config.bg || 'bg-gray-100'} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform`}>
+                    <div className={`w-12 h-12 rounded-full ${config.bg || 'bg-gray-100'} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
                         <img src={config.img} alt="" className="w-8 h-8 object-contain" />
                     </div>
                     <div>

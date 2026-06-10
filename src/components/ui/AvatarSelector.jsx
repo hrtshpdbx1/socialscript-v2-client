@@ -44,7 +44,7 @@ export default function AvatarSelector({ value, onChange }) {
                             aria-pressed={isSelected}
                             aria-label={`Sélectionner l'avatar ${idx + 1}`}
 
-                            className={`w-20 h-20 md:w-24 md:h-24 flex-shrink-0 rounded-full overflow-hidden border-4 transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isSelected
+                            className={`w-20 h-20 md:w-24 md:h-24 shrink-0 rounded-full overflow-hidden border-4 transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isSelected
                                 ? 'border-primary scale-110 shadow-md'
                                 : 'border-transparent hover:border-primary/40 bg-white shadow-sm'
                                 }`}
@@ -63,7 +63,7 @@ export default function AvatarSelector({ value, onChange }) {
                     variant="outline"
                     onClick={() => generateAvatarOptions()}
 
-                    className="ml-2 w-14 h-14 md:w-16 md:h-16 flex-shrink-0 p-0 flex items-center justify-center rounded-full bg-white border-gray-200 hover:bg-gray-50 hover:border-primary shadow-sm"
+                    className="ml-2 w-14 h-14 md:w-16 md:h-16 shrink-0 p-0 flex items-center justify-center rounded-full bg-white border-gray-200 hover:bg-gray-50 hover:border-primary shadow-sm"
                     title="Générer 3 autres avatars"
                 >
                     <Dices className="w-6 h-6 md:w-8 md:h-8 text-gray-500 hover:text-primary transition-colors" />

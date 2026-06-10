@@ -73,7 +73,7 @@ export default function FaqSection() {
                                 {faq.question}
 
                                 {/* icône "+" qui se transforme en "-" avec "group-open:" */}
-                                <span className="flex-shrink-0 ml-4 relative w-6 h-6 flex items-center justify-center text-primary">
+                                <span className="shrink-0 ml-4 relative w-6 h-6 flex items-center justify-center text-primary">
                                     {/* Barre horizontale du "+" */}
                                     <span className="absolute w-4 h-0.5 bg-current rounded-full"></span>
                                     {/* Barre verticale du "+",  pivote pour s'aligner et former un "-") */}

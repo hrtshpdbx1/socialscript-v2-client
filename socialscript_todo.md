@@ -297,6 +297,14 @@ Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, vo
  - [x] Créer le fichier pages/Dashboard.jsx (squelette vide pour l'instant)
  - [x] Ajouter un lien "Mon tableau de bord" dans le Header visible uniquement si connecté
 
+## Hook useAutoLogout
+
+- [x] lire les deux atoms avec useAtomValue (le token + l'état d'expiration) token && isTokenExpire
+- [x] récupérer un setter avec useSetAtom(tokenAtom)
+- [x] un useEffect qui, quand ta condition est remplie, appelle le setter pour vider le token
+- [x] appeller useAutoLogout dans l'App 
+
+
 👤 Section "Mon profil" (header du dashboard)
 
 - [] Dans Dashboard.jsx, gérer les 3 états : loading / error / data pour userService.getMe()
@@ -304,17 +312,10 @@ Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, vo
 - [] Message d'accueil : "Bonjour {firstName} !"
 - [] Réutiliser ton composant Badge existant pour le rôle (couleur différente selon user/moderator/admin)
 
-## Hook useAutoLogout
-
-- lire les deux atoms avec useAtomValue (le token + l'état d'expiration) token && isTokenExpire
-- récupérer un setter avec useSetAtom(tokenAtom)
-- un useEffect qui, quand ta condition est remplie, appelle le setter pour vider le token
-- appeller useAutoLogout dans l'App 
-
 📚 Section "Mes scénarios proposés"
 
  - [] Vérifier que scenarioService a bien une fonction getByUser(userId) — sinon l'ajouter (route GET /api/scenarios/users/:id/scenarios)
- - [] Créer le composant MyScenariosList.jsx
+ - [x] Créer le composant MyScenariosList.jsx
  - [] Gérer les 3 états (loading / error / data)
  - [] Afficher chaque scénario avec son titre + un badge de statut (pending / approved / rejected)
  - [] Gérer le cas vide : "Vous n'avez pas encore proposé de scénario" + bouton vers /scenarios/create
@@ -328,15 +329,13 @@ Comment éviter de refaire deux fois getMe() (dans le Header et dans le Dashboar
 
 📊 Section "Mes statistiques"
 
- Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
- Calculer côté front à partir de la liste :
-
-Nombre total de propositions
-Nombre d'approuvées
-Nombre en attente
-Nombre de rejets
-
-
+  - [] Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
+  - [] Calculer côté front à partir de la liste :
+ - [] Nombre total de propositions
+ - [] Nombre d'approuvées
+ - [] Nombre en attente
+ - [] Nombre de rejets
+ j
  Affichage en 4 petites cartes / chiffres clés
  Bonus mignon : un petit message d'encouragement conditionnel (ex: si tout approuvé → "Bravo !")
 

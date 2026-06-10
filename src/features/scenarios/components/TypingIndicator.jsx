@@ -4,7 +4,7 @@ export default function TypingIndicator({ avatarUrl, senderName = "L'interlocute
     return (
         <div className="flex w-full justify-start animate-fade-in-up mb-2" role="status" aria-label={`${senderName} est en train d'écrire`}>
             {avatarUrl && (
-                <div className="w-10 h-10 flex-shrink-0 rounded-full overflow-hidden border border-gray-200 mr-3 self-end mb-1 bg-white">
+                <div className="w-10 h-10 shrink-0 rounded-full overflow-hidden border border-gray-200 mr-3 self-end mb-1 bg-white">
                     <img src={avatarUrl} alt="" className="w-full h-full object-cover" />
                 </div>
             )}

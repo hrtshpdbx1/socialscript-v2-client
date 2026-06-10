@@ -56,7 +56,7 @@ export default function ChoiceList({ choices, onSelectChoice }) {
                 <button
                     onClick={handlePrev}
                     aria-label={`Option précédente (${currentIndex === 0 ? choices.length : currentIndex} sur ${choices.length})`}
-                    className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex-shrink-0"
+                    className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 rounded-full transition-colors shrink-0"
                 >
                     <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -81,7 +81,7 @@ export default function ChoiceList({ choices, onSelectChoice }) {
                 <button
                     onClick={handleNext}
                     aria-label={`Option suivante (${currentIndex === choices.length - 1 ? 1 : currentIndex + 2} sur ${choices.length})`}
-                    className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 rounded-full transition-colors flex-shrink-0"
+                    className="p-2 text-gray-400 hover:text-primary hover:bg-primary/10 rounded-full transition-colors shrink-0"
                 >
                     <svg className="w-8 h-8 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

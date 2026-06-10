@@ -6,6 +6,7 @@ import { userService } from "../../../services/user.service";
 import AdminPageHeader from "./AdminPageHeader";
 import Card from "../../../components/ui/Card";
 import Badge from "../../../components/ui/Badge";
+import { getAvatarUrl } from "../../../utils/avatar.utils";
 
 // Libellés et couleurs des rôles
 const ROLE_BADGE = {
@@ -55,8 +56,8 @@ export default function AdminUsers() {
     if (error) return <p className="text-error font-bold font-nunito text-center mt-10">{error}</p>;
 
     const sortedUsers = [...users].sort(
-    (a, b) => ROLE_ORDER[a.role] - ROLE_ORDER[b.role]
-);
+        (a, b) => ROLE_ORDER[a.role] - ROLE_ORDER[b.role]
+    );
 
     return (
         <div className="space-y-8">
@@ -80,21 +81,26 @@ export default function AdminUsers() {
                             <Card key={u._id} className="text-left !p-4">
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
 
-                                 {/* Identité : avatar + nom + email */}
-        <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 flex-shrink-0 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
-                {u.firstName[0]}{u.lastName[0]}
-            </div>
-            <div className="min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-bold text-sm text-gray-900 font-nunito">
-                        {u.firstName} {u.lastName}
-                    </span>
-                    <Badge text={badge.text} color={badge.color} />
-                </div>
-                <p className="text-xs text-gray-500 truncate">{u.email}</p>
-            </div>
-        </div>
+                                    {/* Identité : avatar + nom + email */}
+                                    <div className="flex items-center gap-3 min-w-0">
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                            <img
+                                                src={getAvatarUrl(u.characterAvatarSeed || u._id)}
+                                                alt=""
+                                                className="w-12 h-12 rounded-full border-2 border-primary/20 bg-gray-50 shrink-0"
+                                            />
+                                        </div>
+                                       
+                                        <div className="min-w-0">
+                                            <div className="flex items-center gap-2 flex-wrap">
+                                                <span className="font-bold text-sm text-gray-900 font-nunito">
+                                                    {u.firstName} {u.lastName}
+                                                </span>
+                                                {/* <Badge text={badge.text} color={badge.color} /> */}
+                                            </div>
+                                            <p className="text-xs text-gray-500 truncate">{u.email}</p>
+                                        </div>
+                                    </div>
 
                                     {/* Contrôle de rôle */}
                                     {isAdmin ? (
@@ -105,7 +111,7 @@ export default function AdminUsers() {
                                         <select
                                             value={u.role}
                                             onChange={(e) => handleRoleChange(u._id, e.target.value)}
-                                            className="form-input bg-white !w-auto text-sm"
+                                            className="form-input bg-white w-auto text-sm"
                                             aria-label={`Modifier le rôle de ${u.firstName} ${u.lastName}`}
                                         >
                                             <option value="user">Utilisateur</option>

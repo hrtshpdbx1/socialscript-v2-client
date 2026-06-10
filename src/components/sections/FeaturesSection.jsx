@@ -49,7 +49,7 @@ export default function FeaturesSection() {
                             <div key={feature.id} className="flex gap-6 items-start">
 
                                 {/* numéro */}
-                                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-secondary/40 text-primary flex items-center justify-center font-black text-xl shadow-sm">
+                                <div className="shrink-0 w-12 h-12 rounded-full bg-secondary/40 text-primary flex items-center justify-center font-black text-xl shadow-sm">
                                     {feature.id}
                                 </div>
 

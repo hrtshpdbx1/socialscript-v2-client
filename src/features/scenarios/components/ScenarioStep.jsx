@@ -45,7 +45,7 @@ export default function ScenarioStep({ selectedDifficulty, selectedTheme, onEdit
                     className="group flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm border border-gray-100 pr-6 text-left transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5"
                     aria-label="Modifier le niveau de difficulté"
                 >
-                    <div className={`w-12 h-12 rounded-full ${diffConfig.bg || 'bg-gray-100'} flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform`}>
+                    <div className={`w-12 h-12 rounded-full ${diffConfig.bg || 'bg-gray-100'} flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform`}>
                         <img src={diffConfig.img} alt="" className="w-8 h-8 object-contain" />
                     </div>
                     <div>
@@ -67,7 +67,7 @@ export default function ScenarioStep({ selectedDifficulty, selectedTheme, onEdit
                     className="group flex items-center gap-3 p-3 bg-white rounded-2xl shadow-sm border border-gray-100 pr-6 text-left transition-all duration-200 outline-none focus-visible:ring-4 focus-visible:ring-primary/50 hover:border-primary/40 hover:shadow-md hover:-translate-y-0.5"
                     aria-label="Modifier le thème"
                 >
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-xl flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform">
                         {selectedTheme.icon || "💬"}
                     </div>
                     <div>
@@ -109,7 +109,7 @@ export default function ScenarioStep({ selectedDifficulty, selectedTheme, onEdit
                                     </h2>
 
                                     {/* Icône de Play */}
-                                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 ml-1">
                                             <path fillRule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clipRule="evenodd" />
                                         </svg>

@@ -19,7 +19,7 @@ export default function AboutSection() {
                 <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
 
                     {/* Left Col : La Photo */}
-                    <div className="relative flex-shrink-0 mx-auto">
+                    <div className="relative shrink-0 mx-auto">
                         <img
                             src="/illustrations/louise.png"
                             alt="Louise Moraldy"

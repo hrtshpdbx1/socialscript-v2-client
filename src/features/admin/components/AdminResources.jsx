@@ -198,7 +198,7 @@ subtitle={`${resources.filter((ressource) => ressource.isPublished===false).leng
 
                                 <div className="flex gap-4">
                                     {/* ZONE GAUCHE : vignette fixe */}
-                                    <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-gray-50">
+                                    <div className="w-24 h-24 shrink-0 rounded-lg overflow-hidden bg-gray-50">
                                         <img
                                             src={res.icon || PLACEHOLDER}
                                             alt={res.title}

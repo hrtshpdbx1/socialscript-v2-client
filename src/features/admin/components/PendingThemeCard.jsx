@@ -31,7 +31,7 @@ export default function PendingThemeCard({ theme, onApprove, onReject }) {
                     </div>
                 </div>
 
-                <div className="flex gap-2 flex-shrink-0">
+                <div className="flex gap-2 shrink-0">
                     <Button
                         onClick={onApprove}
                         variant="success"
