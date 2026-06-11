@@ -22,13 +22,13 @@ export default function PendingItemCard({ scenario, onApprove, onReject }) {
         year: "numeric",
     });
 
-  
+
 
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 transition-all duration-200 hover:shadow-md hover:border-gray-200">
             {/* En-tête : titre à gauche, actions à droite */}
             <div className="flex items-start justify-between gap-4">
-                
+
                 {/* Informations principales toujours visibles */}
                 <div className="flex-1">
                     <h2 className="font-bold text-lg text-gray-900 font-nunito leading-tight">
@@ -60,7 +60,7 @@ export default function PendingItemCard({ scenario, onApprove, onReject }) {
                     >
                         <X size={18} strokeWidth={2.5} />
                     </Button>
-                    
+
                     {/* Séparateur visuel */}
                     <div className="w-px bg-gray-200 mx-1"></div>
 
@@ -81,7 +81,7 @@ export default function PendingItemCard({ scenario, onApprove, onReject }) {
             {/* Section Détails - Affichée uniquement si isExpanded est true (Rendu conditionnel) */}
             {isExpanded && (
                 <div className="mt-4 pt-4 border-t border-gray-100 flex flex-col gap-4 text-sm font-nunito">
-                    
+
                     {/* Contexte */}
                     <div>
                         <strong className="text-gray-900 block mb-1">Contexte :</strong>
@@ -94,7 +94,7 @@ export default function PendingItemCard({ scenario, onApprove, onReject }) {
                     <div>
                         <strong className="text-gray-900 block mb-1">Personnage :</strong>
                         <div className="bg-gray-50 p-3 rounded-lg">
-                            <span className="font-bold text-gray-700">{scenario.characterName} :</span> 
+                            <span className="font-bold text-gray-700">{scenario.characterName} :</span>
                             <span className="italic text-gray-600 ml-2">"{scenario.characterDialogue}"</span>
                         </div>
                     </div>

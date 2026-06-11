@@ -30,6 +30,16 @@ async function getById(id) {
     return response.data.scenario
 };
 
+// ** GET BY AUTHOR ** 
+/**
+ * Récupère les scénarios crée par un user
+ * Route : GET /api/scenarios/users/:id/scenarios
+ */
+async function getByAuthor(userId) {
+    const response = await api.get(`/scenarios/users/${userId}/scenarios`)
+    return response.data
+};
+
 // ** CREATE ** 
 /**
  * Création d'un scénario / route protégée 
@@ -100,6 +110,6 @@ async function softDelete(scenarioId) {
 
 // Export 
 export const scenarioService = {
-    getByTheme, getById, getPending, create, update, softDelete, edit
+    getByTheme, getById, getPending, getByAuthor, create, update, softDelete, edit
 
 }

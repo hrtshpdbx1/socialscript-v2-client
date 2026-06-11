@@ -6,14 +6,14 @@ import { getAvatarUrl } from "../../utils/avatar.utils";
 export const DashboardNav = ({ user }) => {
     const linkClasses = ({ isActive }) =>
         `flex items-center gap-3 px-4 py-3 rounded-xl font-nunito font-bold transition-all duration-200 ${isActive
-            ? "bg-white text-success-600 shadow-md scale-105"
+            ? "bg-white text-primary shadow-md scale-105"
             : "text-white/80 hover:bg-white/10 hover:text-white"
         }`;
 
     const avatarUrl = getAvatarUrl(user?.characterAvatarSeed || user?._id);
 
     return (
-        <aside className="w-64 min-h-screen bg-success-600 flex flex-col p-6 shadow-xl z-10">
+        <aside className="w-64 min-h-screen bg-primary flex flex-col p-6 shadow-xl z-10">
             {/* En-tête : avatar + accueil + badge */}
             <div className="mb-10 text-center">
                 {user && (
@@ -47,7 +47,7 @@ export const DashboardNav = ({ user }) => {
                     <li>
                         <NavLink to="/dashboard/profile" className={linkClasses}>
                             <User className="w-5 h-5" />
-                            Mon profil
+                            Profil
                         </NavLink>
                     </li>
                 </ul>

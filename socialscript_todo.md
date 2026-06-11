@@ -314,37 +314,27 @@ Objectif de fin de journée : un utilisateur connecté arrive sur /dashboard, vo
 
 📚 Section "Mes scénarios proposés"
 
- - [] Créer une fonction getByUser(userId) à scenarioService (route GET /api/scenarios/users/:id/scenarios)
+ - [] Créer une fonction getByAuthor(userId) à scenarioService (route GET /api/scenarios/users/:id/scenarios)
  - idem back 
  ⚠️ Probleme : le model Scenario n'a pas de "CreatedBy"
  - [x] Créer le composant MyScenariosList.jsx
- - [] Gérer les 3 états (loading / error / data)
- - [] Afficher chaque scénario avec son titre + un badge de statut (pending / approved / rejected)
- - [] Gérer le cas vide : "Vous n'avez pas encore proposé de scénario" + bouton vers /scenarios/create
- - [] Lien cliquable vers le détail du scénario si approved
-
-
-**Questions à te poser**
-D'où récupères-tu le userId à passer à getByUser ? Indice : c'est dans l'objet user déjà chargé pour la section profil
-Comment éviter de refaire deux fois getMe() (dans le Header et dans le Dashboard) ? Piste : Jotai
-
+ - [x] Gérer les 3 états (loading / error / data)
+ - [x] Afficher chaque scénario avec son titre + un badge de statut (pending / approved / rejected)
+ - [x] Gérer le cas vide : "Vous n'avez pas encore proposé de scénario" + bouton vers /scenarios/create
+ - [x] Lien cliquable vers le détail du scénario si approved
 
 📊 Section "Mes statistiques"
 
-- [] Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
-- [] Calculer côté front à partir de la liste :
-- [] Nombre total de propositions
-- [] Nombre d'approuvées
-- [] Nombre en attente
-- [] Nombre de rejets
- 
- Affichage en 4 petites cartes / chiffres clés
- Bonus mignon : un petit message d'encouragement conditionnel (ex: si tout approuvé → "Bravo !")
+- [x] Créer un composant MyStats.jsx qui reçoit la liste des scénarios en prop
+- [x] Calculer côté front à partir de la liste :
+- [x] Nombre total de propositions
+- [x] Nombre d'approuvées
+- [x] Nombre en attente
+- [x] Nombre de rejets
 
-
-**Questions à te poser**
-Pourquoi calculer ces stats côté front plutôt que faire une nouvelle route back ? Quels sont les trade-offs ?
-Si demain il y a 1000 scénarios par user, est-ce que ce calcul tient encore ? À quel moment faut-il passer côté back ?
+## Mobile 
+UsrMenu invisible
+BoutonLogOut responsive 
 
 
 ✨ 5. Polish & commit

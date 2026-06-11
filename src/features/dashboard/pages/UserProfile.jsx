@@ -48,16 +48,14 @@ function UserProfile() {
         <div className="space-y-8">
             <header>
                 <h1 className="text-3xl font-bold font-nunito text-gray-900">
-                    Mon profil
+                   Modifier mon profil
                 </h1>
-                <p className="text-gray-500 font-nunito mt-2">
-                    Personnalise ton avatar et consulte tes informations.
-                </p>
+               
             </header>
 
             {/* === Section Avatar === */}
             <section className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold font-nunito mb-4">Mon avatar</h2>
+                <h2 className="text-xl font-bold font-nunito mb-4">Personnalisation de l'avatar</h2>
 
                 {/* Avatar actuel */}
                 <div className="flex items-center gap-6 mb-6 pb-6 border-b border-gray-100">
@@ -68,7 +66,7 @@ function UserProfile() {
                     <div>
                         <p className="font-nunito font-bold text-gray-900">Avatar actuel</p>
                         <p className="text-sm text-gray-500 font-nunito">
-                            Choisis un nouveau visage ci-dessous ou clique sur les dés pour en générer d'autres.
+                           Choisir un nouveau visage ci-dessous, ou utiliser les dés pour en générer d'autres.
                         </p>
                     </div>
                 </div>
@@ -99,30 +97,6 @@ function UserProfile() {
                 </div>
             </section>
 
-            {/* === Section Infos personnelles (read-only pour l'instant) === */}
-            <section className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                <h2 className="text-xl font-bold font-nunito mb-4">
-                    Informations personnelles
-                </h2>
-                <dl className="space-y-3">
-                    <div>
-                        <dt className="text-sm text-gray-500 font-nunito">Prénom</dt>
-                        <dd className="font-nunito">{user?.firstName}</dd>
-                    </div>
-                    <div>
-                        <dt className="text-sm text-gray-500 font-nunito">Nom</dt>
-                        <dd className="font-nunito">{user?.lastName}</dd>
-                    </div>
-                    <div>
-                        <dt className="text-sm text-gray-500 font-nunito">Email</dt>
-                        <dd className="font-nunito">{user?.email}</dd>
-                    </div>
-                    <div>
-                        <dt className="text-sm text-gray-500 font-nunito">Rôle</dt>
-                        <dd className="font-nunito capitalize">{user?.role}</dd>
-                    </div>
-                </dl>
-            </section>
         </div>
     );
 }

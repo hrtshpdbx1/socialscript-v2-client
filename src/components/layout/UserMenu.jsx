@@ -93,7 +93,7 @@ export function UserMenu() {
 
                         <NavLink to="/dashboard" onClick={() => setIsOpen(false)} className={itemClass}>
                             <User size={18} strokeWidth={2.5} />
-                            Mon profil
+                           Mon espace
                         </NavLink>
 
                         {/* Lien modération : admin + modérateur */}

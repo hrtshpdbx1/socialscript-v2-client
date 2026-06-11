@@ -30,8 +30,8 @@ export default function AvatarSelector({ value, onChange }) {
 
     return (
         <div>
-            <label className="font-bold text-gray-700 font-nunito block">Choisissez un avatar</label>
-            <p className="text-sm text-gray-500 mt-2 font-nunito">Cliquez sur les dés pour voir d'autres visages.</p>
+            <label className="font-bold text-gray-700 font-nunito block">Choix de l'avatar</label>
+            <p className="text-sm text-gray-500 mt-2 font-nunito">"Les dés permettent de générer d'autres visages.</p>
             <div className="flex items-center gap-3 overflow-x-auto p-6">
                 {/* Les 3 propositions d'avatars */}
                 {avatarOptions.map((seed, idx) => {

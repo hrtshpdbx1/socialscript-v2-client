@@ -37,9 +37,11 @@ function UserLayout() {
     }
 
     return (
-        <div className="flex min-h-screen min-w-full">
+        <div className="flex min-h-screen min-w-full bg-primary-200">
+            {/* <DashboardNav user={user} /> */}
+            {/* <main className="flex-1 p-8 bg-gray-50"> */}
             <DashboardNav user={user} />
-            <main className="flex-1 p-8 bg-gray-50">
+            <main className="flex-1 p-8">
                 <div className="max-w-4xl mx-auto">
                     <Outlet context={{ user, updateUserState }} />
                     {/* //  Outlet context=  parent envoie des données vers ses enfants de route */}

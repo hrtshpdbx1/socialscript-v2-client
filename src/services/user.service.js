@@ -22,6 +22,8 @@ async function getAllUsers() {
     return response.data; // { users: [...] }
 }
 
+
+
 // ** UPDATE ROLE (admin) **
 // Route : PATCH /api/admin/users/:userId/role
 async function updateUserRole(userId, role) {

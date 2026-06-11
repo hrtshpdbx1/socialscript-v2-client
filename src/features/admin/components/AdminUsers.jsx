@@ -77,7 +77,9 @@ export default function AdminUsers() {
                         const isAdmin = u.role === "admin";
 
                         return (
-                            <Card key={u._id} className="text-left !p-4">
+                            <Card key={u._id} 
+                            className="text-left !p-4">
+                                
                                 <div className="flex items-center justify-between gap-4 flex-wrap">
 
                                     {/* Identité : avatar + nom + email */}
