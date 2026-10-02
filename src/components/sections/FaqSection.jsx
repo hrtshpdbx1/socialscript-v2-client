@@ -32,7 +32,7 @@ export default function FaqSection() {
         {
             id: 6,
             question: "Le site est-il accessible ?",
-            answer: "Nous avons fait de notre mieux pour rendre SocialScript accessible aux personnes en situation de handicap en apportant une attention toute particulière aux contrastes et à la navigation, mais nous ne prétendons pas être parfait·es. Si vous rencontrez des difficultés ou avez des suggestions, contactez-nous via la page Contact ou à info@socialscript.be. Vos retours nous aident à nous améliorer."
+            answer: "Nous avons fait de notre mieux pour rendre SocialScript accessible aux personnes en situation de handicap en apportant une attention toute particulière aux contrastes et à la navigation, mais nous ne prétendons pas être parfait·es. Si vous rencontrez des difficultés ou avez des suggestions, contactez-nous via la page Contact ou à lmoraldy.dev@gmail.com. Vos retours nous aident à nous améliorer."
         }
     ];
 

@@ -55,7 +55,7 @@ export default function DifficultyStep({ onSelect }) {
         fetchDifficulties();
     }, []);
 
-    if (loading) return <p className="text-gray-500 font-nunito animate-pulse text-center mt-10">Chargement en cours...</p>;
+    if (loading) return <p className="text-gray-500 font-nunito animate-pulse text-center mt-10">Chargement en cours... Patience, cela peut prendre jusqu'à 60 secondes</p>;
     if (error) return <p className="text-error font-bold font-nunito text-center mt-10">{error}</p>;
 
     return (

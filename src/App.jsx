@@ -6,18 +6,20 @@ import { Outlet } from "react-router"
 import { Footer } from "./components/layout/Footer"
 import { Header } from "./components/layout/Header"
 import { useAutoLogout } from "./utils/useAutoLogout";
+import BetaBanner from "./components/layout/BetaBanner";
 
 // import ButtonShowcase from "./components/ui/ButtonShowcase"
 
 
 function App() {
-    useAutoLogout();  
+    useAutoLogout();
     return (
         <>
+        <BetaBanner feedbackUrl="mailto: lmoraldy.dev@gmail.com?subject=Retour bêta SocialScript" />
             <Header />
             <main>
                 <Outlet />
-               
+
                 {/* <ButtonShowcase /> */}
             </main>
             <Footer />

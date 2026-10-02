@@ -10,6 +10,7 @@ const variants = {
     secondary: "bg-secondary text-gray-900 hover:opacity-90",
     outline: "border-1 border-gray-700 text-gray-700 hover:bg-secondary ",
     outline_primary: "border-1 border-primary text-primary hover:bg-primary hover:text-white",
+    outline_white: "border-1 border-white text-white hover:bg-primary hover:text-white",
     ghost: "bg-transparent text-gray-700 hover:bg-gray-200",
     success: "bg-success text-gray-900 hover:opacity-90",
     error: "bg-error text-white hover:opacity-90",

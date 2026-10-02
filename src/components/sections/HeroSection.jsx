@@ -1,5 +1,6 @@
 // src/components/sections/HeroSection.jsx
 import Button from '../ui/Button';
+import { NavLink } from "react-router-dom";
 
 export default function HeroSection() {
     return (
@@ -23,12 +24,15 @@ export default function HeroSection() {
                         </p>
 
                         <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                            <Button variant="primary">
-                                Commencer l'entraînement
-                            </Button>
-                            <Button variant="outline">
+
+                            <NavLink to="/scenarios/play" className="relative z-10 w-full sm:w-auto">
+                                <Button variant="secondary">
+                                    Commencer l'entraînement
+                                </Button>
+                            </NavLink>
+                            {/* <Button variant="outline">
                                 Découvrir le projet
-                            </Button>
+                            </Button> */}
                         </div>
                     </div>
 
@@ -37,9 +41,9 @@ export default function HeroSection() {
                         {/* Img */}
                         <div className="relative bg-white rounded-3xl shadow-xl border border-gray-100 aspect-[4/3] flex items-center justify-center overflow-hidden">
                             <span className="text-gray-400 font-medium">
-                              <img src="illustrations/hero-img.avif" alt="" className="w-full h-full object-cover" />
+                                <img src="illustrations/hero-img.avif" alt="" className="w-full h-full object-cover" />
                             </span>
-                         
+
                         </div>
                     </div>
                 </div>

@@ -28,11 +28,11 @@ export default function ScenariosLanding() {
           <div className="md:col-span-2 bg-primary rounded-3xl p-8 md:p-10 text-white shadow-lg relative overflow-hidden flex flex-col justify-between items-start">
 
             <div className="relative z-10 mb-8">
-                 <Badge
-                  text="Recommandé"
-                  color="white"
-                  className="mb-4 font-nunito"
-                />
+              {/* <Badge
+                text="Recommandé"
+                color="white"
+                className="mb-4 font-nunito"
+              /> */}
 
               <h2 className="text-3xl font-extrabold font-nunito mb-3">Simulation Guidée</h2>
               <p className="text-primary-50 max-w-md font-nunito leading-relaxed">
@@ -41,7 +41,7 @@ export default function ScenariosLanding() {
             </div>
 
             <NavLink to="/scenarios/play" className="relative z-10 w-full sm:w-auto">
-              <Button variant="secondary" className="w-full sm:w-auto text-primary font-extrabold px-8 py-3 text-lg shadow-sm hover:-translate-y-1 transition-transform">
+              <Button variant="outline_white" className="w-full sm:w-auto text-primary font-extrabold px-8 py-3 text-lg shadow-sm hover:-translate-y-1 transition-transform">
                 Commencer l'entraînement
               </Button>
             </NavLink>
